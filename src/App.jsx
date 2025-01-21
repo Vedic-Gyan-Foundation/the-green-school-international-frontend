@@ -70,6 +70,7 @@ const App = () => {
             href="https://www.facebook.com/greenschoolinternational/"
             className="social_link"
             target="_blank"
+            rel="noreferrer"
           >
             <FaFacebookF color="yellow" size={25} />
           </a>
@@ -77,6 +78,7 @@ const App = () => {
             href="https://www.instagram.com/the_green_school_international?igsh=azAxbHdiMXQ3eTU="
             className="social_link"
             target="_blank"
+            rel="noreferrer"
           >
             <FaInstagram color="yellow" size={25} />
           </a>
@@ -84,6 +86,7 @@ const App = () => {
             href="https://www.youtube.com/@thegreenschoolinternational"
             className="social_link"
             target="_blank"
+            rel="noreferrer"
           >
             <FaYoutube color="yellow" size={25} />
           </a>
