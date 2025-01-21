@@ -1,0 +1,19 @@
+.header{
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#24364dc4,#24364dc4), url("/assets/school_five.jpg");
+    background-size: cover;
+    background-position: bottom center;
+    color: white;
+}
+.header h2{
+    font-size: 3rem;
+}
+@media screen and (max-width:576px){
+    .header h2{
+        font-size: 2rem;
+    }
+   
+}

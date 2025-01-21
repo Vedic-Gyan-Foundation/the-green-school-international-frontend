@@ -1,0 +1,22 @@
+
+.banner_img_desktop, .banner_img_mobile{
+    width: 100%;
+   
+}
+.banner_img_mobile{
+    display: none;
+   
+}
+
+
+
+@media screen and (max-width:756px){
+    .banner_img_mobile{
+        display: block;
+        width: 100%;
+    }
+    .banner_img_desktop{
+        display: none;
+    }
+
+}

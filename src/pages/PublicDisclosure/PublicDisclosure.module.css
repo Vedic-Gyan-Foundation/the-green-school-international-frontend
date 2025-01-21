@@ -1,0 +1,85 @@
+table {
+    border:1px solid #b3adad;
+    border-collapse:collapse;
+    padding:5px;
+    margin: auto;
+}
+table th {
+    border:1px solid #b3adad;
+    padding:5px;
+    background: #f0f0f0;
+    color: #313030;
+}
+table td {
+    border:1px solid #b3adad;
+    text-align:center;
+    padding:5px;
+    background: #ffffff;
+    color: #313030;
+}
+.publicdisclosure{
+    padding: 2rem 3rem;
+}
+.publicdisclosure h2{
+    text-align: center;
+
+}
+.publicdisclosure_generalinfo{
+    margin-top: 2rem;
+}
+.publicdisclosure_generalinfo h3{
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 14px;
+}
+.publicdisclosure_documents{
+    margin-block: 3rem;
+}
+.publicdisclosure_documents h3{
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.publicdisclosure_results h3{
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.publicdisclosure_staff{
+    margin-block: 3rem;
+}
+.publicdisclosure_staff h3{
+    margin-bottom: 1rem;
+    font-size: 14px;
+    text-align: center;
+}
+.publicdisclosure_classx h3{
+    margin-bottom: 1rem;
+    font-size: 14px;
+    text-align: center;
+}
+.publicdisclosure_classxii{
+    margin-block: 3rem;
+}
+.publicdisclosure_classxii h3{
+    margin-bottom: 1rem;
+    font-size: 14px;
+    text-align: center;
+
+}
+.publicdisclosure_infrastructure h3{
+    margin-bottom: 1rem;
+    font-size: 14px;
+    text-align: center;
+
+}
+.publicdisclosure_generalinfo_table,.publicdisclosure_results_table, .publicdisclosure_staff_table, .publicdisclosure_classx_table, .publicdisclosure_publicdisclosure_infrastructure_table, .publicdisclosure_documents_table{
+    overflow-x:auto
+}
+@media screen and (max-width:576px){
+    .publicdisclosure{
+        padding: 2rem 1rem;
+    }
+   
+}

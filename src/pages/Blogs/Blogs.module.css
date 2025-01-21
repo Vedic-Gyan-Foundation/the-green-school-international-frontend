@@ -1,0 +1,19 @@
+.blogs {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 4rem;
+   margin: 3rem;
+}
+.error_message{
+   padding: 4rem;
+   text-align: center;
+}
+@media screen and (max-width:576px){
+   .blogs{
+      margin: 3rem 1rem;
+   }
+   .error_message{
+      padding: 1rem;
+   }
+}

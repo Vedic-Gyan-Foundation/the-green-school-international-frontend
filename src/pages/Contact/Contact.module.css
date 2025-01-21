@@ -1,0 +1,107 @@
+.contactus{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-block: 3rem;
+    margin-inline: 1rem;
+
+}
+.contactus_info{
+    background:linear-gradient(#05863fce,#05863fce), url('/assets/backgrounds/background_formula.jpg');
+    background-size: contain;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    color: white;
+    width: 40vw;
+}
+.contactus_info_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+.contact_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    /* background-color: #e7e5e5; */
+    padding-block: 3rem;
+}
+.contact_form h2{
+    font-size: 2.5rem;
+    color: #0e3302;
+}
+.contact_form form{
+    display: flex;
+    gap: 1rem;
+}
+.contact_form form input{
+    height: 40px;
+    width: 350px;
+    border: 1px solid #c9c9c9;
+    padding-left: 10px;
+}
+.form_input{
+    margin-bottom: 20px;
+
+}
+.contact_form form textarea {
+    width: 350px;
+    height: 100px;
+    padding: 10px;
+
+}
+.button_primary_submit{
+    width: 100%;
+    padding: 1rem 2.5rem;
+    border-radius: 10px;
+    background-color: #FF6652;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+
+}
+.button_primary_submit:hover{
+    background-color: black;
+}
+.formError{
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+@media screen and (max-width:1100px){
+    .contactus{
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact_form form{
+        flex-direction: column;
+    }
+    .contactus_info{
+       
+        width: auto;
+    }
+    
+}
+@media screen and (max-width:756px){
+    .contactus_map iframe{
+        width: 95vw;
+    }
+    .contact_form{
+        flex-direction: column;
+        align-items: center;
+    }
+    .contactus_info{
+        padding: 2rem 1rem;
+    }
+}

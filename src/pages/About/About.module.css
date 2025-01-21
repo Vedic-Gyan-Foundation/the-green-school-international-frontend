@@ -1,0 +1,258 @@
+.about_container{
+    max-width: 1400px;
+    margin: auto;
+}
+.aboutus{
+    padding: 4rem;
+}
+.aboutus_head h2{
+    
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #0e3302;
+}
+.aboutus_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.aboutus_content p{
+    margin-top: 10px;
+    text-align: justify;
+}
+
+
+
+.mission_vission_container{
+    position: relative;
+    margin: 4rem ;
+}
+.border_one{
+    position: absolute;
+    content: '';
+    height: 100px;
+    width: 100px;
+    top: 0;
+    left: 0;
+    border-top: 5px solid #1B7344;
+    border-left: 5px solid #1B7344;
+    border-top-left-radius: 50%;
+}
+.border_two{
+    position: absolute;
+    content: '';
+    height: 100px;
+    width: 100px;
+    bottom: 0;
+    right: 0;
+    border-bottom: 5px solid #1B7344;
+    border-right: 5px solid #1B7344;
+    border-bottom-right-radius: 50%;
+}
+.about_mission{
+   padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin: auto;
+}
+
+.about_mission_text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+.about_mission_text p{
+    font-weight: 400;
+    font-size: 1rem;
+
+}
+.about_mission_text h3{
+    font-size: 2rem;
+ 
+}
+
+
+.about_vission{
+   
+    padding-bottom: 2rem;
+    padding-inline: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+    margin: auto;
+}
+
+.about_vission_text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: end;
+   
+}
+.about_vission_text h3{
+    font-size: 2rem;
+}
+.about_vission_text p{
+    font-weight: 400;
+    font-size: 1rem;
+
+}
+
+
+.about_values{
+    padding: 4rem;
+    display: flex;
+    gap: 3rem;
+    background: linear-gradient(#24364dc4,#24364dc4), url("/assets/school_five.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.about_values_content{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: white;
+}
+.about_values_content > h2{
+    font-size: 2rem;
+}
+
+.know_about_us_container{
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+.know_about_us_container > h2{
+    font-size: 2rem;
+    text-align: center;
+   
+}
+.about_wordfromprincipal{
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    gap: 4rem;
+    align-items: center;
+   
+   
+    
+}
+
+
+.about_principal_img img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    object-position:top;
+    border-radius: 50%;
+
+}
+.about_wordfromprincipal_text{
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.about_wordfromprincipal_mid_text{
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+.about_wordfromprincipal_text h2{
+    color: #1B7344;
+}
+
+
+
+
+@media screen and (max-width:1040px){
+    .aboutus{
+        padding: 0;
+        padding-inline: 2rem;
+        padding-block: 4rem;
+    }
+    .aboutus_content{
+        flex-direction: column;
+        align-items: center;
+    }
+  
+    .about_concept{
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 3rem;
+        padding-block: 2rem;
+    }
+    .about_values{
+        flex-direction: column;
+        align-items: center;
+        text-align: justify;
+    }
+    .about_wordfromprincipal{
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+  
+    .mission_vission_container{
+        margin-inline: 2rem ;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+    .know_about_us_container{
+        padding: 2rem;
+    }
+}
+@media screen and (max-width:756px){
+    .about_vission{
+        padding: 0rem 1rem;
+    }
+    .about_mission{
+        padding: 0rem 1rem;
+    }
+    .about_vission_img img{
+        width: 90vw;
+    }
+    .about_mission_img img{
+        width: 90vw;
+    }
+    .aboutus_content_img img{
+        width: 80vw;
+    }
+    .about_history_right{
+        width: 90vw;
+    }
+    .about_concept_right{
+        width: 90vw;
+    }
+    .about_values img{
+        width: 90vw;
+    }
+    .about_values{
+        padding: 3rem 1rem;
+    }
+    .about_wordfromprincipal{
+        padding: 2rem 1rem;
+    }
+   
+    .know_about_us_container{
+        padding: 1rem;
+        padding-top: 2rem;
+        gap: 1rem;
+    }
+
+    .aboutus{
+        padding: 1rem;
+        padding-top: 2rem;
+    }
+    .mission_vission_container{
+        margin-inline: 1rem ;
+    }
+}

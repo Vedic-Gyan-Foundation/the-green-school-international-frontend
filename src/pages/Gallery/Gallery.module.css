@@ -1,0 +1,20 @@
+.gallery_images{
+    margin: 3rem 2rem;
+}
+.gallery_image{
+    width: 350px;
+    height: 250px;
+    object-fit: cover;
+}
+.gallery_images_container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+}
+.gallery_images h2{
+    text-align: center;
+    font-size: 2rem;
+    color: #0e3302;
+    margin-bottom: 2rem;
+}

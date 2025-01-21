@@ -1,0 +1,33 @@
+.contact_us{
+    background:linear-gradient(#05863fce,#05863fce), url('/assets/backgrounds/background_formula.jpg');
+    background-size: contain;
+    margin-inline: 4rem;
+    padding: 2rem;
+    color: white;
+    border-radius: 12px;
+    margin-block: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.contact_text > h2{
+    font-size: 2rem;
+    margin-bottom: 1.6rem;
+}
+@media screen and (max-width:991px){
+    .contact_us{
+        margin-inline: 2rem;
+    }
+    
+
+}
+@media screen and (max-width:756px){
+    .contact_us{
+        margin-inline: 1rem;
+        flex-direction: column;
+        align-items: start;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+}

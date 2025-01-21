@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --navlink: #4d4d4d;
+    --primarycolor: #040e04;
+    --primarycolortwo:#0e3302
+}
+.button_primary{
+    width: fit-content;
+    padding: 1rem 2.5rem;
+    border-radius: 10px;
+    background-color: #FF6652;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+
+}
+.button_primary:hover{
+    background-color: black;
+}
+h1,h2,h3,h4,h5,h6,b{
+    font-family: 'Poppins', sans-serif;
+}
+p,a,li{
+    font-family: 'Roboto', sans-serif;
+}
