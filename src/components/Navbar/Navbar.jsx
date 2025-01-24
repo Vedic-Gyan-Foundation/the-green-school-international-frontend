@@ -30,7 +30,8 @@ const sportsInfraListItems = [
 
 const Navbar = () => {
   const [navdropOpen, setNavdropOpen] = useState(false);
-  const [subMenuOpen, setSubMenuOpen] = useState(false);
+  const [subMenuFeeStructureOpen, setSubMenuFeeStructureOpen] = useState(false);
+  const [subMenuSportsInfraOpen, setSubMenuSportsInfraOpen] = useState(false);
 
   function handleDownloadPDF(fileURL) {
     const anchorElement = document.createElement("a");
@@ -50,8 +51,12 @@ const Navbar = () => {
   };
 
   // Hanlde SUB-MENU open (Dropdown-Open for Hamberger-Menu)
-  function handleSubMenuToggle() {
-    setSubMenuOpen((curr) => !curr);
+  function handleSubMenuToggle(subMenuFor) {
+    if (subMenuFor === "feeStructure")
+      setSubMenuFeeStructureOpen((curr) => !curr);
+
+    if (subMenuFor === "sportsInfra")
+      setSubMenuSportsInfraOpen((curr) => !curr);
   }
 
   return (
@@ -141,12 +146,12 @@ const Navbar = () => {
               <Link className="font-semibold text-sm">Fee Structure</Link>
 
               <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40">
-                <ul className="flex flex-col">
+                <ul className="flex flex-col *:text-xs">
                   <li
                     onClick={() =>
                       handleDownloadPDF(feeStruturesCurrentFileUrl)
                     }
-                    className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-t-lg"
+                    className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-sm"
                   >
                     2024-2025 (Session)
                   </li>
@@ -199,13 +204,34 @@ const Navbar = () => {
       >
         <ul>
           <li>
-            {" "}
             <Link to={"/"} className={styles.navbar_navlink}>
               Home
             </Link>
           </li>
+          {/* SORTS INFRA -MOBILE VIEW */}
           <li>
-            {" "}
+            <button
+              onClick={() => handleSubMenuToggle("sportsInfra")}
+              className="font-semibold text-sm text-stone-900"
+            >
+              <span>Sports Infra</span>{" "}
+              <span
+                className={`${
+                  subMenuSportsInfraOpen ? "text-red-700" : "text-[#08703D]"
+                } text-lg text-center`}
+              >
+                {subMenuSportsInfraOpen ? "-" : "+"}
+              </span>
+            </button>
+            {subMenuSportsInfraOpen && (
+              <ul className="*:text-xs pt-2 px-3">
+                {sportsInfraListItems.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </li>
+          <li>
             <Link to={"/about"} className={styles.navbar_navlink}>
               Our School
             </Link>
@@ -227,37 +253,21 @@ const Navbar = () => {
           </li>
 
           {/* FEE STRUCTURE -MOBILE VIEW */}
-          {/* <li>
-            <button
-              
-              className="flex items-center justify-between w-full px-4 py-2"
-            >
-              Fee Structure
-              <span>{subMenuOpen ? "-" : "+"}</span>
-            </button>
-            {subMenuOpen && (
-              <ul className="bg-gray-100 pl-6">
-                <li>2024-2025 (Session)</li>
-                <li>2025-2026 (Session)</li>
-              </ul>
-            )}
-          </li> */}
-
           <li>
             <button
-              onClick={handleSubMenuToggle}
+              onClick={() => handleSubMenuToggle("feeStructure")}
               className="font-semibold text-sm text-stone-900"
             >
               <span>Fee Structure</span>{" "}
               <span
                 className={`${
-                  subMenuOpen ? "text-red-700" : "text-[#08703D]"
+                  subMenuFeeStructureOpen ? "text-red-700" : "text-[#08703D]"
                 } text-lg text-center`}
               >
-                {subMenuOpen ? "-" : "+"}
+                {subMenuFeeStructureOpen ? "-" : "+"}
               </span>
             </button>
-            {subMenuOpen && (
+            {subMenuFeeStructureOpen && (
               <ul className="*:text-xs pt-2 px-3">
                 <li
                   onClick={() => handleDownloadPDF(feeStruturesCurrentFileUrl)}
