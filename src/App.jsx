@@ -16,9 +16,7 @@ import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { FaYoutube } from "react-icons/fa";
+import SocialLinks from "./components/SocialLinks/SocialLinks";
 
 const App = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -65,33 +63,9 @@ const App = () => {
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
-        <div className={"social_links"}>
-          <a
-            href="https://www.facebook.com/greenschoolinternational/"
-            className="social_link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaFacebookF color="yellow" size={25} />
-          </a>
-          <a
-            href="https://www.instagram.com/the_green_school_international?igsh=azAxbHdiMXQ3eTU="
-            className="social_link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaInstagram color="yellow" size={25} />
-          </a>
-          <a
-            href="https://www.youtube.com/@thegreenschoolinternational"
-            className="social_link"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaYoutube color="yellow" size={25} />
-          </a>
-        </div>
       </BrowserRouter>
+      {/* SOCIAL LINKS CONATINER */}
+      <SocialLinks />
     </>
   );
 };

@@ -5,10 +5,28 @@ import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { HashLink } from "react-router-hash-link";
 
-const feeStruturesCurrentFileUrl =
-  "http://localhost:5173/pdf/Fee-structure-2024-25.pdf";
-const feeStruturesFutureFileUrl =
-  "http://localhost:5173/pdf/Proposed-Fee-Structure-2025-26.pdf";
+const feeStruturesCurrentFileUrl = "./pdf/Fee-structure-2024-25.pdf";
+const feeStruturesFutureFileUrl = "./pdf/Proposed-Fee-Structure-2025-26.pdf";
+const feeFixationOrderFileUrl =
+  "./pdf/Fee_Fixation_Order_The_GreenSchool_International.pdf";
+
+const sportsInfraListItems = [
+  "Astroturf Football Ground",
+  "Astroturf Volley Ball Ground",
+  "Basket Ball Ground",
+  "Astroturf Box Cricket",
+  "Skating",
+  "Table Tennis",
+  "Badminton",
+  "Toddler Swimming Pool ( Nursery - UKG )",
+  "Beginner's Swimming Pool (Class 1 - 4)",
+  "Olympic-Sized Pool (Class 5 - 12)",
+  "Taekwondo  Training Centre",
+  "Karate Training Centre",
+  "Chess Club",
+  "Boys Dance Studio",
+  "Girls Dance Studio",
+];
 
 const Navbar = () => {
   const [navdropOpen, setNavdropOpen] = useState(false);
@@ -51,6 +69,23 @@ const Navbar = () => {
               <Link to={"/"} className={styles.navbar_navlink}>
                 Home
               </Link>
+            </li>
+            {/* SPORTS INFRA*/}
+            <li className="relative group">
+              <Link className="font-semibold text-sm">Sports Infra</Link>
+
+              <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40 overflow-y-scroll">
+                <ul className="flex flex-col ">
+                  {sportsInfraListItems.map((item, index) => (
+                    <li
+                      key={index}
+                      className="px-4 py-2 hover:bg-stone-200 cursor-pointer text-xs rounded-sm"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
             <li>
               <Link to={"/about"} className={styles.navbar_navlink}>
@@ -117,9 +152,15 @@ const Navbar = () => {
                   </li>
                   <li
                     onClick={() => handleDownloadPDF(feeStruturesFutureFileUrl)}
-                    className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
+                    className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-lg"
                   >
                     2025-2026 (Session)
+                  </li>
+                  <li
+                    onClick={() => handleDownloadPDF(feeFixationOrderFileUrl)}
+                    className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
+                  >
+                    Fee Fixation Order
                   </li>
                 </ul>
               </div>
@@ -226,7 +267,10 @@ const Navbar = () => {
                 <li
                   onClick={() => handleDownloadPDF(feeStruturesFutureFileUrl)}
                 >
-                  2025-2026 (Session)
+                  2025-2026 (Session) Fee Fixation Order
+                </li>
+                <li onClick={() => handleDownloadPDF(feeFixationOrderFileUrl)}>
+                  Fee Fixation Order
                 </li>
               </ul>
             )}
