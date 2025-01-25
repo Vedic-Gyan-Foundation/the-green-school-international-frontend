@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/sea-green";
 import styles from "./SlidingBanner.module.css";
-import homebannerstdimg from "../../../public/assets/home/banner_student.png";
+import homebannerstdimg from "/assets/home/banner_student.png";
 import { register } from "swiper/element/bundle";
 import axiosInstance from "../../api/axiosInstance";
 import { baseURL } from "../../api/axiosInstance";

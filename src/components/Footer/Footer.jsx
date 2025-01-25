@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import logo from "../../../public/assets//logo_white.png";
+import logo from "/assets/logo_white.png";
 import { MdLocationOn } from "react-icons/md";
 import { AiFillPhone } from "react-icons/ai";
 import { BsFillEnvelopeFill } from "react-icons/bs";
