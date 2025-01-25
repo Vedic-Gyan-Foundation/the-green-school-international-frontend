@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../Button/Button'
-import styles from './Blogcard.module.css'
+import styles from './BlogCard.module.css'
 import { baseURL } from '../../api/axiosInstance'
 import { useNavigate } from 'react-router-dom'
 
