@@ -72,14 +72,28 @@ const PublicDisclosure = () => {
                   <td>7</td>
                   <td>SCHOOL EMAIL ID</td>
                   <td className="has-text-align-left" data-align="left">
-                    vedicgyanfoundation@gmail.com
+                    <a
+                      href="mailto:thegreenschoolinternational@gmail.com"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      thegreenschoolinternational@gmail.com
+                    </a>
                   </td>
                 </tr>
                 <tr>
                   <td>8</td>
                   <td>CONTACT DETAILS (LANDLINE/MOBILE)</td>
                   <td className="has-text-align-left" data-align="left">
-                    9856199105
+                    <a
+                      href="tel:+919856199105"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      +91-9856199105
+                    </a>
                   </td>
                 </tr>
               </tbody>
@@ -94,7 +108,9 @@ const PublicDisclosure = () => {
                 <tr>
                   <th>SL No.</th>
                   <th>DOCUMENTS/INFORMATION</th>
-                  <th>LINKS OF UPLOADED DOCUMENTS ON YOUR SCHOOL’S WEBSITE</th>
+                  <th>
+                    LINKS OF UPLOADED DOCUMENTS ON YOUR SCHOOL&apos;S WEBSITE
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -108,10 +124,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/upgradation_letter.pdf"
+                      href="/public/pdf/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/upgradation_letter.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -124,10 +141,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/Vedic-Gyan-Foundation-Trust-deed.pdf"
+                      href="./pdf/public_disclosure/VEDIC_GYAN_FOUNDATION_TRUST_DEED.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/Vedic-Gyan-Foundation-Trust-deed.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -141,10 +159,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/copy-of-Noc.pdf"
+                      href="./pdf/public_disclosure/COPIES_OF_NOC.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/copy-of-Noc.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -152,16 +171,17 @@ const PublicDisclosure = () => {
                   <td>4</td>
                   <td>
                     COPIES OF THE RECOGNITION CERTIFICATE UNDER THE RTE ACT,
-                    2009, AND IT’S
+                    2009, AND IT&apos;S
                     <br />
                     RENEWAL IF APPLICABLE
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/recognition-certificate.pdf"
+                      href="./pdf/public_disclosure/RECOGNITION_CERTIFICATE.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/recognition-certificate.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -175,10 +195,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/building-safety-certificate.pdf"
+                      href="./pdf/public_disclosure/BUILDING_SAFETY_CERTIFICATE.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/building-safety-certificate.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -192,10 +213,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/fire_safety_certificate.pdf"
+                      href="./pdf/public_disclosure/FIRE_NOC.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/fire_safety_certificate.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -207,10 +229,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/self_certification.pdf"
+                      href="./pdf/public_disclosure/SELF_CERTIFICATION.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/self_certification.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -226,10 +249,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/health-and-hygene.pdf"
+                      href="./pdf/public_disclosure/HEALTH_AND_HYGENE.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/health-and-hygene.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -238,10 +262,11 @@ const PublicDisclosure = () => {
                   <td>LAND CERTIFICATE</td>
                   <td>
                     <a
-                      href="/public/assets/documents/land-certificate.pdf"
+                      href="./pdf/public_disclosure/LAND_CERTIFICATE.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/land-certificate.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -389,44 +414,55 @@ const PublicDisclosure = () => {
                   <td>Mousumi Ganguly</td>
                 </tr>
                 <tr>
-                  <td rowSpan="6">2</td>
+                  <td>2</td>
+                  <td>HEAD MISTRESS</td>
+                  <td>N.Sweety Singh</td>
+                </tr>
+
+                <tr>
+                  <td rowSpan="6">3</td>
                   <td>TOTAL NO. OF TEACHERS</td>
-                  <td>74</td>
+                  <td>94</td>
                 </tr>
                 <tr>
                   <td>PGT</td>
-                  <td>13</td>
+                  <td>14</td>
                 </tr>
                 <tr>
                   <td>TGT</td>
-                  <td>20</td>
+                  <td>24</td>
                 </tr>
                 <tr>
                   <td>PRT</td>
-                  <td>29</td>
+                  <td>40</td>
                 </tr>
                 <tr>
                   <td>NTT</td>
-                  <td>6</td>
+                  <td>9</td>
                 </tr>
                 <tr>
                   <td>Librarian</td>
                   <td>1</td>
                 </tr>
                 <tr>
-                  <td>3</td>
+                  <td>4</td>
                   <td>TEACHERS SECTION RATIO</td>
                   <td>1:1.85</td>
                 </tr>
                 <tr>
-                  <td>4</td>
+                  <td>5</td>
                   <td>DETAILS OF SPECIAL EDUCATOR</td>
                   <td>1</td>
                 </tr>
                 <tr>
-                  <td>5</td>
+                  <td>6</td>
                   <td>DETAILS OF COUNSELLOR AND WELNESS TEACHER</td>
                   <td>2</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>PET</td>
+                  <td>1</td>
                 </tr>
               </tbody>
             </table>

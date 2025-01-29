@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { HashLink } from "react-router-hash-link";
 
-const feeStruturesCurrentFileUrl = "./pdf/Fee-structure-2024-25.pdf";
-const feeStruturesFutureFileUrl = "./pdf/Proposed-Fee-Structure-2025-26.pdf";
+const feeStruturesCurrentFileUrl =
+  "./pdf/fee_structure/Fee-structure-2024-25.pdf";
+const feeStruturesFutureFileUrl =
+  "./pdf/fee_structure/Proposed-Fee-Structure-2025-26.pdf";
 const feeFixationOrderFileUrl =
-  "./pdf/Fee_Fixation_Order_The_GreenSchool_International.pdf";
+  "./pdf/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf";
 
 const sportsInfraListItems = [
   "Astroturf Football Ground",
@@ -36,7 +38,9 @@ const Navbar = () => {
   function handleDownloadPDF(fileURL) {
     const anchorElement = document.createElement("a");
     anchorElement.href = fileURL;
-    anchorElement.download = fileURL.split("/").pop();
+    anchorElement.target = "_blank";
+    // anchorElement.download = fileURL.split("/").pop();
+    anchorElement.rel = "noopener noreferrer"; // Security best practice
     document.body.appendChild(anchorElement);
     anchorElement.click();
     document.body.removeChild(anchorElement);
@@ -79,7 +83,7 @@ const Navbar = () => {
             <li className="relative group">
               <Link className="font-semibold text-sm">Sports Infra</Link>
 
-              <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40 overflow-y-scroll">
+              <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40 overflow-y-scroll hide-scrollbar">
                 <ul className="flex flex-col ">
                   {sportsInfraListItems.map((item, index) => (
                     <li
@@ -141,7 +145,7 @@ const Navbar = () => {
                 Admissions
               </Link>
             </li>
-            {/* FEE STRUCTURE */}
+            {/* Fee Structure */}
             <li className="relative group">
               <Link className="font-semibold text-sm">Fee Structure</Link>
 
@@ -170,17 +174,28 @@ const Navbar = () => {
                 </ul>
               </div>
             </li>
-
+            {/* <!-- Gallery --> */}
             <li>
               <Link to={"/gallery"} className={styles.navbar_navlink}>
                 Gallery
               </Link>
             </li>
+            {/* <!-- Blogs --> */}
             <li>
               <Link to={"/blogs"} className={styles.navbar_navlink}>
                 Blogs
               </Link>
             </li>
+            {/* <!-- Transfer Certificates --> */}
+            <li>
+              <Link
+                className="font-semibold text-sm"
+                to="/transfer-certificates"
+              >
+                Transfer Certificates
+              </Link>
+            </li>
+            {/* <!-- Contact Us --> */}
             <li>
               <Link to={"/contact"} className={styles.navbar_navlink}>
                 Contact Us
@@ -294,6 +309,12 @@ const Navbar = () => {
           <li>
             <Link to={"/blogs"} className={styles.navbar_navlink}>
               Blogs
+            </Link>
+          </li>
+          {/* <!-- Transfer Certificates --> */}
+          <li>
+            <Link className="font-semibold text-sm" to="/transfer-certificates">
+              Transfer Certificates
             </Link>
           </li>
           <li>

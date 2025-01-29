@@ -1,10 +1,14 @@
-import React from 'react'
-import styles from './Button.module.css'
+import React from "react";
 
-const Button = ({clickHandler,children}) => {
+const Button = ({ clickHandler, children }) => {
   return (
-    <button className={styles.primary_button} onClick={clickHandler}>{children}</button>
-  )
-}
+    <button
+      className="bg-yellow-300 hover:bg-yellow-500 hover:text-white cursor-pointer border-none outline-none w-fit px-3 py-2 rounded-md font-semibold text-sm mt-auto"
+      onClick={clickHandler}
+    >
+      {children}
+    </button>
+  );
+};
 
-export default Button
+export default Button;
