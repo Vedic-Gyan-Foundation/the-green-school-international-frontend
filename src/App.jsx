@@ -17,6 +17,7 @@ import Navbar from "./components/Navbar/Navbar";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SocialLinks from "./components/SocialLinks/SocialLinks";
+import TransferCertificates from "./pages/TransferCertificate/TransferCertificates";
 
 const App = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -59,12 +60,16 @@ const App = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogdetails/:id" element={<BlogDetails />} />
+          <Route
+            path="/transfer-certificates"
+            element={<TransferCertificates />}
+          />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
       </BrowserRouter>
-      {/* SOCIAL LINKS CONATINER */}
+      {/* <!-- Social Links --> */}
       <SocialLinks />
     </>
   );

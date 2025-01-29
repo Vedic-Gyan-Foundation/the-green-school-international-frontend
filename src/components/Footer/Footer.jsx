@@ -69,6 +69,14 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link
+                  to={"/transfer-certificates"}
+                  className={styles.footer_navlink}
+                >
+                  Transfer Certificates
+                </Link>
+              </li>
+              <li>
                 <Link to={"/contact"} className={styles.footer_navlink}>
                   Contact Us
                 </Link>

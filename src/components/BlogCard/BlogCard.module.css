@@ -1,15 +1,17 @@
-.blog_card{
-    width: 350px;
-    box-shadow: 0 2px 5px 2px #00000010;
-    border-radius: 5px;
+.blog_card {
+  width: 350px;
+  box-shadow: 0 2px 5px 2px #00000010;
+  /* top-left | top-right | bottom-right | bottom-left */
+  border-radius: 1px 0 3px 4px;
 }
-.blog_card > img{
-    width: 100%;
+.blog_card > img {
+  width: 100%;
 }
-.blog_desc{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 14px 7px;
-    color: #4b4b4b;
+.blog_desc {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 7px;
+  color: #4b4b4b;
+  flex-grow: 1;
 }

@@ -2,12 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge, and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 body {
   background: linear-gradient(#ffffffd8, #ffffffd8),
     url("/assets/backgrounds/body_background.jpg");
   background-size: contain;
   background-position: center;
 }
+
+/* Hide scrollbar for Chrome, Safari, and Opera */
+
 img {
   border-radius: 5px;
 }
