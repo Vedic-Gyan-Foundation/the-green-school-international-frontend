@@ -5,6 +5,7 @@ import Footer from "../../components/Footer/Footer";
 import styles from "./PublicDisclosure.module.css";
 
 const PublicDisclosure = () => {
+  // console.log()
   return (
     <>
       <Header title="Public Disclosure" />
@@ -100,6 +101,7 @@ const PublicDisclosure = () => {
             </table>
           </div>
         </div>
+
         <div className={styles.publicdisclosure_documents}>
           <h3>B. DOCUMENTS AND INFORMATION:</h3>
           <div className={styles.publicdisclosure_documents_table}>
@@ -124,7 +126,7 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/pdf/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf"
+                      href="./pdf/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -237,11 +239,7 @@ const PublicDisclosure = () => {
                     </a>
                   </td>
                 </tr>
-                {/* <tr>
-<td>7</td>
-<td>COPY OF THE DEO CERTIFICATE SUBMITTED BY THE SCHOOL FOR<br/>AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION OR SELF<br/>CERTIFICATION BY SCHOOL</td>
-<td><a href="/public/assets/documents/deo_cartificate.pdf" target='_blank' style={{pointerEvents:"none"}}>https://greenschoolguwahati.com/public/assets/documents/deo_cartificate.pdf</a></td>
-</tr> */}
+
                 <tr>
                   <td>8</td>
                   <td>
@@ -282,10 +280,11 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/mandatory_public_disclosure_doc.pdf"
+                      href="./pdf/public_disclosure/MANDATORY_PUBLIC_DISCLOSURE.pdf"
                       target="_blank"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/mandatory_public_disclosure_doc.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -296,8 +295,9 @@ const PublicDisclosure = () => {
                       href="https://youtu.be/JVnYgaPcnqU"
                       target="_blank"
                       rel="noreferrer"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://youtu.be/JVnYgaPcnqU
+                      Click to View
                     </a>
                   </td>
                 </tr>
@@ -333,10 +333,12 @@ const PublicDisclosure = () => {
                   <td>FEE STRUCTURE OF THE SCHOOL</td>
                   <td>
                     <a
-                      href="/public/assets/documents/fee structure 2024-25.pdf"
+                      href="./pdf/public_disclosure/FEE_STRUCTURE_2024_25.pdf"
                       target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/FEE_STRUCTURE_2024-2025.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -345,10 +347,12 @@ const PublicDisclosure = () => {
                   <td>ANNUAL ACADEMIC CALANDER</td>
                   <td>
                     <a
-                      href="/public/assets/documents/Annual  academic Calendar 2024-2025.pdf"
+                      href="./pdf/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2024_25.pdf"
                       target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/ACADEMIC_PLANNER_2024-25.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -357,10 +361,12 @@ const PublicDisclosure = () => {
                   <td>LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)</td>
                   <td>
                     <a
-                      href="/public/assets/documents/School Management Committee-2024-2025.pdf"
+                      href="./pdf/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2024_2025.pdf"
                       target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/SCHOOL_MANAGING_COMMITTEE.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -369,10 +375,12 @@ const PublicDisclosure = () => {
                   <td>LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS</td>
                   <td>
                     <a
-                      href="/public/assets/documents/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST 2024-2025.pdf"
+                      href="./pdf/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2024_2025.pdf"
                       target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
@@ -385,10 +393,12 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="/public/assets/documents/LAST_THREE_YEARS_BOARD_DATA.pdf"
+                      href="./pdf/public_disclosure/LAST_THREE_YEARS_BOARD_DATA.pdf"
                       target="_blank"
+                      rel="noreferrer"
+                      className="text-blue-500 hover:underline"
                     >
-                      https://greenschoolguwahati.com/public/assets/documents/LAST_THREE_YEARS_BOARD_DATA.pdf
+                      Click to Download
                     </a>
                   </td>
                 </tr>
