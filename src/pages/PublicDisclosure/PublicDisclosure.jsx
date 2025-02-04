@@ -126,7 +126,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -143,7 +144,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/VEDIC_GYAN_FOUNDATION_TRUST_DEED.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/VEDIC_GYAN_FOUNDATION_TRUST_DEED.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -161,7 +163,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/COPIES_OF_NOC.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/COPIES_OF_NOC.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -179,7 +182,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/RECOGNITION_CERTIFICATE.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/RECOGNITION_CERTIFICATE.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -197,7 +201,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/BUILDING_SAFETY_CERTIFICATE.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/BUILDING_SAFETY_CERTIFICATE.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -215,7 +220,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/FIRE_NOC.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/FIRE_NOC.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -231,7 +237,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/SELF_CERTIFICATION.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -247,7 +254,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/HEALTH_AND_HYGENE.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/HEALTH_AND_HYGENE.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -260,7 +268,8 @@ const PublicDisclosure = () => {
                   <td>LAND CERTIFICATE</td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/LAND_CERTIFICATE.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/LAND_CERTIFICATE.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -280,7 +289,8 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/MANDATORY_PUBLIC_DISCLOSURE.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/MANDATORY_PUBLIC_DISCLOSURE.pdf"
+                      rel="noreferrer"
                       target="_blank"
                       className="text-blue-500 hover:underline"
                     >
@@ -333,7 +343,7 @@ const PublicDisclosure = () => {
                   <td>FEE STRUCTURE OF THE SCHOOL</td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/FEE_STRUCTURE_2024_25.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/FEE_STRUCTURE_2024_25.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -347,7 +357,7 @@ const PublicDisclosure = () => {
                   <td>ANNUAL ACADEMIC CALANDER</td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2024_25.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2024_25.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -361,7 +371,7 @@ const PublicDisclosure = () => {
                   <td>LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)</td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2024_2025.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2024_2025.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -375,7 +385,7 @@ const PublicDisclosure = () => {
                   <td>LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS</td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2024_2025.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2024_2025.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -393,7 +403,7 @@ const PublicDisclosure = () => {
                   </td>
                   <td>
                     <a
-                      href="./pdf/public_disclosure/LAST_THREE_YEARS_BOARD_DATA.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/LAST_THREE_YEARS_RESULT.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
