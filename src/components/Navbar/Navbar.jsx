@@ -1,16 +1,9 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 import styles from "./Navbar.module.css";
 import logo from "/assets/logo.png";
 import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { HashLink } from "react-router-hash-link";
-
-const feeStruturesCurrentFileUrl =
-  "./pdf/fee_structure/Fee-structure-2024-25.pdf";
-const feeStruturesFutureFileUrl =
-  "./pdf/fee_structure/Proposed-Fee-Structure-2025-26.pdf";
-const feeFixationOrderFileUrl =
-  "./pdf/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf";
 
 const sportsInfraListItems = [
   "Astroturf Football Ground",
@@ -153,20 +146,30 @@ const Navbar = () => {
                 <ul className="flex flex-col *:text-xs">
                   <li
                     onClick={() =>
-                      handleDownloadPDF(feeStruturesCurrentFileUrl)
+                      handleDownloadPDF(
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf"
+                      )
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-sm"
                   >
                     2024-2025 (Session)
                   </li>
                   <li
-                    onClick={() => handleDownloadPDF(feeStruturesFutureFileUrl)}
+                    onClick={() =>
+                      handleDownloadPDF(
+                        "https://api.greenschoolguwahati.com/fee_structure/Proposed_Fee_Structure_2025_26.pdf"
+                      )
+                    }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-lg"
                   >
                     2025-2026 (Session)
                   </li>
                   <li
-                    onClick={() => handleDownloadPDF(feeFixationOrderFileUrl)}
+                    onClick={() =>
+                      handleDownloadPDF(
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                      )
+                    }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
                   >
                     Fee Fixation Order
@@ -285,16 +288,30 @@ const Navbar = () => {
             {subMenuFeeStructureOpen && (
               <ul className="*:text-xs pt-2 px-3">
                 <li
-                  onClick={() => handleDownloadPDF(feeStruturesCurrentFileUrl)}
+                  onClick={() =>
+                    handleDownloadPDF(
+                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf"
+                    )
+                  }
                 >
                   2024-2025 (Session)
                 </li>
                 <li
-                  onClick={() => handleDownloadPDF(feeStruturesFutureFileUrl)}
+                  onClick={() =>
+                    handleDownloadPDF(
+                      "https://api.greenschoolguwahati.com/fee_structure/Proposed_Fee_Structure_2025_26.pdf"
+                    )
+                  }
                 >
                   2025-2026 (Session) Fee Fixation Order
                 </li>
-                <li onClick={() => handleDownloadPDF(feeFixationOrderFileUrl)}>
+                <li
+                  onClick={() =>
+                    handleDownloadPDF(
+                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                    )
+                  }
+                >
                   Fee Fixation Order
                 </li>
               </ul>
