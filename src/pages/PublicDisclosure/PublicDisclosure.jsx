@@ -502,17 +502,29 @@ const PublicDisclosure = () => {
                     PASSED
                   </th>
                   <th>PASS PERCENTAGE</th>
-                  <th>REMARKS</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1</td>
+                  <td>2022</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                  <td>N/A</td>
+                </tr>
+                <tr>
+                  <td>2</td>
                   <td>2023</td>
                   <td>15</td>
                   <td>15</td>
                   <td>100</td>
-                  <td>&nbsp;</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>2024</td>
+                  <td>32</td>
+                  <td>32</td>
+                  <td>100</td>
                 </tr>
               </tbody>
             </table>
@@ -530,7 +542,6 @@ const PublicDisclosure = () => {
                     <br />
                     No.
                   </th>
-                  <th>YEAR</th>
                   <th>
                     NO. OF REGISTERED
                     <br />
@@ -542,17 +553,17 @@ const PublicDisclosure = () => {
                     PASSED
                   </th>
                   <th>PASS PERCENTAGE</th>
-                  <th>REMARKS</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>2023</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>Not announced yet</td>
+                  <td
+                    colSpan={3}
+                    className="text-center text-align-center font-medium italic"
+                  >
+                    First batch will appear in 2025
+                  </td>
                 </tr>
               </tbody>
             </table>
