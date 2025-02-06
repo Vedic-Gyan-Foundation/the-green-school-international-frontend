@@ -18,6 +18,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import SocialLinks from "./components/SocialLinks/SocialLinks";
 import TransferCertificates from "./pages/TransferCertificate/TransferCertificates";
+import SportsInfra from "./pages/SportsInfra/SportsInfra";
 
 const App = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -25,20 +26,18 @@ const App = () => {
     setIsChatbotOpen(true);
   };
 
-  const ScrollToTop = () => {
-    const { pathname } = useLocation();
-    useEffect(() => {
-      window.scrollTo(0, 0);
-      document.body.style.overflow = "visible";
-    }, [pathname]);
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    document.body.style.overflow = "visible";
+  }, []);
+
   useEffect(() => {
     AOS.init({ duration: 500 });
   }, []);
+
   return (
     <>
       <BrowserRouter>
-        <ScrollToTop />
         <div className="chatbot_container">
           {isChatbotOpen ? (
             <div className="chatbot">
@@ -53,10 +52,11 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/sportsinfra" element={<SportsInfra />} />
           <Route path="/about" element={<About />} />
+          <Route path="/threesformula" element={<ThreeSFormula />} />
           <Route path="/publicdisclosure" element={<PublicDisclosure />} />
           <Route path="/admission" element={<Admission />} />
-          <Route path="/threesformula" element={<ThreeSFormula />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogdetails/:id" element={<BlogDetails />} />

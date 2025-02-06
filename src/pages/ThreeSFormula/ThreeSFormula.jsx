@@ -35,7 +35,6 @@ const ThreeSFormula = () => {
                 well-rounded and balanced education.
               </p>
             </div>
-            <div></div>
           </div>
 
           <div className={styles.card} id="sanskar">

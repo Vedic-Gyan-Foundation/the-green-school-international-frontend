@@ -66,7 +66,7 @@ const Navbar = () => {
 
         {/* DESKTOP VIEW LINKS */}
         <div className={styles.navbar_navlinks}>
-          <ul>
+          <ul className={styles.navbar_navlinks_ul}>
             <li>
               <Link to={"/"} className={styles.navbar_navlink}>
                 Home
@@ -74,14 +74,16 @@ const Navbar = () => {
             </li>
             {/* SPORTS INFRA*/}
             <li className="relative group">
-              <Link className="font-semibold text-sm">Sports Infra</Link>
+              <Link to="/sportsinfra" className="font-semibold text-sm">
+                Sports Infra
+              </Link>
 
-              <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40 overflow-y-scroll hide-scrollbar">
-                <ul className="flex flex-col ">
+              <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40 overflow-y-scroll hide-scrollbar ">
+                <ul className="flex flex-col gap-1 overflow-y-auto max-h-[600px] flex-shrink">
                   {sportsInfraListItems.map((item, index) => (
                     <li
                       key={index}
-                      className="px-4 py-2 hover:bg-stone-200 cursor-pointer text-xs rounded-sm"
+                      className="px-4 py-0.5 hover:bg-stone-200 cursor-pointer text-sm rounded-sm"
                     >
                       {item}
                     </li>

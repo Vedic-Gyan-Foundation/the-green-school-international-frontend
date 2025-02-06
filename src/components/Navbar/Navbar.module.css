@@ -1,98 +1,85 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@400;700&display=swap");
 
-
-  
-
-
-.navbar{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 2rem;
-    box-shadow: 0 0 8px 2px #00000059;
-    background-color: white; 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 2rem;
+  box-shadow: 0 0 8px 2px #00000059;
+  background-color: white;
 }
-.navbar_logo img{
-    width: 140px;
+.navbar_logo img {
+  width: 140px;
 }
-.navbar_navlinks ul{
-    display: flex;
-    gap: 1rem;
-    list-style: none;
+.navbar_navlinks .navbar_navlinks_ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
 }
-.navbar_navlink{
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: black;
-    cursor: pointer;
-    position: relative;
+.navbar_navlink {
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: black;
+  cursor: pointer;
+  position: relative;
 }
-.subMenu_container{
-    position: relative;
+.subMenu_container {
+  position: relative;
 }
-.subMenu_container:hover > .subMenu{
+.subMenu_container:hover > .subMenu {
+  display: block;
+}
+.subMenu {
+  position: absolute;
+  background-color: white;
+  z-index: 99;
+  box-shadow: 0 2px 5px 2px #0000002d;
+  width: 150px;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 10px 1rem;
+  display: none;
+}
+.subMenu ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.subMenu ul a {
+  text-decoration: none;
+  color: black;
+}
+.menu_btn_container {
+  display: none;
+}
+.menu_btn {
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.navbar_drop {
+  padding: 2rem;
+  display: none;
+}
+.navbar_drop ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  list-style: none;
+  font-weight: 400;
+}
+@media screen and (max-width: 1040px) {
+  .navbar_navlinks {
+    display: none;
+  }
+  .menu_btn_container {
     display: block;
-
+  }
 }
-.subMenu{
-    position: absolute;
-    background-color: white;
-    z-index: 99;
-    box-shadow: 0 2px 5px 2px #0000002d;
-    width: 150px;
-    font-size: 14px;
-    border-radius: 4px;
-    padding: 10px 1rem;
-    display: none;
-   
-}
-.subMenu ul{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-   
-}
-.subMenu ul a{
-    text-decoration: none;
-    color: black;
-}
-.menu_btn_container{
-    display: none;
-}
-.menu_btn{
-    background: transparent;
-    border: none;
-    outline: none;
-}
-.navbar_drop{
-    padding: 2rem;
-    display: none;
-
-}
-.navbar_drop ul{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    list-style: none;
-    font-weight: 400;
-
-}
-@media screen and (max-width:1040px){
-    .navbar_navlinks{
-        display: none;
-    }
-    .menu_btn_container{
-        display: block;
-    }
-    
-
-}
-@media screen and (max-width:576px){
-    .navbar{
-        padding: 1rem 1rem;
-    }
-    
-
+@media screen and (max-width: 576px) {
+  .navbar {
+    padding: 1rem 1rem;
+  }
 }
