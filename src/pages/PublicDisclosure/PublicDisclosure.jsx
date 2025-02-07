@@ -279,9 +279,9 @@ const PublicDisclosure = () => {
                 </tr>
               </tbody>
             </table>
-            {/* <table style={{ marginBlock: "2rem" }}>
+            <table style={{ marginBlock: "2rem" }}>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td>
                     APPENDIX -IX
                     <br />
@@ -297,7 +297,7 @@ const PublicDisclosure = () => {
                       Click to Download
                     </a>
                   </td>
-                </tr>
+                </tr> */}
                 <tr>
                   <td>LINK OF YOUTUBE VIDEO OF THE INSPECTION OF SCHOOL</td>
                   <td>
@@ -312,7 +312,7 @@ const PublicDisclosure = () => {
                   </td>
                 </tr>
               </tbody>
-            </table> */}
+            </table>
 
             <div style={{ marginBlock: "1rem" }}>
               <p>
@@ -343,7 +343,7 @@ const PublicDisclosure = () => {
                   <td>FEE STRUCTURE OF THE SCHOOL</td>
                   <td>
                     <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/FEE_STRUCTURE_2024_25.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/FEE_STRUCTURE_2025_26.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -357,7 +357,7 @@ const PublicDisclosure = () => {
                   <td>ANNUAL ACADEMIC CALANDER</td>
                   <td>
                     <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2024_25.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2025_26.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -371,7 +371,7 @@ const PublicDisclosure = () => {
                   <td>LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)</td>
                   <td>
                     <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2024_2025.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2025_2026.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -385,7 +385,7 @@ const PublicDisclosure = () => {
                   <td>LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS</td>
                   <td>
                     <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2024_2025.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2025_2026.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
