@@ -279,7 +279,7 @@ const PublicDisclosure = () => {
                 </tr>
               </tbody>
             </table>
-            <table style={{ marginBlock: "2rem" }}>
+            {/* <table style={{ marginBlock: "2rem" }}>
               <tbody>
                 <tr>
                   <td>
@@ -312,7 +312,7 @@ const PublicDisclosure = () => {
                   </td>
                 </tr>
               </tbody>
-            </table>
+            </table> */}
 
             <div style={{ marginBlock: "1rem" }}>
               <p>
