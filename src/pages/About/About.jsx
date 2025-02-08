@@ -42,13 +42,13 @@ const About = () => {
                 pitch, Volleyball Ground, Skating area, Basketball Court,
                 Swimming Pools, Badminton Court, Table Tennis, Dance Floors, and
                 Chess Lab. We take pride in offering premier sports
-                infrastructure for our students' physical well-being.
+                infrastructure for our students&apos; physical well-being.
                 <br />
                 <br />
                 Our commitment to holistic child development includes a focus on
                 sports, promoting physical fitness, teamwork, discipline, and
                 leadership. The Green School International is more than an
-                institution; it's a hub for aspiring athletes and students
+                institution; it&apos;s a hub for aspiring athletes and students
                 seeking a comprehensive education. Embark on a journey where
                 advanced facilities merge with unparalleled sports
                 infrastructure. The Green School International in Guwahati is a
@@ -75,7 +75,7 @@ const About = () => {
             <div className={styles.about_mission_text}>
               <h3>Our Mission</h3>
               <p>
-                Our mission is to empower children's growth by fostering
+                Our mission is to empower children&apos;s growth by fostering
                 physical vitality, nurturing creative intellects, and instilling
                 a commitment to excellence in all their endeavors. Above all,
                 our goal is to cultivate the happiness of every child.
@@ -201,7 +201,7 @@ const About = () => {
             </div>
             <div className={styles.about_principal_img}>
               <img
-                src={"/assets/About/jagajeet_pic.jfif"}
+                src={"/assets/About/jagajeet_pic.jpeg"}
                 loading="lazy"
                 alt=""
               />
