@@ -371,7 +371,7 @@ const PublicDisclosure = () => {
                   <td>LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)</td>
                   <td>
                     <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2025_2026.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2025_26.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
@@ -385,7 +385,7 @@ const PublicDisclosure = () => {
                   <td>LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS</td>
                   <td>
                     <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2025_2026.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2025_26.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
