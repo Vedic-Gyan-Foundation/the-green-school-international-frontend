@@ -83,13 +83,13 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className={styles.footer_contacts}>
+          <div className="">
             <h3>Contact</h3>
             <div className={styles.footer_contact}>
               <div>
                 <MdLocationOn color="yellow" size={20} />
               </div>
-              <p>
+              <p className="whitespace-pre-wrap">
                 Mahapurush Madhabdev Path, Nalapara, Sarusajai, Guwahati-781040
               </p>
             </div>
@@ -103,7 +103,9 @@ const Footer = () => {
               <div>
                 <BsFillEnvelopeFill color="yellow" />
               </div>
-              <p>thegreenschoolinternational@gmail.com</p>
+              <p className="whitespace-pre-wrap">
+                thegreenschoolinternational@gmail.com
+              </p>
             </div>
             {/* <div className={styles.social_links}>
                     <a href="https://www.facebook.com/greenschoolinternational/" target='_blank'><FaFacebookF color='yellow' size={20}/></a>
