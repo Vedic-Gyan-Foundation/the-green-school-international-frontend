@@ -99,8 +99,8 @@ const About = () => {
           <div className={styles.about_values_content}>
             <h2>OUR SANSKAR VALUES</h2>
             <p>
-              With a strong belief in the saying "values are caught and not
-              taught," The Green School International introduces the{" "}
+              With a strong belief in the saying &quot;values are caught and not
+              taught,&quot; The Green School International introduces the{" "}
               <b>Sanskar Classes</b> among its students from the very early
               years with the objective to instill in them the right values and
               virtues.
@@ -111,18 +111,20 @@ const About = () => {
               </b>{" "}
             </p>
             <ol style={{ paddingLeft: "1rem" }}>
-              <li>Respect: "Samman " (सम्मान)</li>
-              <li>Responsibility: " Kartavya " (कर्तव्य )</li>
-              <li>Honesty: " Satyata/ Nishkapat " (सत्यता/ निष्कपट)</li>
-              <li>Empathy: " Sahanubhuti " (सहानुभूति )</li>
-              <li>Courage: "Saahas" (साहस)</li>
-              <li>Gratitude: "Krutagnata" (कृतज्ञता)</li>
-              <li>Cooperation: "Sahakara" (सहकार)</li>
-              <li>Patience: " Dhairya " (धैर्य )</li>
-              <li>Generosity: " Daya " (दया )</li>
-              <li>Curiosity: "Jignasa" (जिज्ञासा)</li>
-              <li>Perseverance: " Sthirta " (स्थिरता )</li>
-              <li>Tolerance: " Sahishnuta " (सहिष्णुता )</li>
+              <li>Respect: &quot; Samman &quot; (सम्मान)</li>
+              <li>Responsibility: &quot; Kartavya &quot; (कर्तव्य )</li>
+              <li>
+                Honesty: &quot; Satyata/ Nishkapat &quot; (सत्यता/ निष्कपट)
+              </li>
+              <li>Empathy: &quot; Sahanubhuti &quot; (सहानुभूति )</li>
+              <li>Courage: &quot; Saahas &quot; (साहस)</li>
+              <li>Gratitude: &quot; Krutagnata &quot; (कृतज्ञता)</li>
+              <li>Cooperation: &quot; Sahakara &quot; (सहकार)</li>
+              <li>Patience: &quot; Dhairya &quot; (धैर्य )</li>
+              <li>Generosity: &quot; Daya &quot; (दया )</li>
+              <li>Curiosity: &quot; Jignasa &quot; (जिज्ञासा)</li>
+              <li>Perseverance: &quot; Sthirta &quot; (स्थिरता )</li>
+              <li>Tolerance: &quot; Sahishnuta &quot; (सहिष्णुता )</li>
             </ol>
           </div>
         </div>
@@ -142,25 +144,25 @@ const About = () => {
               </div>
               <p>
                 Sanjay Jha, originally from Kharupetia, Assam, stands as the
-                driving force behind turning the vision of "The Green School
-                International" into a reality, providing full financial support
-                to the entire project.
+                driving force behind turning the vision of &quot;The Green
+                School International&quot; into a reality, providing full
+                financial support to the entire project.
               </p>
               <p>
                 Rooted in an educational background and influenced by his father
                 Mr Kapilawashar Jha, a former Principal at “Kharupetia Adarsh
-                Hindi Ucch Vidyalaya” , Sanjay Jha's passion for making a unique
-                impact in the education sector is deeply ingrained. This
+                Hindi Ucch Vidyalaya” , Sanjay Jha&apos;s passion for making a
+                unique impact in the education sector is deeply ingrained. This
                 familial legacy contributes to his profound understanding of the
                 intricacies of education, fuelling his commitment to instigate
                 positive transformations in the field.
               </p>
               <p>
                 His pivotal commitment and financial support are foundational to
-                the establishment of "The Green School International." His
-                unwavering dedication to taking bold steps and making
+                the establishment of &quot;The Green School International.&quot;
+                His unwavering dedication to taking bold steps and making
                 substantial investments plays a crucial role in driving an
-                academic revolution. Sanjay Jha's visionary approach and
+                academic revolution. Sanjay Jha&apos;s visionary approach and
                 resolute commitment to advancing education through substantial
                 backing underscore his determination to bring about positive
                 change in the academic landscape.
@@ -215,12 +217,12 @@ const About = () => {
             <div className={styles.about_wordfromprincipal_text}>
               <div>
                 <h3>From the</h3>
-                <h2>PRINCIPAL'S DESK</h2>
+                <h2>PRINCIPAL&apos;S DESK</h2>
               </div>
               <p>
-                "Education is the key to unlocking the human potential, enabling
-                individuals to lead fulfilling lives and contribute to the
-                well-being of society."
+                &quot;Education is the key to unlocking the human potential,
+                enabling individuals to lead fulfilling lives and contribute to
+                the well-being of society.&quot;
               </p>
               <p>Dear Eco Champs!</p>
               <p>
@@ -233,8 +235,8 @@ const About = () => {
                 persevere through difficulties and watch yourself soar to new
                 heights. Believe in your potential, for greatness lies within
                 each one of you. May our actions today reflect the commitment to
-                sustainability and environmental stewardship. Together, let's
-                nurture a greener world for a greener future!
+                sustainability and environmental stewardship. Together,
+                let&apos;s nurture a greener world for a greener future!
               </p>
               <div className={styles.about_signature}>
                 <h3>MOUSUMI GANGULY</h3>

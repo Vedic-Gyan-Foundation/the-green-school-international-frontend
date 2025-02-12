@@ -4,24 +4,31 @@ import logo from "/assets/logo.png";
 import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { HashLink } from "react-router-hash-link";
+import { SportsInfraUtil } from "../../utils/sports_infra";
+import { sortAlphabetically } from "../../utils/helper";
 
-const sportsInfraListItems = [
-  "Astroturf Football Ground",
-  "Astroturf Volley Ball Ground",
-  "Basket Ball Ground",
-  "Astroturf Box Cricket",
-  "Skating",
-  "Table Tennis",
-  "Badminton",
-  "Toddler Swimming Pool ( Nursery - UKG )",
-  "Beginner's Swimming Pool (Class 1 - 4)",
-  "Olympic-Sized Pool (Class 5 - 12)",
-  "Taekwondo  Training Centre",
-  "Karate Training Centre",
-  "Chess Club",
-  "Boys Dance Studio",
-  "Girls Dance Studio",
-];
+// const sportsInfraListItems = [
+//   "Astroturf Football Ground",
+//   "Astroturf Volley Ball Ground",
+//   "Basket Ball Ground",
+//   "Astroturf Box Cricket",
+//   "Skating",
+//   "Table Tennis",
+//   "Badminton",
+//   "Toddler Swimming Pool ( Nursery - UKG )",
+//   "Beginner's Swimming Pool (Class 1 - 4)",
+//   "Olympic-Sized Pool (Class 5 - 12)",
+//   "Taekwondo  Training Centre",
+//   "Karate Training Centre",
+//   "Chess Club",
+//   "Boys Dance Studio",
+//   "Girls Dance Studio",
+// ];
+
+const sportsInfraListItems = sortAlphabetically(
+  SportsInfraUtil.getProcessedList(),
+  "title"
+);
 
 const Navbar = () => {
   const [navdropOpen, setNavdropOpen] = useState(false);
@@ -79,13 +86,15 @@ const Navbar = () => {
               </Link>
 
               <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40 overflow-y-scroll hide-scrollbar ">
-                <ul className="flex flex-col gap-1 overflow-y-auto max-h-[600px] flex-shrink">
+                <ul className="flex flex-col gap-1 overflow-y-auto max-h-[600px] flex-shrink py-2 px-3">
                   {sportsInfraListItems.map((item, index) => (
                     <li
                       key={index}
                       className="px-4 py-0.5 hover:bg-stone-200 cursor-pointer text-sm rounded-sm"
                     >
-                      {item}
+                      <HashLink to={`/sportsinfra#${item.id}`}>
+                        {item.title}
+                      </HashLink>
                     </li>
                   ))}
                 </ul>
@@ -234,7 +243,7 @@ const Navbar = () => {
               onClick={() => handleSubMenuToggle("sportsInfra")}
               className="font-semibold text-sm text-stone-900"
             >
-              <span>Sports Infra</span>{" "}
+              <Link to="/sportsinfra">Sports Infra</Link>{" "}
               <span
                 className={`${
                   subMenuSportsInfraOpen ? "text-red-700" : "text-[#08703D]"
@@ -246,7 +255,11 @@ const Navbar = () => {
             {subMenuSportsInfraOpen && (
               <ul className="*:text-xs pt-2 px-3">
                 {sportsInfraListItems.map((item, index) => (
-                  <li key={index}>{item}</li>
+                  <li key={index}>
+                    <HashLink to={`/sportsinfra#${item.id}`}>
+                      {item.title}
+                    </HashLink>
+                  </li>
                 ))}
               </ul>
             )}
