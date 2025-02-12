@@ -2,8 +2,12 @@ import { useEffect, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Header from "../../components/Header/Header";
 import { SportsInfraUtil } from "../../utils/sports_infra";
+import { sortAlphabetically } from "../../utils/helper";
 
-const sportsInfraList = SportsInfraUtil.getProcessedList();
+const sportsInfraList = sortAlphabetically(
+  SportsInfraUtil.getProcessedList(),
+  "title"
+);
 
 function SportsInfra() {
   return (

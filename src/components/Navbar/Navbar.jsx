@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { HiOutlineMenuAlt1 } from "react-icons/hi";
 import { HashLink } from "react-router-hash-link";
 import { SportsInfraUtil } from "../../utils/sports_infra";
+import { sortAlphabetically } from "../../utils/helper";
 
 // const sportsInfraListItems = [
 //   "Astroturf Football Ground",
@@ -24,7 +25,10 @@ import { SportsInfraUtil } from "../../utils/sports_infra";
 //   "Girls Dance Studio",
 // ];
 
-const sportsInfraListItems = SportsInfraUtil.getProcessedList();
+const sportsInfraListItems = sortAlphabetically(
+  SportsInfraUtil.getProcessedList(),
+  "title"
+);
 
 const Navbar = () => {
   const [navdropOpen, setNavdropOpen] = useState(false);
