@@ -1,4 +1,4 @@
-
+/* 
 .banner_img_desktop, .banner_img_mobile{
     width: 100%;
    
@@ -19,4 +19,33 @@
         display: none;
     }
 
+} */
+
+.banner_img_desktop,
+.banner_img_mobile {
+  width: 100%;
+  height: auto; /* Maintains aspect ratio */
+  max-height: 500px; /* Ensures consistent height for all images */
+  object-fit: cover; /* Ensures the image fills the container without stretching */
+}
+
+.banner_img_mobile {
+  display: none;
+}
+
+@media screen and (max-width: 756px) {
+  .banner_img_mobile {
+    display: block;
+    width: 100%;
+  }
+  .banner_img_desktop {
+    display: none;
+  }
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Prevents content overflow */
 }

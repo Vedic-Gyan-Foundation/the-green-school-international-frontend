@@ -8,8 +8,24 @@ import { baseURL } from "../../api/axiosInstance";
 // register Swiper custom elements
 register();
 
+const bannerListStatic = [
+  {
+    desktopImg: "/assets/banners/slider_banner_1_desktop.jpg",
+  },
+  {
+    desktopImg: "/assets/banners/slider_banner_2_desktop.jpg",
+  },
+  {
+    desktopImg: "/assets/banners/slider_banner_cbse_1.jpg",
+  },
+  {
+    desktopImg: "/assets/banners/slider_banner_cbse_2.jpg",
+  },
+];
+
 const SlidingBanner = () => {
   const [bannerList, setBannerList] = useState([]);
+
   useEffect(() => {
     axiosInstance
       .get(`galleries/list?category=home_banner`, {
@@ -18,48 +34,37 @@ const SlidingBanner = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         setBannerList(response.data.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching banner data:", error);
       });
   }, []);
 
   return (
-    <div className={styles.home_banner}>
+    <div className="relative overflow-hidden">
       <swiper-container
         loop="true"
         pagination="true"
         scrollbar="true"
         autoplay="true"
         navigation
+        class="w-full"
       >
-        <swiper-slide>
-          <img
-            src={"/assets/slider_banner_1_desktop.jpg"}
-            className={styles.banner_img_desktop}
-            alt=""
-            loading="lazy"
-          />
-          <img
-            src={"/assets/slider_banner_1_mobile.jpg"}
-            className={styles.banner_img_mobile}
-            alt=""
-            loading="lazy"
-          />
-        </swiper-slide>
-        <swiper-slide>
-          <img
-            src={"/assets/slider_banner_2_desktop.jpg"}
-            className={styles.banner_img_desktop}
-            alt=""
-            loading="lazy"
-          />
-          <img
-            src={"/assets/slider_banner_2_mobile.jpg"}
-            className={styles.banner_img_mobile}
-            alt=""
-            loading="lazy"
-          />
-        </swiper-slide>
+        {bannerListStatic?.map((banner, index) => (
+          <swiper-slide
+            key={index}
+            class="flex justify-center items-center overflow-hidden"
+          >
+            {/* Enforced Height */}
+            <img
+              src={banner?.desktopImg}
+              alt={`Banner ${index + 1}`}
+              className="w-full h-[500px] md:h-[600px] object-fill"
+              loading="lazy"
+            />
+          </swiper-slide>
+        ))}
       </swiper-container>
     </div>
   );
