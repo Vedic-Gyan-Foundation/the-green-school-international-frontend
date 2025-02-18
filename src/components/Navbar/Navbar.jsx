@@ -185,6 +185,23 @@ const Navbar = () => {
                   >
                     Fee Fixation Order
                   </li>
+                  <li
+                    // onClick={() =>
+                    //   handleDownloadPDF(
+                    //     "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                    //   )
+                    // }
+                    className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
+                  >
+                    <a
+                      href="./pdfs/Cancellation_Policy.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block w-full h-full"
+                    >
+                      Cancellation Policy
+                    </a>
+                  </li>
                 </ul>
               </div>
             </li>
@@ -328,6 +345,22 @@ const Navbar = () => {
                   }
                 >
                   Fee Fixation Order
+                </li>
+                <li
+                // onClick={() =>
+                //   handleDownloadPDF(
+                //     "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                //   )
+                // }
+                >
+                  <a
+                    href="./pdfs/Cancellation_Policy.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full h-full"
+                  >
+                    Cancellation Policy
+                  </a>
                 </li>
               </ul>
             )}
