@@ -59,6 +59,16 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <a
+                  href="https://paydirect.eduqfix.com/app/cc7fae31LEgC3KwoRYfopzX0IGSOFiTS236Et2re/9810/28628"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.footer_navlink}
+                >
+                  Fee Payment
+                </a>
+              </li>
+              <li>
                 <Link to={"/gallery"} className={styles.footer_navlink}>
                   Gallery
                 </Link>
