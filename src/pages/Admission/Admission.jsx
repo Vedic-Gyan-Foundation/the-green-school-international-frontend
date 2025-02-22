@@ -10,7 +10,7 @@ import Button from '../../components/Button/Button'
 
 const Admission = () => {
 
-    const [admissionFormData,setAdmissionFormData] = useState({childname:'',fathername:'',whatsappnum:'',classgr:'', email: '',address:'',query: ''});
+    const [admissionFormData,setAdmissionFormData] = useState({childname:'',fathername:'',whatsappnumber:'',class:'', email: '',address:'',query: ''});
     const form = useRef(null);
     const admissionFormChangeHandler = (e) => {
         setAdmissionFormData({
@@ -29,8 +29,8 @@ const Admission = () => {
         let flag = true;
         const childname=  document.forms['admissionForm']['childname'].value;
         const fathername =  document.forms['admissionForm']['fathername'].value;
-        const whatsappnum =  document.forms['admissionForm']['whatsappnum'].value;
-        const classgr =  document.forms['admissionForm']['classgr'].value;
+        const whatsappnum =  document.forms['admissionForm']['whatsappnumber'].value;
+        const classgr =  document.forms['admissionForm']['class'].value;
         const email =  document.forms['admissionForm']['email'].value;
         const address= document.forms['admissionForm']['address'].value;
         const query= document.forms['admissionForm']['query'].value;
@@ -99,13 +99,12 @@ const Admission = () => {
             axios.post('https://formsubmit.co/ajax/thegreenschoolinternational@gmail.com', {
                 childname: admissionFormData.childname,
                 fathername: admissionFormData.fathername,
-                whatsappnum: admissionFormData.whatsappnum ,
-                classgr: admissionFormData.classgr ,
+                whatsappnumber: admissionFormData.whatsappnumber ,
+                class: admissionFormData.class ,
                 email: admissionFormData.email ,
                 address: admissionFormData.address ,
                 query: admissionFormData.query 
-            })
-                .then(response =>{
+            }).then(response =>{
                     Swal.fire({
                         icon: 'success',
                         title: 'Form Submitted',
@@ -222,11 +221,11 @@ so create your passport today by enrolling yourself in The Green School Internat
                         <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
                     </div>
                     <div id='whatsappNum' className={styles.form_item}>
-                        <input type="number" placeholder="Whatsapp Number" name='whatsappnum' onChange={admissionFormChangeHandler} />
+                        <input type="number" placeholder="Whatsapp Number" name='whatsappnumber' onChange={admissionFormChangeHandler} />
                         <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
                     </div>
                     <div id='classgr' className={styles.form_item}>
-                        <select name="classgr" id="" onChange={admissionFormChangeHandler} defaultValue={""}>
+                        <select name="class" id="" onChange={admissionFormChangeHandler} defaultValue={""}>
                             <option value="" disabled>Select Class</option>
                             <option value="pre_nursery">Pre Nursery</option>
                             <option value="nursery">Nursery</option>
@@ -268,7 +267,7 @@ so create your passport today by enrolling yourself in The Green School Internat
                     <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
                     </div>
                     <div id='submit' className={styles.form_item}>
-                        <button className={styles.button_primary_submit}>Submit</button>
+                        <button className={styles.button_primary_submit} id='admissionFormSubmitbtn'>Submit</button>
                     </div>
                 </div>
             </form>

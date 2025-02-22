@@ -73,7 +73,7 @@ const Contact = () => {
             contactSubmitBtn.innerHTML='Please Wait..'
             axios.defaults.headers.post['Content-Type'] = 'application/json';
             axios.post('https://formsubmit.co/ajax/thegreenschoolinternational@gmail.com', {
-                name: contactData.fname,
+                 name: contactData.fname,
                 contact: contactData.contact,
                 email: contactData.email ,
                 subject: contactData.subject ,
