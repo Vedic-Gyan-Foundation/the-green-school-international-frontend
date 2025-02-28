@@ -6,8 +6,10 @@ import Footer from "../../components/Footer/Footer";
 import ModalImage from "react-modal-image";
 import axiosInstance from "../../api/axiosInstance";
 import { baseURL } from "../../api/axiosInstance";
+import axios from "axios";
 
 const Gallery = () => {
+  const baseApi = "https://api.greenschoolguwahati.com"; // https://api.greenschoolguwahati.com/
   const [galleryList, setGalleryList] = useState([]);
   useEffect(() => {
     axiosInstance
@@ -17,10 +19,20 @@ const Gallery = () => {
         },
       })
       .then((response) => {
-        console.log(response);
-        setGalleryList(response.data.data);
+        const jayimage = response.data.data
+        axios.get(`${baseApi}/api/get-images`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then((response) => {
+            console.log(response.data.imgPath);
+            setGalleryList([ ...response.data.imgPath, ...jayimage,]);
+          });
       });
   }, []);
+
+  console.log(galleryList);
   return (
     <>
       <Header title="Gallery" />
@@ -31,8 +43,8 @@ const Gallery = () => {
             {galleryList.map((item, index) => (
               <ModalImage
                 key={index}
-                small={baseURL + item.image}
-                large={baseURL + item.image}
+                small={item.image ? baseURL + item.image : baseApi + item}
+                large={item.image ? baseURL + item.image : baseApi + item}
                 className={styles.gallery_image}
                 loading="lazy"
               />
