@@ -13,6 +13,15 @@
 .header h2 {
   font-size: 3rem;
 }
+
+.header_main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
 @media screen and (max-width: 576px) {
   .header h2 {
     font-size: 1.8rem;

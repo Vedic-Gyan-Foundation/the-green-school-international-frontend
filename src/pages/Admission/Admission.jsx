@@ -125,23 +125,27 @@ const Admission = () => {
                   admissionFormSubmitBtn.innerHTML='Submit'
                 form.current.reset();
                 });
-
-
           }
-      
-          
-
-
-
     }
     const setError = (id,error) => {
         const element = document.getElementById(id);
         element.getElementsByClassName('AdmissionFormErrorClass')[0].innerHTML = error;
       }
+
+
+    function ActionButton() {
+       return (
+         <button className={styles.button_primary_submit}>
+           <a href='https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf' download="green-school-admission-form.pdf">
+              Download admission form
+           </a>
+         </button>
+       )
+    }
   
     return (
     <>
-        <Header title="Admission"/>
+        <Header title="Admission" ActionButton={ActionButton}/>
 
         <div className={styles.admission_head}>
             <h2>The Green School International</h2>
