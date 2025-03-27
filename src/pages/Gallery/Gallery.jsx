@@ -13,22 +13,14 @@ const Gallery = () => {
   const [galleryList, setGalleryList] = useState([]);
   useEffect(() => {
     axiosInstance
-      .get(`galleries/list?category=galleries`, {
+      .get(`${baseApi}/api/get-images`, {
         headers: {
           "Content-Type": "application/json",
         },
       })
       .then((response) => {
-        const jayimage = response.data.data
-        axios.get(`${baseApi}/api/get-images`, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-          .then((response) => {
-            console.log(response.data.imgPath);
-            setGalleryList([ ...response.data.imgPath, ...jayimage,]);
-          });
+        console.log(response.data.imgPath);
+        setGalleryList([...response.data.imgPath]);
       });
   }, []);
 
@@ -59,3 +51,19 @@ const Gallery = () => {
 };
 
 export default Gallery;
+
+// axiosInstance
+// .get(`galleries/list?category=galleries`, {
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+// })
+
+
+// .then((response) => {
+//   const jayimage = response.data.data
+//   axios.get(`${baseApi}/api/get-images`, {
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//     })
