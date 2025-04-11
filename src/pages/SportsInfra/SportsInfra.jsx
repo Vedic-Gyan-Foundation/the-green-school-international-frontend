@@ -34,6 +34,7 @@ function SportsInfra() {
 }
 
 function SportsInfraItem({ item }) {
+  console.log(item)
   const controls = useAnimation();
   const ref = useRef(null);
 
