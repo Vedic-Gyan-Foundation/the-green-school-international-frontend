@@ -536,6 +536,13 @@ const PublicDisclosure = () => {
                   <td>32</td>
                   <td>100</td>
                 </tr>
+                <tr>
+                  <td>4</td>
+                  <td>2025</td>
+                  <td>39</td>
+                  <td>39</td>
+                  <td>100</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -552,13 +559,14 @@ const PublicDisclosure = () => {
                     <br />
                     No.
                   </th>
+                  <th>YEAR</th>
                   <th>
                     NO. OF REGISTERED
                     <br />
                     STUDENTS
                   </th>
                   <th>
-                    NO. OF STUDETNS
+                    NO. OF STUDENTS
                     <br />
                     PASSED
                   </th>
@@ -568,12 +576,10 @@ const PublicDisclosure = () => {
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td
-                    colSpan={3}
-                    className="text-center text-align-center font-medium italic"
-                  >
-                    First batch will appear in 2025
-                  </td>
+                  <td>2025</td>
+                  <td>15</td>
+                  <td>15</td>
+                  <td>100</td>
                 </tr>
               </tbody>
             </table>
