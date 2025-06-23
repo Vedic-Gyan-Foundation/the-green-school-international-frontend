@@ -435,30 +435,30 @@ const PublicDisclosure = () => {
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>HEAD MISTRESS</td>
+                  <td>VICE PRINCIPAL</td>
                   <td>N.Sweety Singh</td>
                 </tr>
 
                 <tr>
                   <td rowSpan="6">3</td>
                   <td>TOTAL NO. OF TEACHERS</td>
-                  <td>94</td>
+                  <td>118</td>
                 </tr>
                 <tr>
                   <td>PGT</td>
-                  <td>14</td>
+                  <td>16</td>
                 </tr>
                 <tr>
                   <td>TGT</td>
-                  <td>24</td>
+                  <td>28</td>
                 </tr>
                 <tr>
                   <td>PRT</td>
-                  <td>40</td>
+                  <td>55</td>
                 </tr>
                 <tr>
                   <td>NTT</td>
-                  <td>9</td>
+                  <td>11</td>
                 </tr>
                 <tr>
                   <td>Librarian</td>
@@ -477,12 +477,12 @@ const PublicDisclosure = () => {
                 <tr>
                   <td>6</td>
                   <td>DETAILS OF COUNSELLOR AND WELNESS TEACHER</td>
-                  <td>2</td>
+                  <td>1</td>
                 </tr>
                 <tr>
                   <td>7</td>
                   <td>PET</td>
-                  <td>1</td>
+                  <td>3</td>
                 </tr>
               </tbody>
             </table>
@@ -515,13 +515,13 @@ const PublicDisclosure = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {/* <tr>
                   <td>1</td>
                   <td>2022</td>
                   <td>N/A</td>
                   <td>N/A</td>
                   <td>N/A</td>
-                </tr>
+                </tr> */}
                 <tr>
                   <td>2</td>
                   <td>2023</td>
@@ -610,7 +610,7 @@ const PublicDisclosure = () => {
                 <tr>
                   <td>2</td>
                   <td>NO. AND SIZE OF THE CLASS ROOMS (IN SQ FTMTR)</td>
-                  <td>67 &amp; 50</td>
+                  <td>77 &amp; 50</td>
                 </tr>
                 <tr>
                   <td>3</td>
