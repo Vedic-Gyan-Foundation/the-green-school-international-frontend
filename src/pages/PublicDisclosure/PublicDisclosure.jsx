@@ -302,7 +302,7 @@ const PublicDisclosure = () => {
                   <td>LINK OF YOUTUBE VIDEO OF THE INSPECTION OF SCHOOL</td>
                   <td>
                     <a
-                      href="https://youtu.be/JVnYgaPcnqU"
+                      href="https://www.youtube.com/watch?v=Qc4R97YApf4"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
