@@ -277,6 +277,20 @@ const PublicDisclosure = () => {
                     </a>
                   </td>
                 </tr>
+                 <tr>
+                  <td>10</td>
+                  <td>MANDATORY DISCLOSURE</td>
+                  <td>
+                    <a
+                      href="https://api.greenschoolguwahati.com/public_disclosure/MANDATORY_DISCLOSURE.pdf"
+                      rel="noreferrer"
+                      target="_blank"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Click to Download
+                    </a>
+                  </td>
+                </tr>
               </tbody>
             </table>
             <table style={{ marginBlock: "2rem" }}>
