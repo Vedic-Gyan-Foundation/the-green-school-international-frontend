@@ -249,6 +249,21 @@ const PublicDisclosure = () => {
 
                 <tr>
                   <td>8</td>
+                  <td>SELF CERTIFICATION FOR SECTION INCRESE </td>
+                  <td>
+                    <a
+                      href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION_FOR_SECTION_INCRESE.pdf"
+                      rel="noreferrer"
+                      target="_blank"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Click to Download
+                    </a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>9</td>
                   <td>
                     COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES
                   </td>
@@ -264,7 +279,7 @@ const PublicDisclosure = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td>9</td>
+                  <td>10</td>
                   <td>LAND CERTIFICATE</td>
                   <td>
                     <a
@@ -277,8 +292,8 @@ const PublicDisclosure = () => {
                     </a>
                   </td>
                 </tr>
-                 <tr>
-                  <td>10</td>
+                <tr>
+                  <td>11</td>
                   <td>MANDATORY DISCLOSURE</td>
                   <td>
                     <a
