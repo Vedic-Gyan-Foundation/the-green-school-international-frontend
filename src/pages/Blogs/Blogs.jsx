@@ -1,29 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import styles from "./Blogs.module.css";
 import Header from "../../components/Header/Header";
-import axiosInstance from "../../api/axiosInstance";
-import Loader from "../../components/Loader/Loader";
+import staticBlogs from "../../data/staticBlogs";
 
 const Blogs = () => {
-  const [blogsList, setBlogsList] = useState([]);
-
-  useEffect(() => {
-    axiosInstance
-      .get(`blogs/list`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        console.log(response);
-        if (response.data.http_status_code == 200)
-          setBlogsList(response.data.data);
-        else setBlogsList;
-      });
-  }, []);
+  const [blogsList] = useState(staticBlogs);
 
   return (
     <>

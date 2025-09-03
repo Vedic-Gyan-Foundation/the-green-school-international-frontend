@@ -6,10 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const BlogCard = ({ id, image, title, content }) => {
   const navigate = useNavigate();
+  const imgSrc =
+    image && (image.startsWith("/") || image.startsWith("http"))
+      ? image
+      : baseURL + image;
   return (
     <div className="w-[350px] shadow-lg rounded-md flex flex-col">
       <img
-        src={baseURL + image}
+        src={imgSrc}
         className="w-full rounded-t-md"
         alt={`blog-img-${id}`}
       />
