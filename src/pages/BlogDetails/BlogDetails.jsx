@@ -27,7 +27,7 @@ const BlogDetails = () => {
           <div className={styles.blog_section}>
             <h2>{blog.title}</h2>
             <img src={blog.banner} alt="" className="" />
-            <p>{blog.content}</p>
+            <p className={styles.blog_content}>{blog.content}</p>
           </div>
         </>
       ) : (

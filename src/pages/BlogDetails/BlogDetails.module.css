@@ -13,6 +13,11 @@
   display: block;
 }
 
+.blog_content {
+  white-space: pre-line;
+  line-height: 1.7;
+}
+
 @media screen and (max-width: 756px) {
   .blog_section {
     margin: 2rem auto;
