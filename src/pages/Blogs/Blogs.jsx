@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import BlogCard from "../../components/BlogCard/BlogCard";
 import styles from "./Blogs.module.css";
 import Header from "../../components/Header/Header";

@@ -1,10 +1,10 @@
-import React from "react";
+// import React from "react";
 import Button from "../Button/Button";
-import styles from "./BlogCard.module.css";
+// import styles from "./BlogCard.module.css";
 import { baseURL } from "../../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
-const BlogCard = ({ id, image, title, content }) => {
+const BlogCard = ({ id, image, title }) => {
   const navigate = useNavigate();
   const imgSrc =
     image && (image.startsWith("/") || image.startsWith("http"))

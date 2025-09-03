@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Home from "./pages/Home/Home";
 import About from "./pages/About/About";
 import PublicDisclosure from "./pages/PublicDisclosure/PublicDisclosure";
