@@ -183,7 +183,7 @@ const Navbar = () => {
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-sm"
                   >
-                    2026-2027 (Session)
+                    2026-2027 (Proposed)
                   </li>
                   <li
                     onClick={() =>
