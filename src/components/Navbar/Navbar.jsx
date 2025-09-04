@@ -178,6 +178,16 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
+                        "https://api.greenschoolguwahati.com/fee_structure/Proposed_Fee_Structure_2026_27.pdf"
+                      )
+                    }
+                    className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-sm"
+                  >
+                    2026-2027 (Session)
+                  </li>
+                  <li
+                    onClick={() =>
+                      handleDownloadPDF(
                         "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
                       )
                     }
