@@ -21,48 +21,144 @@ const BlogDetails = () => {
   const renderContent = (content) => {
     if (!content) return null;
 
-    return content.split("\n\n").reduce((elements, block, blockIndex) => {
-      const lines = block
-        .split("\n")
-        .map((line) => line.trim())
-        .filter(Boolean);
+    const elements = [];
+    let paragraphBuffer = [];
+    let listItems = [];
+    let listType = null;
+    let elementKey = 0;
+    let pendingListBreak = false;
 
-      if (lines.length === 0) {
-        return elements;
-      }
+    const flushParagraph = () => {
+      if (paragraphBuffer.length === 0) return;
 
-      const [firstLine, ...restLines] = lines;
+      const paragraphText = paragraphBuffer.join(" ");
       const isHeading =
-        firstLine.split(" ").length <= 12 && !/[.!?]/.test(firstLine);
+        paragraphBuffer.length === 1 &&
+        paragraphBuffer[0].split(" ").length <= 12 &&
+        !/[.!?]/.test(paragraphBuffer[0]);
 
       if (isHeading) {
         elements.push(
           <h3
-            key={`heading-${blockIndex}`}
+            key={`heading-${elementKey}`}
             className={styles.blog_heading}
           >
-            {firstLine}
+            {paragraphBuffer[0]}
           </h3>
         );
       } else {
-        restLines.unshift(firstLine);
+        elements.push(
+          <p
+            key={`paragraph-${elementKey}`}
+            className={styles.blog_paragraph}
+          >
+            {paragraphText}
+          </p>
+        );
       }
 
-      restLines.forEach((line, lineIndex) => {
-        if (line) {
-          elements.push(
-            <p
-              key={`paragraph-${blockIndex}-${lineIndex}`}
-              className={styles.blog_paragraph}
-            >
-              {line}
-            </p>
-          );
-        }
-      });
+      elementKey += 1;
+      paragraphBuffer = [];
+    };
 
-      return elements;
-    }, []);
+    const flushList = () => {
+      if (listItems.length === 0) return;
+
+      const ListTag = listType === "ol" ? "ol" : "ul";
+      const currentKey = elementKey;
+
+      elements.push(
+        <ListTag
+          key={`list-${currentKey}`}
+          className={`${styles.blog_list} ${
+            listType === "ol" ? styles.blog_ordered : styles.blog_unordered
+          }`}
+        >
+          {listItems.map((item, index) => {
+            const { heading, body } = item;
+            return (
+              <li
+                key={`list-${currentKey}-item-${index}`}
+                className={styles.blog_list_item}
+              >
+                <span className={styles.blog_list_heading}>{heading}</span>
+                {body && (
+                  <>
+                    {" "}
+                    <span className={styles.blog_list_body}>{body}</span>
+                  </>
+                )}
+              </li>
+            );
+          })}
+        </ListTag>
+      );
+
+      elementKey += 1;
+      listItems = [];
+      listType = null;
+      pendingListBreak = false;
+    };
+
+    const lines = content.replace(/\r\n/g, "\n").split("\n");
+
+    lines.forEach((rawLine) => {
+      const line = rawLine.trim();
+
+      if (!line) {
+        flushParagraph();
+        if (listType) {
+          pendingListBreak = true;
+        } else {
+          flushList();
+        }
+        return;
+      }
+
+      const numberedMatch = line.match(/^\d+\.\s+(.*)$/);
+      const bulletMatch = line.match(/^[-*]\s+(.*)$/);
+
+      if (numberedMatch || bulletMatch) {
+        flushParagraph();
+        const nextType = numberedMatch ? "ol" : "ul";
+
+        if (listType && listType !== nextType) {
+          flushList();
+        }
+
+        if (!listType) {
+          listType = nextType;
+        } else if (pendingListBreak) {
+          pendingListBreak = false;
+        }
+
+        const itemText = (numberedMatch ? numberedMatch[1] : bulletMatch[1]).trim();
+        listItems.push({ heading: itemText, body: "" });
+        pendingListBreak = false;
+      } else if (listType) {
+        if (pendingListBreak) {
+          flushList();
+          pendingListBreak = false;
+          paragraphBuffer.push(line);
+          return;
+        }
+        const lastIndex = listItems.length - 1;
+        if (lastIndex >= 0) {
+          const currentItem = listItems[lastIndex];
+          const updatedBody = `${currentItem.body} ${line}`.trim();
+          currentItem.body = updatedBody;
+        } else {
+          paragraphBuffer.push(line);
+        }
+      } else {
+        paragraphBuffer.push(line);
+      }
+    });
+
+    flushParagraph();
+    flushList();
+
+    return elements;
   };
 
   // console.log(baseURL + blog.banner);

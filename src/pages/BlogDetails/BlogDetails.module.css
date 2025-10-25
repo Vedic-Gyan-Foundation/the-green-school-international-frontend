@@ -34,7 +34,39 @@
 }
 
 .blog_paragraph {
+  font-size: 1rem;
   line-height: 1.7;
+}
+
+.blog_list {
+  margin: 0;
+  padding-left: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.blog_ordered {
+  list-style-type: decimal;
+}
+
+.blog_unordered {
+  list-style-type: disc;
+}
+
+.blog_list_item {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.blog_list_heading {
+  font-weight: 700;
+  display: inline;
+}
+
+.blog_list_body {
+  font-weight: 400;
+  display: inline;
 }
 
 @media screen and (max-width: 756px) {
