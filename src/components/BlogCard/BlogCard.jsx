@@ -18,7 +18,7 @@ const BlogCard = ({ id, image, title }) => {
         alt={`blog-img-${id}`}
       />
       <div className="flex flex-col py-3 px-4 gap-4 flex-grow">
-        <h3 className="text-base font-medium">{title}</h3>
+        <h3 className="text-lg font-bold leading-snug">{title}</h3>
         <Button clickHandler={() => navigate(`/blogdetails/${id}`)}>
           View Details
         </Button>

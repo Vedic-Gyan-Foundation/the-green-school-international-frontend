@@ -18,6 +18,53 @@ const BlogDetails = () => {
     if (local) setBlog(local);
   }, [id]);
 
+  const renderContent = (content) => {
+    if (!content) return null;
+
+    return content.split("\n\n").reduce((elements, block, blockIndex) => {
+      const lines = block
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      if (lines.length === 0) {
+        return elements;
+      }
+
+      const [firstLine, ...restLines] = lines;
+      const isHeading =
+        firstLine.split(" ").length <= 12 && !/[.!?]/.test(firstLine);
+
+      if (isHeading) {
+        elements.push(
+          <h3
+            key={`heading-${blockIndex}`}
+            className={styles.blog_heading}
+          >
+            {firstLine}
+          </h3>
+        );
+      } else {
+        restLines.unshift(firstLine);
+      }
+
+      restLines.forEach((line, lineIndex) => {
+        if (line) {
+          elements.push(
+            <p
+              key={`paragraph-${blockIndex}-${lineIndex}`}
+              className={styles.blog_paragraph}
+            >
+              {line}
+            </p>
+          );
+        }
+      });
+
+      return elements;
+    }, []);
+  };
+
   // console.log(baseURL + blog.banner);
   return (
     <>
@@ -25,9 +72,13 @@ const BlogDetails = () => {
         <>
           <Header title={"Blogs"} />
           <div className={styles.blog_section}>
-            <h2>{blog.title}</h2>
-            <img src={blog.banner} alt="" className="" />
-            <p className={styles.blog_content}>{blog.content}</p>
+            <h2 className={styles.blog_title}>{blog.title}</h2>
+            {blog.banner && (
+              <img src={blog.banner} alt="" className={styles.blog_image} />
+            )}
+            <div className={styles.blog_content}>
+              {renderContent(blog.content)}
+            </div>
           </div>
         </>
       ) : (

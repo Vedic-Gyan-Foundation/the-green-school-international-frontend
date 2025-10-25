@@ -6,7 +6,14 @@
   gap: 1rem;
   max-width: 1100px;
 }
-.blog_section > img {
+.blog_title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.blog_image {
   width: 100%;
   max-width: 100%;
   height: auto;
@@ -14,7 +21,19 @@
 }
 
 .blog_content {
-  white-space: pre-line;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blog_heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-top: 1.5rem;
+}
+
+.blog_paragraph {
   line-height: 1.7;
 }
 
@@ -22,5 +41,11 @@
   .blog_section {
     margin: 2rem auto;
     padding: 0 1rem;
+  }
+  .blog_title {
+    font-size: 2rem;
+  }
+  .blog_heading {
+    font-size: 1.25rem;
   }
 }
