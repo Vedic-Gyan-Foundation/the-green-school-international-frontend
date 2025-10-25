@@ -103,7 +103,7 @@ const BlogDetails = () => {
     const lines = content.replace(/\r\n/g, "\n").split("\n");
 
     lines.forEach((rawLine) => {
-      const line = rawLine.trim();
+      let line = rawLine.trim();
 
       if (!line) {
         flushParagraph();
@@ -114,6 +114,8 @@ const BlogDetails = () => {
         }
         return;
       }
+
+      line = line.replace(/^:\s*/, "");
 
       const numberedMatch = line.match(/^\d+\.\s+(.*)$/);
       const bulletMatch = line.match(/^[-*]\s+(.*)$/);
