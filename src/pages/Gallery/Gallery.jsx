@@ -27,7 +27,7 @@ const Gallery = () => {
   console.log(galleryList);
   return (
     <>
-      <Header title="Gallery" />
+      <Header title="Gallery" className="gallery" />{" "}
       <div className={styles.gallery_images}>
         <h2>Gallery Images</h2>
         {galleryList ? (

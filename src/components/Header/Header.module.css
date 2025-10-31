@@ -10,6 +10,13 @@
   color: white;
   white-space: nowrap;
 }
+
+.header.gallery {
+  background: linear-gradient(#24364dc4, #24364dc4),
+    url("/assets/gallery-banner.jpg");
+  background-size: cover;
+  background-position: bottom center;
+}
 .header h2 {
   font-size: 3rem;
 }
