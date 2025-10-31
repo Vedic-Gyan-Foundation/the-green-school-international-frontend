@@ -51,19 +51,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-
-// axiosInstance
-// .get(`galleries/list?category=galleries`, {
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// })
-
-
-// .then((response) => {
-//   const jayimage = response.data.data
-//   axios.get(`${baseApi}/api/get-images`, {
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//     })
