@@ -18,6 +18,8 @@ import "aos/dist/aos.css";
 import SocialLinks from "./components/SocialLinks/SocialLinks";
 import TransferCertificates from "./pages/TransferCertificate/TransferCertificates";
 import SportsInfra from "./pages/SportsInfra/SportsInfra";
+import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
 
 const App = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -64,6 +66,11 @@ const App = () => {
             element={<TransferCertificates />}
           />
           <Route path="/contact" element={<Contact />} />
+          <Route
+            path="/terms-and-conditions"
+            element={<TermsAndConditions />}
+          />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

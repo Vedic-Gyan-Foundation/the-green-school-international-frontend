@@ -19,7 +19,7 @@ const Footer = () => {
             <p>
               Founded in 2018, The Green School International is situated amid
               the enchanting green hills on the outskirts of the lovely city of
-              Guwahati. The school's design is carefully crafted to blend
+              Guwahati. The school&apos;s design is carefully crafted to blend
               seamlessly with the beauty of Mother Nature, aligning with the
               goal of sustainability.
             </p>
@@ -89,6 +89,19 @@ const Footer = () => {
               <li>
                 <Link to={"/contact"} className={styles.footer_navlink}>
                   Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={"/terms-and-conditions"}
+                  className={styles.footer_navlink}
+                >
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link to={"/privacy-policy"} className={styles.footer_navlink}>
+                  Privacy Policy
                 </Link>
               </li>
             </ul>
