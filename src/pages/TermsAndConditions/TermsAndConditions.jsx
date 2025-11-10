@@ -1,6 +1,5 @@
 import styles from "./TermsAndConditions.module.css";
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
 const TermsAndConditions = () => {
   return (
@@ -341,7 +340,6 @@ const TermsAndConditions = () => {
           </ul>
         </section>
       </div>
-      <Footer />
     </>
   );
 };
