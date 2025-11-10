@@ -1,0 +1,21 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  color: #111827;
+  line-height: 1.7;
+}
+
+.lastupdated {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.list {
+  padding-left: 1rem;
+}
+
+.link {
+  color: #065f46;
+  text-decoration: underline;
+}
