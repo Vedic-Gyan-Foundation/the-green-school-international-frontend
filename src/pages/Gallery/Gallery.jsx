@@ -122,8 +122,8 @@ const Gallery = () => {
               aria-label="Download image"
             >
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 3v10.586l3.293-3.293 1.414 1.414L12 17.414 7.293 12.707l1.414-1.414L12 13.586V3z" />
-                <path d="M5 19h14v2H5z" />
+                <path d="M11 3h2v9h3.5L12 18.5 7.5 12H11z" />
+                <path d="M5 14h2v5h10v-5h2v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z" />
               </svg>
             </button>
             <img
