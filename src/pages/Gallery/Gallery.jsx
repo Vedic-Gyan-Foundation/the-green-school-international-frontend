@@ -37,6 +37,31 @@ const Gallery = () => {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [activeImage]);
 
+  const downloadImage = async (image) => {
+    if (!image) return;
+    try {
+      const response = await fetch(image.src);
+      const blob = await response.blob();
+      const blobUrl = window.URL.createObjectURL(blob);
+      const extension =
+        image.src.split(".").pop()?.split("?")[0] || "jpg";
+      const safeTitle = image.caption.title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      const filename = `${safeTitle || "gallery-image"}.${extension}`;
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      console.error("Unable to download image", error);
+    }
+  };
+
   console.log(galleryList);
   return (
     <>
@@ -91,15 +116,12 @@ const Gallery = () => {
             >
               &times;
             </button>
-            <a
+            <button
               className={styles.lightbox_download}
-              href={activeImage.src}
-              download
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => downloadImage(activeImage)}
             >
               Download
-            </a>
+            </button>
             <img
               src={activeImage.src}
               alt={activeImage.caption.title}
