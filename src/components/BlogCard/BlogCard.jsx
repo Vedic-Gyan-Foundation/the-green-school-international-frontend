@@ -41,7 +41,7 @@ const BlogCard = ({ id, image, title, author, readTime, postedOn }) => {
 
         <Button
           className="mt-2"
-          clickHandler={() => navigate(`/blogdetails/${id}`)}
+          clickHandler={() => navigate(`/article/${id}`)}
         >
           View Details
         </Button>
