@@ -90,7 +90,7 @@ const BlogPage = () => {
           <img
             src={article?.cover_image}
             alt="Blog cover"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
           />
           <div className="absolute bottom-0 left-0 right-0 h-[150px] bg-gradient-to-t from-black/40 to-transparent"></div>
         </div>
