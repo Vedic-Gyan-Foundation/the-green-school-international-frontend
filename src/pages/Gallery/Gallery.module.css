@@ -22,6 +22,7 @@
   border-radius: 0.5rem 0.5rem 0 0;
 }
 .gallery_caption {
+  min-height: 7rem;
   padding: 0.85rem 1rem;
   background: #07713d;
   color: #fff;
