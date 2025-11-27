@@ -20,6 +20,7 @@ import TransferCertificates from "./pages/TransferCertificate/TransferCertificat
 import SportsInfra from "./pages/SportsInfra/SportsInfra";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
+import ArticlePage from "./pages/ArticlePage/ArticlePage";
 
 const App = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -61,6 +62,7 @@ const App = () => {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blogdetails/:id" element={<BlogDetails />} />
+          <Route path="/article/:id" element={<ArticlePage />} />
           <Route
             path="/transfer-certificates"
             element={<TransferCertificates />}
@@ -70,7 +72,7 @@ const App = () => {
             path="/terms-and-conditions"
             element={<TermsAndConditions />}
           />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          {/* <Route path="/privacy-policy" element={<PrivacyPolicy />} /> */}
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />
