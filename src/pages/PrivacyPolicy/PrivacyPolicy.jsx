@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import styles from "./PrivacyPolicy.module.css";
 import Header from "../../components/Header/Header";
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Header title="Privacy Policy" />
@@ -14,15 +19,14 @@ const PrivacyPolicy = () => {
         </p>
 
         <p>
-          This Privacy Policy describes Our policies and procedures on the
-          collection, use and disclosure of Your information when You use the
-          Service and tells You about Your privacy rights and how the law
-          protects You.
+          This Privacy Policy describes our policies and procedures on the
+          collection, use, and disclosure of your information when you use the
+          service and explains your privacy rights and how the law protects you.
         </p>
 
         <p>
-          We use Your Personal data to provide and improve the Service. By using
-          the Service, You agree to the collection and use of information in
+          We use your personal data to provide and improve the service. By using
+          the service, you agree to the collection and use of information in
           accordance with this Privacy Policy.
         </p>
 
@@ -33,57 +37,54 @@ const PrivacyPolicy = () => {
         <h3 className="font-medium text-xl underline">Interpretation</h3>
         <p>
           The words whose initial letters are capitalized have meanings defined
-          under the following conditions. The following definitions shall have
-          the same meaning regardless of whether they appear in singular or in
-          plural.
+          under the following conditions. These definitions shall have the same
+          meaning whether they appear in singular or plural form.
         </p>
 
         <h3 className="font-medium text-xl underline">Definitions</h3>
         <p>For the purposes of this Privacy Policy:</p>
         <ul className={`${styles.list} list-disc ml-6`}>
           <li>
-            <b>Account</b> means a unique account created for You to access our
-            Service or parts of our Service.
+            <b>Account</b> means a unique account created for you to access our
+            service or parts of our service.
           </li>
           <li>
             <b>Affiliate</b> means an entity that controls, is controlled by, or
-            is under common control with a party, where &quot;control&quot;
-            means ownership of 50% or more of the shares, equity interest or
-            other securities entitled to vote for election of directors or other
-            managing authority.
+            is under common control with a party. “Control” means ownership of
+            50% or more of the shares, equity interest, or other securities
+            entitled to vote for the election of directors or other managing
+            authority.
           </li>
           <li>
-            <b>Company</b> (referred to as either &quot;the Company&quot;,
-            &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement)
-            refers to The Green School International.
+            <b>Company</b> (referred to as “the Company”, “we”, “us”, or “our”
+            in this Agreement) refers to The Green School International.
           </li>
           <li>
-            <b>Cookies</b> are small files that are placed on Your computer,
-            mobile device or any other device by a website, containing the
-            details of Your browsing history on that website among its many
-            uses.
+            <b>Cookies</b> are small files placed on your computer, mobile
+            device, or any other device by a website, containing details of your
+            browsing history and other uses.
           </li>
           <li>
-            <b>Country</b> refers to: Assam, India
+            <b>Country</b> refers to Assam, India.
           </li>
           <li>
-            <b>Device</b> means any device that can access the Service such as a
-            computer, a cell phone or a digital tablet.
+            <b>Device</b> means any device that can access the service such as a
+            computer, mobile phone, or digital tablet.
           </li>
           <li>
-            <b>Personal Data</b> is any information that relates to an
-            identified or identifiable individual.
+            <b>Personal Data</b> means any information relating to an identified
+            or identifiable individual.
           </li>
           <li>
-            <b>Service</b> refers to the Website.
+            <b>Service</b> refers to the website.
           </li>
           <li>
             <b>Service Provider</b> means any natural or legal person who
-            processes the data on behalf of the Company.
+            processes data on behalf of the company.
           </li>
           <li>
             <b>Usage Data</b> refers to data collected automatically, either
-            generated by the use of the Service or from the Service
+            generated by the use of the service or from the service
             infrastructure itself (for example, the duration of a page visit).
           </li>
           <li>
@@ -94,9 +95,9 @@ const PrivacyPolicy = () => {
             </a>
           </li>
           <li>
-            <b>You</b> means the individual accessing or using the Service, or
-            the company, or other legal entity on behalf of which such
-            individual is accessing or using the Service, as applicable.
+            <b>You</b> means the individual accessing or using the service, or
+            the company or other legal entity on whose behalf the individual is
+            accessing or using the service, as applicable.
           </li>
         </ul>
 
@@ -109,17 +110,17 @@ const PrivacyPolicy = () => {
 
         <h4 className="font-medium text-base underline mt-2">Personal Data</h4>
         <p>
-          While using Our Service, We may ask You to provide Us with certain
-          personally identifiable information that can be used to contact or
-          identify You. Personally identifiable information may include, but is
-          not limited to:
+          While using our service, we may ask you to provide certain personally
+          identifiable information that can be used to contact or identify you.
+          Personally identifiable information may include, but is not limited
+          to:
         </p>
         <ul className={`${styles.list} list-disc ml-6`}>
           <li>Email address</li>
           <li>First name and last name</li>
           <li>Phone number</li>
-          <li>Address, State, Province, ZIP/Postal code, City</li>
-          <li>Usage Data</li>
+          <li>Address, state, province, ZIP/postal code, city</li>
+          <li>Usage data</li>
         </ul>
 
         <h4 className="font-medium text-base underline mt-2">Usage Data</h4>
@@ -128,15 +129,15 @@ const PrivacyPolicy = () => {
           Tracking Technologies and Cookies
         </h3>
         <p>
-          We use Cookies and similar tracking technologies to track the activity
-          on Our Service and store certain information. Tracking technologies We
-          use include beacons, tags, and scripts to collect and track
-          information and to improve and analyze Our Service.
+          We use cookies and similar tracking technologies to track activity on
+          our service and store certain information. Tracking technologies
+          include beacons, tags, and scripts to collect and analyze information
+          and to improve our service.
         </p>
 
         <p>
           For more information about the cookies we use and your choices
-          regarding cookies, please visit our Cookies Policy or the Cookies
+          regarding cookies, please visit our Cookies Policy or the cookies
           section of our Privacy Policy.
         </p>
 
@@ -144,18 +145,17 @@ const PrivacyPolicy = () => {
           Use of Your Personal Data
         </h3>
         <p>
-          The Company may use Personal Data for a number of purposes including
-          to provide and maintain our Service, to manage Your Account, to
-          perform a contract, to contact You, to provide You with news and
-          offers, and to manage Your requests, as described in detail in the
-          full policy.
+          The Company may use personal data for several purposes including to
+          provide and maintain our service, to manage your account, to perform a
+          contract, to contact you, to provide you with news and offers, and to
+          manage your requests, as described in the full policy.
         </p>
 
         <h3 className="font-medium text-xl underline mt-2">
           Retention of Your Personal Data
         </h3>
         <p>
-          The Company will retain Your Personal Data only for as long as is
+          The Company will retain your personal data only for as long as
           necessary for the purposes set out in this Privacy Policy.
         </p>
 
@@ -163,8 +163,8 @@ const PrivacyPolicy = () => {
           Transfer of Your Personal Data
         </h3>
         <p>
-          Your information, including Personal Data, is processed at the
-          Company&apos;s operating offices and in any other places where the
+          Your information, including personal data, is processed at the
+          Company&apos;s operating offices and any other locations where the
           parties involved in the processing are located.
         </p>
 
@@ -172,9 +172,9 @@ const PrivacyPolicy = () => {
           Delete Your Personal Data
         </h3>
         <p>
-          You have the right to delete or request that We assist in deleting the
-          Personal Data that We have collected about You. You may update, amend,
-          or delete Your information at any time by signing in to Your Account,
+          You have the right to delete or request assistance in deleting the
+          personal data that we have collected about you. You may update, amend,
+          or delete your information at any time by signing in to your account,
           if you have one.
         </p>
 
@@ -182,8 +182,8 @@ const PrivacyPolicy = () => {
           Children&apos;s Privacy
         </h3>
         <p>
-          Our Service does not address anyone under the age of 13. We do not
-          knowingly collect personally identifiable information from anyone
+          Our service does not address anyone under the age of 13. We do not
+          knowingly collect personally identifiable information from individuals
           under the age of 13.
         </p>
 
@@ -191,23 +191,23 @@ const PrivacyPolicy = () => {
           Links to Other Websites
         </h3>
         <p>
-          Our Service may contain links to other websites that are not operated
-          by Us. If You click on a third party link, You will be directed to
-          that third party&apos;s site. We strongly advise You to review the
-          Privacy Policy of every site You visit.
+          Our service may contain links to other websites that are not operated
+          by us. If you click a third-party link, you will be directed to that
+          site. We strongly advise you to review the Privacy Policy of every
+          website you visit.
         </p>
 
         <h3 className="font-medium text-xl underline mt-2">
-          Changes to this Privacy Policy
+          Changes to This Privacy Policy
         </h3>
         <p>
-          We may update Our Privacy Policy from time to time. We will notify You
-          of any changes by posting the new Privacy Policy on this page.
+          We may update our Privacy Policy from time to time. We will notify you
+          of any changes by posting the updated Privacy Policy on this page.
         </p>
 
         <h3 className="font-medium text-xl underline mt-2">Contact Us</h3>
         <p>
-          If you have any questions about this Privacy Policy, You can contact
+          If you have any questions about this Privacy Policy, you can contact
           us by visiting this page on our website:{" "}
           <a
             className={`${styles.link} underline`}
