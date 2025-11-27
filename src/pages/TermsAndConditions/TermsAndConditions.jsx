@@ -43,7 +43,7 @@ const TermsAndConditions = () => {
             </li>
             <li>
               <b>Company</b> (referred to as either &quot;the Company&quot;,
-              &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this
+              &quot;we&quot;, &quot;us&quot; or &quot;our&quot; in this
               Agreement) refers to The Green School International.
             </li>
             <li>
@@ -56,7 +56,7 @@ const TermsAndConditions = () => {
             <li>
               <b>Terms and Conditions</b> (also referred as &quot;Terms&quot;)
               mean these Terms and Conditions that form the entire agreement
-              between You and the Company regarding the use of the Service.
+              between you and the Company regarding the use of the Service.
             </li>
             <li>
               <b>Third-party Social Media Service</b> means any services or
@@ -86,33 +86,33 @@ const TermsAndConditions = () => {
           <h3 className="font-medium text-xl underline">Acknowledgment</h3>
           <p>
             These are the Terms and Conditions governing the use of this Service
-            and the agreement that operates between You and the Company. These
+            and the agreement that operates between you and the Company. These
             Terms and Conditions set out the rights and obligations of all users
             regarding the use of the Service.
           </p>
           <p>
-            Your access to and use of the Service is conditioned on Your
+            Your access to and use of the Service is conditioned on your
             acceptance of and compliance with these Terms and Conditions. These
             Terms and Conditions apply to all visitors, users and others who
             access or use the Service.
           </p>
           <p>
-            By accessing or using the Service You agree to be bound by these
-            Terms and Conditions. If You disagree with any part of these Terms
-            and Conditions then You may not access the Service.
+            By accessing or using the Service you agree to be bound by these
+            Terms and Conditions. If you disagree with any part of these Terms
+            and Conditions then you may not access the Service.
           </p>
           <p>
             You represent that you are over the age of 18. The Company does not
             permit those under 18 to use the Service.
           </p>
           <p>
-            Your access to and use of the Service is also conditioned on Your
+            Your access to and use of the Service is also conditioned on your
             acceptance of and compliance with the Privacy Policy of the Company.
-            Our Privacy Policy describes Our policies and procedures on the
-            collection, use and disclosure of Your personal information when You
-            use the Application or the Website and tells You about Your privacy
-            rights and how the law protects You. Please read Our Privacy Policy
-            carefully before using Our Service.
+            Our Privacy Policy describes our policies and procedures on the
+            collection, use and disclosure of your personal information when you
+            use the Application or the Website and tells you about your privacy
+            rights and how the law protects you. Please read our Privacy Policy
+            carefully before using our Service.
           </p>
         </section>
 
@@ -134,20 +134,20 @@ const TermsAndConditions = () => {
             services available on or through any such web sites or services.
           </p>
           <p>
-            We strongly advise You to read the terms and conditions and privacy
-            policies of any third-party web sites or services that You visit.
+            We strongly advise you to read the terms and conditions and privacy
+            policies of any third-party web sites or services that you visit.
           </p>
         </section>
 
         <section className={styles.terms_section}>
           <h3 className="font-medium text-xl underline">Termination</h3>
           <p>
-            We may terminate or suspend Your access immediately, without prior
+            We may terminate or suspend your access immediately, without prior
             notice or liability, for any reason whatsoever, including without
-            limitation if You breach these Terms and Conditions.
+            limitation if you breach these Terms and Conditions.
           </p>
           <p>
-            Upon termination, Your right to use the Service will cease
+            Upon termination, your right to use the Service will cease
             immediately.
           </p>
         </section>
@@ -157,11 +157,11 @@ const TermsAndConditions = () => {
             Limitation of Liability
           </h3>
           <p>
-            Notwithstanding any damages that You might incur, the entire
+            Notwithstanding any damages that you might incur, the entire
             liability of the Company and any of its suppliers under any
-            provision of this Terms and Your exclusive remedy for all of the
-            foregoing shall be limited to the amount actually paid by You
-            through the Service or 100 USD if You haven&apos;t purchased
+            provision of this Terms and your exclusive remedy for all of the
+            foregoing shall be limited to the amount actually paid by you
+            through the Service or 100 USD if you haven&apos;t purchased
             anything through the Service.
           </p>
           <p>
@@ -191,7 +191,7 @@ const TermsAndConditions = () => {
             &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; Disclaimer
           </h3>
           <p>
-            The Service is provided to You &quot;AS IS&quot; and &quot;AS
+            The Service is provided to you &quot;AS IS&quot; and &quot;AS
             AVAILABLE&quot; and with all faults and defects without warranty of
             any kind. To the maximum extent permitted under applicable law, the
             Company, on its own behalf and on behalf of its Affiliates and its
@@ -203,7 +203,7 @@ const TermsAndConditions = () => {
             course of dealing, course of performance, usage or trade practice.
             Without limitation to the foregoing, the Company provides no
             warranty or undertaking, and makes no representation of any kind
-            that the Service will meet Your requirements, achieve any intended
+            that the Service will meet your requirements, achieve any intended
             results, be compatible or work with any other software,
             applications, systems or services, operate without interruption,
             meet any performance or reliability standards or be error free or
@@ -225,7 +225,7 @@ const TermsAndConditions = () => {
             Some jurisdictions do not allow the exclusion of certain types of
             warranties or limitations on applicable statutory rights of a
             consumer, so some or all of the above exclusions and limitations may
-            not apply to You. But in such a case the exclusions and limitations
+            not apply to you. But in such a case the exclusions and limitations
             set forth in this section shall be applied to the greatest extent
             enforceable under applicable law.
           </p>
@@ -235,7 +235,7 @@ const TermsAndConditions = () => {
           <h3 className="font-medium text-xl underline">Governing Law</h3>
           <p>
             The laws of the Country, excluding its conflicts of law rules, shall
-            govern this Terms and Your use of the Service. Your use of the
+            govern this Terms and your use of the Service. Your use of the
             Application may also be subject to other local, state, national, or
             international laws.
           </p>
@@ -244,7 +244,7 @@ const TermsAndConditions = () => {
         <section className={styles.terms_section}>
           <h3 className="font-medium text-xl underline">Disputes Resolution</h3>
           <p>
-            If You have any concern or dispute about the Service, You agree to
+            If you have any concern or dispute about the Service, you agree to
             first try to resolve the dispute informally by contacting the
             Company.
           </p>
@@ -255,8 +255,8 @@ const TermsAndConditions = () => {
             For European Union (EU) Users
           </h3>
           <p>
-            If You are a European Union consumer, you will benefit from any
-            mandatory provisions of the law of the country in which You are
+            If you are a European Union consumer, you will benefit from any
+            mandatory provisions of the law of the country in which you are
             resident.
           </p>
         </section>
@@ -266,10 +266,10 @@ const TermsAndConditions = () => {
             United States Legal Compliance
           </h3>
           <p>
-            You represent and warrant that (i) You are not located in a country
+            You represent and warrant that (i) you are not located in a country
             that is subject to the United States government embargo, or that has
             been designated by the United States government as a &quot;terrorist
-            supporting&quot; country, and (ii) You are not listed on any United
+            supporting&quot; country, and (ii) you are not listed on any United
             States government list of prohibited or restricted parties.
           </p>
         </section>
@@ -301,8 +301,8 @@ const TermsAndConditions = () => {
             Translation Interpretation
           </h3>
           <p>
-            These Terms and Conditions may have been translated if We have made
-            them available to You on our Service. You agree that the original
+            These Terms and Conditions may have been translated if we have made
+            them available to you on our Service. You agree that the original
             English text shall prevail in the case of a dispute.
           </p>
         </section>
@@ -312,15 +312,15 @@ const TermsAndConditions = () => {
             Changes to These Terms and Conditions
           </h3>
           <p>
-            We reserve the right, at Our sole discretion, to modify or replace
-            these Terms at any time. If a revision is material We will make
+            We reserve the right, at our sole discretion, to modify or replace
+            these Terms at any time. If a revision is material we will make
             reasonable efforts to provide at least 30 days&apos; notice prior to
             any new terms taking effect. What constitutes a material change will
-            be determined at Our sole discretion.
+            be determined at our sole discretion.
           </p>
           <p>
-            By continuing to access or use Our Service after those revisions
-            become effective, You agree to be bound by the revised terms. If You
+            By continuing to access or use our Service after those revisions
+            become effective, you agree to be bound by the revised terms. If you
             do not agree to the new terms, in whole or in part, please stop
             using the website and the Service.
           </p>
@@ -329,7 +329,7 @@ const TermsAndConditions = () => {
         <section className={styles.terms_section}>
           <h3 className="font-medium text-xl underline">Contact Us</h3>
           <p>
-            If you have any questions about these Terms and Conditions, You can
+            If you have any questions about these Terms and Conditions, you can
             contact us:
           </p>
           <ul className={styles.terms_list}>
