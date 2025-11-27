@@ -70,7 +70,7 @@
   border-radius: 0.75rem;
   max-width: 90vw;
   max-height: 90vh;
-  padding: 2.5rem 1.5rem 2.25rem;
+  padding: 3.5rem 1.5rem 2.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -78,7 +78,8 @@
 }
 .lightbox_image {
   max-width: 85vw;
-  max-height: 70vh;
+  max-height: 72vh;
+  margin-top: 0.5rem;
   object-fit: contain;
   border-radius: 0.5rem;
 }
@@ -95,22 +96,32 @@
 }
 .lightbox_download {
   position: absolute;
-  bottom: 0.9rem;
-  right: 1.5rem;
+  top: 0.9rem;
+  left: 1.5rem;
   background: #0b5513;
   color: #fff;
   font-size: 0.9rem;
-  padding: 0.4rem 0.95rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
   border-radius: 999px;
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
   transition: background 0.2s ease, transform 0.2s ease;
   border: none;
   cursor: pointer;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lightbox_download:hover {
   background: #0d7126;
   transform: translateY(-1px);
+}
+.lightbox_download svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
 }
 .lightbox_caption {
   text-align: center;

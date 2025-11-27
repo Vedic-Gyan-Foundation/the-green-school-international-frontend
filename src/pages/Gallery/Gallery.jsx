@@ -119,8 +119,12 @@ const Gallery = () => {
             <button
               className={styles.lightbox_download}
               onClick={() => downloadImage(activeImage)}
+              aria-label="Download image"
             >
-              Download
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M12 3v10.586l3.293-3.293 1.414 1.414L12 17.414 7.293 12.707l1.414-1.414L12 13.586V3z" />
+                <path d="M5 19h14v2H5z" />
+              </svg>
             </button>
             <img
               src={activeImage.src}
