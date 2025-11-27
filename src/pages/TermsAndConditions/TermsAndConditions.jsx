@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import styles from "./TermsAndConditions.module.css";
 import Header from "../../components/Header/Header";
 
 const TermsAndConditions = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Header title="Terms and Conditions" />
