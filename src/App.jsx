@@ -1,26 +1,34 @@
-import { useState, useEffect } from "react";
-import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
-import PublicDisclosure from "./pages/PublicDisclosure/PublicDisclosure";
+import { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Admission from "./pages/Admission/Admission";
-import Gallery from "./pages/Gallery/Gallery";
-import Contact from "./pages/Contact/Contact";
-import ThreeSFormula from "./pages/ThreeSFormula/ThreeSFormula";
-import Blogs from "./pages/Blogs/Blogs";
 import Chatbot from "./components/Chatbot/Chatbot";
-import BlogDetails from "./pages/BlogDetails/BlogDetails";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SocialLinks from "./components/SocialLinks/SocialLinks";
-import TransferCertificates from "./pages/TransferCertificate/TransferCertificates";
-import SportsInfra from "./pages/SportsInfra/SportsInfra";
-import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
-import TermsAndConditions from "./pages/TermsAndConditions/TermsAndConditions";
-import ArticlePage from "./pages/ArticlePage/ArticlePage";
+import Loader from "./components/Loader/Loader";
+
+const Home = lazy(() => import("./pages/Home/Home"));
+const About = lazy(() => import("./pages/About/About"));
+const PublicDisclosure = lazy(() =>
+  import("./pages/PublicDisclosure/PublicDisclosure")
+);
+const Admission = lazy(() => import("./pages/Admission/Admission"));
+const Gallery = lazy(() => import("./pages/Gallery/Gallery"));
+const Contact = lazy(() => import("./pages/Contact/Contact"));
+const ThreeSFormula = lazy(() => import("./pages/ThreeSFormula/ThreeSFormula"));
+const Blogs = lazy(() => import("./pages/Blogs/Blogs"));
+const BlogDetails = lazy(() => import("./pages/BlogDetails/BlogDetails"));
+const TransferCertificates = lazy(() =>
+  import("./pages/TransferCertificate/TransferCertificates")
+);
+const SportsInfra = lazy(() => import("./pages/SportsInfra/SportsInfra"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy/PrivacyPolicy"));
+const TermsAndConditions = lazy(() =>
+  import("./pages/TermsAndConditions/TermsAndConditions")
+);
+const ArticlePage = lazy(() => import("./pages/ArticlePage/ArticlePage"));
 
 const App = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
@@ -52,29 +60,31 @@ const App = () => {
           )}
         </div>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/sportsinfra" element={<SportsInfra />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/threesformula" element={<ThreeSFormula />} />
-          <Route path="/publicdisclosure" element={<PublicDisclosure />} />
-          <Route path="/admission" element={<Admission />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blogdetails/:id" element={<BlogDetails />} />
-          <Route path="/article/:id" element={<ArticlePage />} />
-          <Route
-            path="/transfer-certificates"
-            element={<TransferCertificates />}
-          />
-          <Route path="/contact" element={<Contact />} />
-          <Route
-            path="/terms-and-conditions"
-            element={<TermsAndConditions />}
-          />
-          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sportsinfra" element={<SportsInfra />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/threesformula" element={<ThreeSFormula />} />
+            <Route path="/publicdisclosure" element={<PublicDisclosure />} />
+            <Route path="/admission" element={<Admission />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/blogdetails/:id" element={<BlogDetails />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
+            <Route
+              path="/transfer-certificates"
+              element={<TransferCertificates />}
+            />
+            <Route path="/contact" element={<Contact />} />
+            <Route
+              path="/terms-and-conditions"
+              element={<TermsAndConditions />}
+            />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </Suspense>
         <Footer />
       </BrowserRouter>
       {/* <!-- Social Links --> */}
