@@ -161,7 +161,9 @@ const Gallery = () => {
                     <FaPlay size={20} />
                   </div>
                 </div>
-                <div className={styles.gallery_caption}>
+                <div
+                  className={`${styles.gallery_caption} ${styles.video_caption}`}
+                >
                   <p className={styles.gallery_caption_title}>{video.title}</p>
                   <span className={styles.gallery_caption_subtitle}>
                     Watch on YouTube
