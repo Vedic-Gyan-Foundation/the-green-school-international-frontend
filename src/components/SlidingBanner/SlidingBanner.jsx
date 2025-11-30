@@ -57,7 +57,7 @@ const SlidingBanner = () => {
   const banners = bannerList.length > 0 ? bannerList : bannerListStatic;
 
   return (
-    <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden group">
+    <div className="relative w-full h-[250px] sm:h-[400px] md:h-[600px] overflow-hidden group">
       {loading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
           <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-800"></div>
@@ -85,12 +85,17 @@ const SlidingBanner = () => {
             key={index}
             class="relative w-full h-full flex justify-center items-center overflow-hidden bg-black"
           >
-            <img
-              src={banner.desktopImg}
-              alt={`Banner ${index + 1}`}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+            <picture className="w-full h-full">
+              {banner.mobileImg && (
+                <source media="(max-width: 640px)" srcSet={banner.mobileImg} />
+              )}
+              <img
+                src={banner.desktopImg}
+                alt={`Banner ${index + 1}`}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </picture>
           </swiper-slide>
         ))}
       </swiper-container>
