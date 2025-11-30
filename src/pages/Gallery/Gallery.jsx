@@ -21,7 +21,7 @@ const Gallery = () => {
         },
       })
       .then((response) => {
-        console.log(response.data.imgPath);
+        // console.log(response.data.imgPath);
         setGalleryList([...response.data.imgPath]);
       });
   }, []);
@@ -43,8 +43,7 @@ const Gallery = () => {
       const response = await fetch(image.src);
       const blob = await response.blob();
       const blobUrl = window.URL.createObjectURL(blob);
-      const extension =
-        image.src.split(".").pop()?.split("?")[0] || "jpg";
+      const extension = image.src.split(".").pop()?.split("?")[0] || "jpg";
       const safeTitle = image.caption.title
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
@@ -62,7 +61,7 @@ const Gallery = () => {
     }
   };
 
-  console.log(galleryList);
+  // console.log(galleryList);
   return (
     <>
       <Header title="Gallery" className="gallery" />{" "}
