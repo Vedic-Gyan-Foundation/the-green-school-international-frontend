@@ -4,11 +4,15 @@ import Header from "../../components/Header/Header";
 import axiosInstance from "../../api/axiosInstance";
 import { baseURL } from "../../api/axiosInstance";
 import captions from "./galleryCaptions.json";
+import videoLinks from "./videoLinks.json";
+import { FaPlay } from "react-icons/fa";
 
 const Gallery = () => {
   const baseApi = "https://api.greenschoolguwahati.com"; // https://api.greenschoolguwahati.com/
   const [galleryList, setGalleryList] = useState([]);
   const [activeImage, setActiveImage] = useState(null);
+  const [activeTab, setActiveTab] = useState("images");
+
   const defaultCaption = {
     title: "Green School Moments",
     subtitle: "Life at The Green School International",
@@ -61,42 +65,111 @@ const Gallery = () => {
     }
   };
 
+  const getYouTubeThumbnail = (url) => {
+    let videoId = "";
+    if (url.includes("youtu.be")) {
+      videoId = url.split("youtu.be/")[1].split("?")[0];
+    } else if (url.includes("youtube.com/watch")) {
+      const urlParams = new URLSearchParams(new URL(url).search);
+      videoId = urlParams.get("v");
+    }
+    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  };
+
   // console.log(galleryList);
   return (
     <>
       <Header title="Gallery" className="gallery" />{" "}
       <div className={styles.gallery_images}>
-        <h2>Gallery Images</h2>
-        {galleryList ? (
+        <h2>Gallery</h2>
+
+        <div className={styles.tabs_container}>
+          <button
+            className={`${styles.tab_button} ${
+              activeTab === "images" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("images")}
+          >
+            Images
+          </button>
+          <button
+            className={`${styles.tab_button} ${
+              activeTab === "videos" ? styles.active : ""
+            }`}
+            onClick={() => setActiveTab("videos")}
+          >
+            Videos
+          </button>
+        </div>
+
+        {activeTab === "images" && (
+          <>
+            {galleryList ? (
+              <div className={styles.gallery_images_container}>
+                {galleryList.map((item, index) => {
+                  const caption = captions[index] || defaultCaption;
+                  const imgSrc = item.image
+                    ? baseURL + item.image
+                    : baseApi + item;
+                  return (
+                    <div className={styles.gallery_item} key={index}>
+                      <img
+                        src={imgSrc}
+                        alt={caption.title}
+                        loading="lazy"
+                        className={styles.gallery_image}
+                        onClick={() =>
+                          setActiveImage({ src: imgSrc, caption: caption })
+                        }
+                      />
+                      <div className={styles.gallery_caption}>
+                        <p className={styles.gallery_caption_title}>
+                          {caption.title}
+                        </p>
+                        <span className={styles.gallery_caption_subtitle}>
+                          {caption.subtitle}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <p>No Images :-(</p>
+            )}
+          </>
+        )}
+
+        {activeTab === "videos" && (
           <div className={styles.gallery_images_container}>
-            {galleryList.map((item, index) => {
-              const caption = captions[index] || defaultCaption;
-              const imgSrc = item.image ? baseURL + item.image : baseApi + item;
-              return (
-                <div className={styles.gallery_item} key={index}>
+            {videoLinks.map((video, index) => (
+              <a
+                key={index}
+                href={video.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.gallery_item} ${styles.video_item}`}
+              >
+                <div className={styles.video_thumbnail_container}>
                   <img
-                    src={imgSrc}
-                    alt={caption.title}
+                    src={getYouTubeThumbnail(video.url)}
+                    alt={video.title}
+                    className={styles.video_thumbnail}
                     loading="lazy"
-                    className={styles.gallery_image}
-                    onClick={() =>
-                      setActiveImage({ src: imgSrc, caption: caption })
-                    }
                   />
-                  <div className={styles.gallery_caption}>
-                    <p className={styles.gallery_caption_title}>
-                      {caption.title}
-                    </p>
-                    <span className={styles.gallery_caption_subtitle}>
-                      {caption.subtitle}
-                    </span>
+                  <div className={styles.play_icon}>
+                    <FaPlay size={20} />
                   </div>
                 </div>
-              );
-            })}
+                <div className={styles.gallery_caption}>
+                  <p className={styles.gallery_caption_title}>{video.title}</p>
+                  <span className={styles.gallery_caption_subtitle}>
+                    Watch on YouTube
+                  </span>
+                </div>
+              </a>
+            ))}
           </div>
-        ) : (
-          <p>No Images :-(</p>
         )}
       </div>
       {activeImage && (
