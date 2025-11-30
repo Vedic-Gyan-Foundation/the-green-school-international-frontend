@@ -13,7 +13,7 @@ const bannerListStatic = [
     desktopImg: "/assets/banners/slider_banner_1_desktop.jpg",
   },
   {
-    desktopImg: "/assets/banners/slider_banner_2_desktop.jpg",
+    desktopImg: "/assets/banners/slider_banner_s.png",
   },
   {
     desktopImg: "/assets/banners/slider_banner_cbse_1.jpg",
