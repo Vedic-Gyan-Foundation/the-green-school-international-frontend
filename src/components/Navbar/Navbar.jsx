@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import styles from "./Navbar.module.css";
 import logo from "/assets/logo.png";
 import { Link } from "react-router-dom";
-import { HiOutlineMenuAlt1 } from "react-icons/hi";
+import { HiOutlineMenuAlt1, HiX } from "react-icons/hi";
 import { HashLink } from "react-router-hash-link";
 import { SportsInfraUtil } from "../../utils/sports_infra";
 import { sortAlphabetically } from "../../utils/helper";
@@ -81,7 +81,7 @@ const Navbar = () => {
             </li>
             {/* SPORTS INFRA*/}
             <li className="relative group">
-              <Link to="/sportsinfra" className="font-semibold text-sm">
+              <Link to="/sportsinfra" className={styles.navbar_navlink}>
                 Sports Infra
               </Link>
 
@@ -151,7 +151,7 @@ const Navbar = () => {
             </li>
             {/* Fee Structure */}
             <li className="relative group">
-              <Link className="font-semibold text-sm">Fee Structure</Link>
+              <Link className={styles.navbar_navlink}>Fee Structure</Link>
 
               <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40">
                 <ul className="flex flex-col *:text-xs">
@@ -241,7 +241,7 @@ const Navbar = () => {
             {/* <!-- Transfer Certificates --> */}
             <li>
               <Link
-                className="font-semibold text-sm"
+                className={styles.navbar_navlink}
                 to="/transfer-certificates"
               >
                 Transfer Certificates
@@ -265,13 +265,33 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE VIEW LINKS */}
+      {/* Backdrop */}
       <div
-        className={styles.navbar_drop}
-        style={{ display: navdropOpen ? "block" : "none" }}
+        className={`${styles.navbar_backdrop} ${
+          navdropOpen ? styles.active : ""
+        }`}
+        onClick={() => setNavdropOpen(false)}
+      ></div>
+
+      <div
+        className={`${styles.navbar_drop} ${navdropOpen ? styles.active : ""}`}
       >
+        <div className={styles.mobile_menu_header}>
+          <img src={logo} alt="Logo" className={styles.mobile_menu_logo} />
+          <button
+            className={styles.close_btn}
+            onClick={() => setNavdropOpen(false)}
+          >
+            <HiX size={24} />
+          </button>
+        </div>
         <ul>
           <li>
-            <Link to={"/"} className={styles.navbar_navlink}>
+            <Link
+              to={"/"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               Home
             </Link>
           </li>
@@ -279,9 +299,11 @@ const Navbar = () => {
           <li>
             <button
               onClick={() => handleSubMenuToggle("sportsInfra")}
-              className="font-semibold text-sm text-stone-900"
+              className={`${styles.navbar_navlink} bg-transparent border-none flex items-center gap-1`}
             >
-              <Link to="/sportsinfra">Sports Infra</Link>{" "}
+              <Link to="/sportsinfra" onClick={() => setNavdropOpen(false)}>
+                Sports Infra
+              </Link>{" "}
               <span
                 className={`${
                   subMenuSportsInfraOpen ? "text-red-700" : "text-[#08703D]"
@@ -294,7 +316,10 @@ const Navbar = () => {
               <ul className="*:text-xs pt-2 px-3">
                 {sportsInfraListItems.map((item, index) => (
                   <li key={index}>
-                    <HashLink to={`/sportsinfra#${item.id}`}>
+                    <HashLink
+                      to={`/sportsinfra#${item.id}`}
+                      onClick={() => setNavdropOpen(false)}
+                    >
                       {item.title}
                     </HashLink>
                   </li>
@@ -303,22 +328,38 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <Link to={"/about"} className={styles.navbar_navlink}>
+            <Link
+              to={"/about"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               Our School
             </Link>
           </li>
           <li>
-            <Link to={"/threesformula"} className={styles.navbar_navlink}>
+            <Link
+              to={"/threesformula"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               3S Formula
             </Link>
           </li>
           <li>
-            <Link to={"/publicdisclosure"} className={styles.navbar_navlink}>
+            <Link
+              to={"/publicdisclosure"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               Public Disclosure
             </Link>
           </li>
           <li>
-            <Link to={"/admission"} className={styles.navbar_navlink}>
+            <Link
+              to={"/admission"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               Admissions
             </Link>
           </li>
@@ -327,7 +368,7 @@ const Navbar = () => {
           <li>
             <button
               onClick={() => handleSubMenuToggle("feeStructure")}
-              className="font-semibold text-sm text-stone-900"
+              className={`${styles.navbar_navlink} bg-transparent border-none flex items-center gap-1`}
             >
               <span>Fee Structure</span>{" "}
               <span
@@ -393,29 +434,46 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
             >
               Fee Payment
             </a>
           </li>
 
           <li>
-            <Link to={"/gallery"} className={styles.navbar_navlink}>
+            <Link
+              to={"/gallery"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               Gallery
             </Link>
           </li>
           <li>
-            <Link to={"/blogs"} className={styles.navbar_navlink}>
+            <Link
+              to={"/blogs"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               Blogs
             </Link>
           </li>
           {/* <!-- Transfer Certificates --> */}
           <li>
-            <Link className="font-semibold text-sm" to="/transfer-certificates">
+            <Link
+              className={styles.navbar_navlink}
+              to="/transfer-certificates"
+              onClick={() => setNavdropOpen(false)}
+            >
               Transfer Certificates
             </Link>
           </li>
           <li>
-            <Link to={"/contact"} className={styles.navbar_navlink}>
+            <Link
+              to={"/contact"}
+              className={styles.navbar_navlink}
+              onClick={() => setNavdropOpen(false)}
+            >
               Contact Us
             </Link>
           </li>
