@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css/sea-green";
-import styles from "./SlidingBanner.module.css";
+import React, { useState, useEffect, useRef } from "react";
 import { register } from "swiper/element/bundle";
-import axiosInstance from "../../api/axiosInstance";
-import { baseURL } from "../../api/axiosInstance";
+import axiosInstance, { baseURL } from "../../api/axiosInstance";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 // register Swiper custom elements
 register();
 
@@ -25,47 +23,93 @@ const bannerListStatic = [
 
 const SlidingBanner = () => {
   const [bannerList, setBannerList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const swiperRef = useRef(null);
 
   useEffect(() => {
-    axiosInstance
-      .get(`galleries/list?category=home_banner`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setBannerList(response.data.data);
-      })
-      .catch((error) => {
+    const fetchBanners = async () => {
+      try {
+        const response = await axiosInstance.get(
+          `galleries/list?category=home_banner`
+        );
+        if (
+          response.data &&
+          response.data.data &&
+          response.data.data.length > 0
+        ) {
+          const mappedBanners = response.data.data.map((item) => ({
+            desktopImg: item.image
+              ? `${baseURL}${item.image}`
+              : item.url || item.desktopImg,
+          }));
+          setBannerList(mappedBanners);
+        }
+      } catch (error) {
         console.error("Error fetching banner data:", error);
-      });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBanners();
   }, []);
 
+  const banners = bannerList.length > 0 ? bannerList : bannerListStatic;
+
   return (
-    <div className="relative overflow-hidden">
+    <div className="relative w-full h-[500px] md:h-[600px] overflow-hidden group">
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 z-10">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-800"></div>
+        </div>
+      )}
+
       <swiper-container
+        ref={swiperRef}
         loop="true"
         pagination="true"
-        scrollbar="true"
-        autoplay="true"
-        navigation
-        class="w-full"
+        autoplay-delay="5000"
+        autoplay-disable-on-interaction="false"
+        class="w-full h-full"
+        effect="fade"
+        style={{
+          "--swiper-pagination-color": "#ffffff",
+          "--swiper-pagination-bullet-inactive-color": "#ffffff",
+          "--swiper-pagination-bullet-inactive-opacity": "0.4",
+          "--swiper-pagination-bullet-size": "10px",
+          "--swiper-pagination-bottom": "30px",
+        }}
       >
-        {bannerListStatic?.map((banner, index) => (
+        {banners.map((banner, index) => (
           <swiper-slide
             key={index}
-            class="flex justify-center items-center overflow-hidden"
+            class="relative w-full h-full flex justify-center items-center overflow-hidden bg-black"
           >
-            {/* Enforced Height */}
             <img
-              src={banner?.desktopImg}
+              src={banner.desktopImg}
               alt={`Banner ${index + 1}`}
-              className="w-full h-[500px] md:h-[600px] object-fill"
+              className="w-full h-full object-cover"
               loading="lazy"
             />
           </swiper-slide>
         ))}
       </swiper-container>
+
+      {/* Custom Navigation Buttons */}
+      <button
+        className="absolute top-1/2 left-4 transform -translate-y-1/2 z-20 bg-black/30 hover:bg-green-800/80 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center border border-white/20"
+        onClick={() => swiperRef.current?.swiper?.slidePrev()}
+        aria-label="Previous Slide"
+      >
+        <IoIosArrowBack size={24} />
+      </button>
+      <button
+        className="absolute top-1/2 right-4 transform -translate-y-1/2 z-20 bg-black/30 hover:bg-green-800/80 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:flex items-center justify-center border border-white/20"
+        onClick={() => swiperRef.current?.swiper?.slideNext()}
+        aria-label="Next Slide"
+      >
+        <IoIosArrowForward size={24} />
+      </button>
     </div>
   );
 };
