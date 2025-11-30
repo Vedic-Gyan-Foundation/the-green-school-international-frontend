@@ -67,24 +67,42 @@
         font-size: 1.5rem;
         text-align: center;
         position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .card_desc {
         width: 100%;
     }
 }
 @media screen and (max-width:576px){
+    .container {
+        margin-block: 2rem;
+    }
     .preheader{
-        margin-inline: 10px;
+        margin-inline: 1rem;
+        font-size: 0.9rem;
     }
     .header{
-        margin-inline: 10px;
+        margin-inline: 1rem;
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    .cards{
+        margin-inline: 1rem;
+        margin-top: 2rem;
+        gap: 3rem;
+    }
+    .card_header > img {
+        width: 80px;
+    }
+    .card_desc img {
+        height: 200px;
     }
     .card_text{
         padding: 0rem;
         padding-block: 10px;
+        text-align: left;
+        font-size: 1rem;
     }
-    .cards{
-        margin-inline: 10px;
-    }
-
 }
