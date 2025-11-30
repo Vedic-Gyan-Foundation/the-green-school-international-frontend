@@ -81,7 +81,7 @@ const Navbar = () => {
             </li>
             {/* SPORTS INFRA*/}
             <li className="relative group">
-              <Link to="/sportsinfra" className="font-semibold text-sm">
+              <Link to="/sportsinfra" className={styles.navbar_navlink}>
                 Sports Infra
               </Link>
 
@@ -151,7 +151,7 @@ const Navbar = () => {
             </li>
             {/* Fee Structure */}
             <li className="relative group">
-              <Link className="font-semibold text-sm">Fee Structure</Link>
+              <Link className={styles.navbar_navlink}>Fee Structure</Link>
 
               <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40">
                 <ul className="flex flex-col *:text-xs">
@@ -241,7 +241,7 @@ const Navbar = () => {
             {/* <!-- Transfer Certificates --> */}
             <li>
               <Link
-                className="font-semibold text-sm"
+                className={styles.navbar_navlink}
                 to="/transfer-certificates"
               >
                 Transfer Certificates
@@ -299,7 +299,7 @@ const Navbar = () => {
           <li>
             <button
               onClick={() => handleSubMenuToggle("sportsInfra")}
-              className="font-semibold text-sm text-stone-900"
+              className={`${styles.navbar_navlink} bg-transparent border-none flex items-center gap-1`}
             >
               <Link to="/sportsinfra" onClick={() => setNavdropOpen(false)}>
                 Sports Infra
@@ -368,7 +368,7 @@ const Navbar = () => {
           <li>
             <button
               onClick={() => handleSubMenuToggle("feeStructure")}
-              className="font-semibold text-sm text-stone-900"
+              className={`${styles.navbar_navlink} bg-transparent border-none flex items-center gap-1`}
             >
               <span>Fee Structure</span>{" "}
               <span
@@ -461,7 +461,7 @@ const Navbar = () => {
           {/* <!-- Transfer Certificates --> */}
           <li>
             <Link
-              className="font-semibold text-sm"
+              className={styles.navbar_navlink}
               to="/transfer-certificates"
               onClick={() => setNavdropOpen(false)}
             >
