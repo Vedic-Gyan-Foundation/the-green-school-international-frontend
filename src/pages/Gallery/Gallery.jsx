@@ -66,6 +66,7 @@ const Gallery = () => {
   };
 
   const getYouTubeThumbnail = (url) => {
+    if (!url) return "";
     let videoId = "";
     if (url.includes("youtu.be")) {
       videoId = url.split("youtu.be/")[1].split("?")[0];
@@ -73,7 +74,7 @@ const Gallery = () => {
       const urlParams = new URLSearchParams(new URL(url).search);
       videoId = urlParams.get("v");
     }
-    return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+    return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "";
   };
 
   // console.log(galleryList);
@@ -142,35 +143,40 @@ const Gallery = () => {
 
         {activeTab === "videos" && (
           <div className={styles.gallery_images_container}>
-            {videoLinks.map((video, index) => (
-              <a
-                key={index}
-                href={video.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.gallery_item} ${styles.video_item}`}
-              >
-                <div className={styles.video_thumbnail_container}>
-                  <img
-                    src={getYouTubeThumbnail(video.url)}
-                    alt={video.title}
-                    className={styles.video_thumbnail}
-                    loading="lazy"
-                  />
-                  <div className={styles.play_icon}>
-                    <FaPlay size={20} />
-                  </div>
-                </div>
-                <div
-                  className={`${styles.gallery_caption} ${styles.video_caption}`}
+            {videoLinks
+              .filter(
+                (video) =>
+                  video?.url?.trim()?.length && video?.title?.trim()?.length
+              )
+              .map((video, index) => (
+                <a
+                  key={index}
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`${styles.gallery_item} ${styles.video_item}`}
                 >
-                  <p className={styles.gallery_caption_title}>{video.title}</p>
-                  <span className={styles.gallery_caption_subtitle}>
-                    Watch on YouTube
-                  </span>
-                </div>
-              </a>
-            ))}
+                  <div className={styles.video_thumbnail_container}>
+                    <img
+                      src={getYouTubeThumbnail(video.url)}
+                      alt={video.title}
+                      className={styles.video_thumbnail}
+                      loading="lazy"
+                    />
+                    <div className={styles.play_icon}>
+                      <FaPlay size={20} />
+                    </div>
+                  </div>
+                  <div
+                    className={`${styles.gallery_caption} ${styles.video_caption}`}
+                  >
+                    <p className={styles.gallery_caption_title}>{video.title}</p>
+                    <span className={styles.gallery_caption_subtitle}>
+                      Watch on YouTube
+                    </span>
+                  </div>
+                </a>
+              ))}
           </div>
         )}
       </div>

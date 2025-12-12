@@ -33,8 +33,18 @@
 }
 
 .video_caption {
-  min-height: 4rem;
+  min-height: 5.25rem;
   padding: 0.5rem 1rem;
+  justify-content: space-between;
+}
+.video_caption .gallery_caption_title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  max-height: 2.6rem;
 }
 .gallery_caption_title {
   font-size: 1rem;
