@@ -31,6 +31,21 @@
   gap: 0.2rem;
   border-radius: 0 0 0.5rem 0.5rem;
 }
+
+.video_caption {
+  min-height: 5.25rem;
+  padding: 0.5rem 1rem;
+  justify-content: space-between;
+}
+.video_caption .gallery_caption_title {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  max-height: 2.6rem;
+}
 .gallery_caption_title {
   font-size: 1rem;
   font-weight: 600;
@@ -54,6 +69,74 @@
   color: #0e3302;
   margin-bottom: 2rem;
 }
+
+.tabs_container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab_button {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border: 2px solid #07713d;
+  background-color: transparent;
+  color: #07713d;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab_button.active {
+  background-color: #07713d;
+  color: white;
+}
+
+.video_item {
+  width: 350px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.video_thumbnail_container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.video_thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.video_item:hover .video_thumbnail {
+  transform: scale(1.05);
+}
+
+.play_icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  pointer-events: none;
+}
+
 .lightbox_overlay {
   position: fixed;
   inset: 0;
