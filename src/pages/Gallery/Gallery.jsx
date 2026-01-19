@@ -109,6 +109,10 @@ const Gallery = () => {
               <div className={styles.gallery_images_container}>
                 {galleryList.map((item, index) => {
                   const caption = captions[index] || defaultCaption;
+                  const isVisible = caption.isVisible !== false;
+
+                  if (!isVisible) return null;
+
                   const imgSrc = item.image
                     ? baseURL + item.image
                     : baseApi + item;
@@ -146,7 +150,9 @@ const Gallery = () => {
             {videoLinks
               .filter(
                 (video) =>
-                  video?.url?.trim()?.length && video?.title?.trim()?.length
+                  video?.url?.trim()?.length &&
+                  video?.title?.trim()?.length &&
+                  video?.isVisible !== false,
               )
               .map((video, index) => (
                 <a
@@ -170,7 +176,9 @@ const Gallery = () => {
                   <div
                     className={`${styles.gallery_caption} ${styles.video_caption}`}
                   >
-                    <p className={styles.gallery_caption_title}>{video.title}</p>
+                    <p className={styles.gallery_caption_title}>
+                      {video.title}
+                    </p>
                     <span className={styles.gallery_caption_subtitle}>
                       Watch on YouTube
                     </span>
