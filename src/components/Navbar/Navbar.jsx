@@ -27,7 +27,7 @@ import { sortAlphabetically } from "../../utils/helper";
 
 const sportsInfraListItems = sortAlphabetically(
   SportsInfraUtil.getProcessedList(),
-  "title"
+  "title",
 );
 
 const Navbar = () => {
@@ -158,7 +158,7 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf"
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf",
                       )
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-sm"
@@ -168,7 +168,7 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Proposed_Fee_Structure_2025_26.pdf"
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2025_26.pdf",
                       )
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-lg"
@@ -178,17 +178,17 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Proposed_Fee_Structure_2026_27.pdf"
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf",
                       )
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-sm"
                   >
-                    2026-2027 (Proposed)
+                    2026-2027 (Session)
                   </li>
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf",
                       )
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
@@ -384,7 +384,7 @@ const Navbar = () => {
                 <li
                   onClick={() =>
                     handleDownloadPDF(
-                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf"
+                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf",
                     )
                   }
                 >
@@ -393,7 +393,7 @@ const Navbar = () => {
                 <li
                   onClick={() =>
                     handleDownloadPDF(
-                      "https://api.greenschoolguwahati.com/fee_structure/Proposed_Fee_Structure_2025_26.pdf"
+                      "https://api.greenschoolguwahati.com/fee_structure/Proposed_Fee_Structure_2025_26.pdf",
                     )
                   }
                 >
@@ -402,7 +402,7 @@ const Navbar = () => {
                 <li
                   onClick={() =>
                     handleDownloadPDF(
-                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf",
                     )
                   }
                 >
