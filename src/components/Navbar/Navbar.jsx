@@ -203,14 +203,14 @@ const Navbar = () => {
                     // }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
                   >
-                    {/* <a
+                    <a
                       href="./pdfs/Cancellation_Policy.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full h-full"
                     >
                       Cancellation Policy
-                    </a> */}
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -417,21 +417,15 @@ const Navbar = () => {
                 >
                   FRC Fee approval 2026-2027
                 </li>
-                <li
-                // onClick={() =>
-                //   handleDownloadPDF(
-                //     "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
-                //   )
-                // }
-                >
-                  {/* <a
+                <li>
+                  <a
                     href="./pdfs/Cancellation_Policy.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full h-full"
+                    // className="block w-full h-full"
                   >
                     Cancellation Policy
-                  </a> */}
+                  </a>
                 </li>
               </ul>
             )}
