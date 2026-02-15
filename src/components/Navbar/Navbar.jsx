@@ -155,7 +155,7 @@ const Navbar = () => {
 
               <div className="absolute hidden group-hover:block bg-white border border-gray-200 rounded-lg shadow-md whitespace-nowrap z-40">
                 <ul className="flex flex-col *:text-xs">
-                  <li
+                  {/* <li
                     onClick={() =>
                       handleDownloadPDF(
                         "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf",
@@ -174,7 +174,7 @@ const Navbar = () => {
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-lg"
                   >
                     2025-2026 (Session)
-                  </li>
+                  </li> */}
                   <li
                     onClick={() =>
                       handleDownloadPDF(
@@ -183,7 +183,7 @@ const Navbar = () => {
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-sm"
                   >
-                    2026-2027 (Session)
+                    Fee Structure 2026-27
                   </li>
                   <li
                     onClick={() =>
@@ -193,7 +193,7 @@ const Navbar = () => {
                     }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
                   >
-                    Fee Fixation Order
+                    FRC Fee approval 2026-2027
                   </li>
                   <li
                     // onClick={() =>
@@ -203,14 +203,14 @@ const Navbar = () => {
                     // }
                     className="px-4 py-2 hover:bg-stone-200 cursor-pointer rounded-b-lg"
                   >
-                    <a
+                    {/* <a
                       href="./pdfs/Cancellation_Policy.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full h-full"
                     >
                       Cancellation Policy
-                    </a>
+                    </a> */}
                   </li>
                 </ul>
               </div>
@@ -381,7 +381,7 @@ const Navbar = () => {
             </button>
             {subMenuFeeStructureOpen && (
               <ul className="*:text-xs pt-2 px-3">
-                <li
+                {/* <li
                   onClick={() =>
                     handleDownloadPDF(
                       "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2024_25.pdf",
@@ -398,6 +398,15 @@ const Navbar = () => {
                   }
                 >
                   2025-2026 (Session) Fee Fixation Order
+                </li> */}
+                <li
+                  onClick={() =>
+                    handleDownloadPDF(
+                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf",
+                    )
+                  }
+                >
+                  Fee Structure 2026-27
                 </li>
                 <li
                   onClick={() =>
@@ -406,7 +415,7 @@ const Navbar = () => {
                     )
                   }
                 >
-                  Fee Fixation Order
+                  FRC Fee approval 2026-2027
                 </li>
                 <li
                 // onClick={() =>
@@ -415,14 +424,14 @@ const Navbar = () => {
                 //   )
                 // }
                 >
-                  <a
+                  {/* <a
                     href="./pdfs/Cancellation_Policy.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block w-full h-full"
                   >
                     Cancellation Policy
-                  </a>
+                  </a> */}
                 </li>
               </ul>
             )}
