@@ -386,7 +386,7 @@ const PublicDisclosure = () => {
                   <td>ANNUAL ACADEMIC CALANDER</td>
                   <td>
                     <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2025_26.pdf"
+                      href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2026_27.pdf"
                       target="_blank"
                       rel="noreferrer"
                       className="text-blue-500 hover:underline"
