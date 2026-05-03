@@ -29,13 +29,6 @@ import ContactUsBanner from "../../components/ContactUsBanner/ContactUsBanner";
 const Home = () => {
   return (
     <>
-      <div className={styles.marque}>
-        <marquee behavior="" direction="" scrollamount="12">
-          <span style={{ color: "red" }}>ANNOUNCEMENT: </span>Embracing a
-          Transformative Journey: Formerly Shemford Futuristic School, We
-          Proudly Unveil Our New Identity as The Green School International
-        </marquee>
-      </div>
       <SlidingBanner />
       <div className={styles.container}>
         <div className={styles.home_discovery} data-aos="fade-up" data-aos-once>
