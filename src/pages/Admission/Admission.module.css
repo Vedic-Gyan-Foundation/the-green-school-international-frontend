@@ -292,15 +292,23 @@
   cursor: pointer;
   transition: all 0.2s ease;
 }
-.classOption:hover {
+.classOption:hover:not(.classOptionSelected) {
   border-color: #08703d;
   background: #f0faf3;
+  color: #0e3302;
 }
 .classOptionSelected {
   border-color: #08703d;
   background: linear-gradient(135deg, #08703d 0%, #0e3302 100%);
   color: #fff;
   box-shadow: 0 8px 16px -8px rgba(8, 112, 61, 0.55);
+}
+.classOptionSelected:hover {
+  border-color: #0e3302;
+  background: linear-gradient(135deg, #0e3302 0%, #08703d 100%);
+  color: #fff;
+  box-shadow: 0 10px 20px -8px rgba(8, 112, 61, 0.7);
+  transform: translateY(-1px);
 }
 
 @media screen and (max-width: 1100px) {

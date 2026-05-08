@@ -20,9 +20,13 @@ const Contact = () => {
   const form = useRef(null);
 
   const contactChangeHandler = (e) => {
+    let value = e.target.value;
+    if (e.target.name === "contact") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
     setContactData({
       ...contactData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
     setError(e.target.parentNode.id, "");
   };
@@ -45,7 +49,7 @@ const Contact = () => {
     const subject = document.forms["contactForm"]["subject"].value;
     const message = document.forms["contactForm"]["message"].value;
     const regName = /^[a-zA-Z ]*$/;
-    const regEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+    const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
     if (fname.length === 0) {
       setError("name", "*Name cannot be empty");
@@ -216,9 +220,14 @@ const Contact = () => {
           <div id="contact" className={styles.form_input}>
             <label>Contact Number</label>
             <input
-              type="number"
+              type="tel"
               placeholder="10-digit number"
               name="contact"
+              inputMode="numeric"
+              autoComplete="tel"
+              pattern="[0-9]{10}"
+              maxLength={10}
+              value={contactData.contact}
               onChange={contactChangeHandler}
             />
             <p className={`${styles.formError} contactFormErrorClass`}></p>
@@ -229,6 +238,9 @@ const Contact = () => {
               type="email"
               placeholder="you@example.com"
               name="email"
+              inputMode="email"
+              autoComplete="email"
+              value={contactData.email}
               onChange={contactChangeHandler}
             />
             <p className={`${styles.formError} contactFormErrorClass`}></p>

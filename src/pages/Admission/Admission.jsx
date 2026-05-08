@@ -94,9 +94,14 @@ const Admission = () => {
   const form = useRef(null);
 
   const admissionFormChangeHandler = (e) => {
+    let value = e.target.value;
+    // Phone fields: keep digits only, max 10
+    if (e.target.name === "whatsappnumber") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
     setAdmissionFormData({
       ...admissionFormData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: value,
     });
     setError(e.target.parentNode.id, "");
   };
@@ -125,7 +130,7 @@ const Admission = () => {
     const address = document.forms["admissionForm"]["address"].value;
     const query = document.forms["admissionForm"]["query"].value;
     const regName = /^[a-zA-Z ]*$/;
-    const regEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
+    const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
     if (childname.length === 0) {
       setError("childName", "*Child name cannot be empty");
@@ -397,9 +402,14 @@ const Admission = () => {
           <div className={styles.form_row}>
             <div id="whatsappNum" className={styles.form_item}>
               <input
-                type="number"
+                type="tel"
                 placeholder="Whatsapp Number"
                 name="whatsappnumber"
+                inputMode="numeric"
+                autoComplete="tel"
+                pattern="[0-9]{10}"
+                maxLength={10}
+                value={admissionFormData.whatsappnumber}
                 onChange={admissionFormChangeHandler}
               />
               <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
@@ -409,6 +419,9 @@ const Admission = () => {
                 type="email"
                 placeholder="Email"
                 name="email"
+                inputMode="email"
+                autoComplete="email"
+                value={admissionFormData.email}
                 onChange={admissionFormChangeHandler}
               />
               <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
