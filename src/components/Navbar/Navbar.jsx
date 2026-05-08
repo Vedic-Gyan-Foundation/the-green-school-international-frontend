@@ -3,7 +3,20 @@ import styles from "./Navbar.module.css";
 import logo from "/assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
 import { HiOutlineMenuAlt1, HiX } from "react-icons/hi";
-import { HiChevronDown } from "react-icons/hi2";
+import {
+  HiChevronDown,
+  HiOutlineDocumentArrowDown,
+  HiOutlineSparkles,
+  HiOutlineHome,
+  HiOutlineAcademicCap,
+  HiOutlinePhoto,
+  HiOutlineNewspaper,
+  HiOutlineEnvelope,
+  HiOutlineDocumentText,
+  HiOutlineIdentification,
+  HiOutlineCurrencyRupee,
+} from "react-icons/hi2";
+import { FaTrophy, FaSeedling, FaPrayingHands, FaRunning } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import { SportsInfraUtil } from "../../utils/sports_infra";
 import { sortAlphabetically } from "../../utils/helper";
@@ -87,7 +100,17 @@ const Navbar = () => {
                 Sports Infra <HiChevronDown className={styles.chevron} />
               </Link>
 
-              <div className={`${styles.dropdown} ${styles.dropdown_scroll}`}>
+              <div
+                className={`${styles.dropdown} ${styles.dropdown_scroll} ${styles.dropdown_wide}`}
+              >
+                <div className={styles.dropdown_header}>
+                  <span className={styles.dropdown_eyebrow}>
+                    World-class facilities
+                  </span>
+                  <Link to="/sportsinfra" className={styles.dropdown_view_all}>
+                    View all →
+                  </Link>
+                </div>
                 <ul className={styles.dropdown_list}>
                   {sportsInfraListItems.map((item, index) => (
                     <li key={index}>
@@ -95,6 +118,7 @@ const Navbar = () => {
                         to={`/sportsinfra#${item.id}`}
                         className={styles.dropdown_link}
                       >
+                        <span className={styles.dropdown_dot} aria-hidden="true" />
                         {item.title}
                       </HashLink>
                     </li>
@@ -119,30 +143,67 @@ const Navbar = () => {
               >
                 3S Formula <HiChevronDown className={styles.chevron} />
               </Link>
-              <div className={styles.dropdown}>
+              <div className={`${styles.dropdown} ${styles.dropdown_rich}`}>
+                <div className={styles.dropdown_header}>
+                  <span className={styles.dropdown_eyebrow}>
+                    Three pillars · One mission
+                  </span>
+                </div>
                 <ul className={styles.dropdown_list}>
                   <li>
                     <HashLink
                       to="/threesformula#sports"
-                      className={styles.dropdown_link}
+                      className={styles.dropdown_link_rich}
                     >
-                      🏆 Sports
+                      <span
+                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
+                      >
+                        <FaTrophy />
+                      </span>
+                      <span className={styles.dropdown_link_body}>
+                        <span className={styles.dropdown_link_title}>Sports</span>
+                        <span className={styles.dropdown_link_meta}>
+                          Resilience · Teamwork
+                        </span>
+                      </span>
                     </HashLink>
                   </li>
                   <li>
                     <HashLink
                       to="/threesformula#sanskar"
-                      className={styles.dropdown_link}
+                      className={styles.dropdown_link_rich}
                     >
-                      🪔 Sanskar
+                      <span
+                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
+                      >
+                        <FaPrayingHands />
+                      </span>
+                      <span className={styles.dropdown_link_body}>
+                        <span className={styles.dropdown_link_title}>Sanskar</span>
+                        <span className={styles.dropdown_link_meta}>
+                          Values · Wisdom
+                        </span>
+                      </span>
                     </HashLink>
                   </li>
                   <li>
                     <HashLink
                       to="/threesformula#sustainibility"
-                      className={styles.dropdown_link}
+                      className={styles.dropdown_link_rich}
                     >
-                      🌱 Sustainibility
+                      <span
+                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
+                      >
+                        <FaSeedling />
+                      </span>
+                      <span className={styles.dropdown_link_body}>
+                        <span className={styles.dropdown_link_title}>
+                          Sustainibility
+                        </span>
+                        <span className={styles.dropdown_link_meta}>
+                          Reduce · Reuse · Recycle
+                        </span>
+                      </span>
                     </HashLink>
                   </li>
                 </ul>
@@ -172,38 +233,83 @@ const Navbar = () => {
                 Fee Structure <HiChevronDown className={styles.chevron} />
               </button>
 
-              <div className={styles.dropdown}>
+              <div className={`${styles.dropdown} ${styles.dropdown_rich}`}>
+                <div className={styles.dropdown_header}>
+                  <span className={styles.dropdown_eyebrow}>
+                    Download PDFs
+                  </span>
+                </div>
                 <ul className={styles.dropdown_list}>
-                  <li
-                    onClick={() =>
-                      handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
-                      )
-                    }
-                  >
-                    <span className={styles.dropdown_link}>
-                      Fee Structure 2026-27
-                    </span>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleDownloadPDF(
+                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
+                        )
+                      }
+                      className={styles.dropdown_link_rich}
+                    >
+                      <span
+                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
+                      >
+                        <HiOutlineDocumentArrowDown />
+                      </span>
+                      <span className={styles.dropdown_link_body}>
+                        <span className={styles.dropdown_link_title}>
+                          Fee Structure 2026-27
+                        </span>
+                        <span className={styles.dropdown_link_meta}>
+                          PDF · Current academic session
+                        </span>
+                      </span>
+                    </button>
                   </li>
-                  <li
-                    onClick={() =>
-                      handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
-                      )
-                    }
-                  >
-                    <span className={styles.dropdown_link}>
-                      FRC Fee approval 2026-2027
-                    </span>
+                  <li>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        handleDownloadPDF(
+                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                        )
+                      }
+                      className={styles.dropdown_link_rich}
+                    >
+                      <span
+                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
+                      >
+                        <HiOutlineSparkles />
+                      </span>
+                      <span className={styles.dropdown_link_body}>
+                        <span className={styles.dropdown_link_title}>
+                          FRC Fee approval 2026-2027
+                        </span>
+                        <span className={styles.dropdown_link_meta}>
+                          PDF · Official fee fixation order
+                        </span>
+                      </span>
+                    </button>
                   </li>
                   <li>
                     <a
                       href="./pdfs/Cancellation_Policy.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={styles.dropdown_link}
+                      className={styles.dropdown_link_rich}
                     >
-                      Cancellation Policy
+                      <span
+                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
+                      >
+                        <HiOutlineDocumentArrowDown />
+                      </span>
+                      <span className={styles.dropdown_link_body}>
+                        <span className={styles.dropdown_link_title}>
+                          Cancellation Policy
+                        </span>
+                        <span className={styles.dropdown_link_meta}>
+                          PDF · Refunds &amp; cancellations
+                        </span>
+                      </span>
                     </a>
                   </li>
                 </ul>
@@ -280,196 +386,223 @@ const Navbar = () => {
         className={`${styles.navbar_drop} ${navdropOpen ? styles.active : ""}`}
       >
         <div className={styles.mobile_menu_header}>
-          <img src={logo} alt="Logo" className={styles.mobile_menu_logo} />
+          <div className={styles.mobile_brand}>
+            <img src={logo} alt="Logo" className={styles.mobile_menu_logo} />
+            <span className={styles.mobile_brand_tag}>Est. 2018 · Guwahati</span>
+          </div>
           <button
             className={styles.close_btn}
             onClick={() => setNavdropOpen(false)}
             aria-label="Close menu"
           >
-            <HiX size={22} />
+            <HiX size={20} />
           </button>
         </div>
-        <ul className={styles.mobile_links}>
-          <li>
-            <Link
-              to="/"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/") ? styles.mobile_active : ""}`}
-            >
-              Home
-            </Link>
-          </li>
 
-          <li>
-            <button
-              onClick={() => handleSubMenuToggle("sportsInfra")}
-              className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
-            >
-              <Link
-                to="/sportsinfra"
-                onClick={(e) => e.stopPropagation()}
+        <nav className={styles.mobile_nav}>
+          <p className={styles.mobile_section_label}>Explore</p>
+          <ul className={styles.mobile_links}>
+            <MobileLink
+              to="/"
+              icon={<HiOutlineHome />}
+              label="Home"
+              active={isActive("/")}
+              onClose={() => setNavdropOpen(false)}
+            />
+
+            {/* SPORTS INFRA */}
+            <li>
+              <button
+                onClick={() => handleSubMenuToggle("sportsInfra")}
+                className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
+                aria-expanded={subMenuSportsInfraOpen}
               >
-                Sports Infra
-              </Link>
-              <span
-                className={`${styles.mobile_chevron} ${
-                  subMenuSportsInfraOpen ? styles.mobile_chevron_open : ""
-                }`}
-              >
-                <HiChevronDown />
-              </span>
-            </button>
-            {subMenuSportsInfraOpen && (
-              <ul className={styles.mobile_submenu}>
-                {sportsInfraListItems.map((item, index) => (
-                  <li key={index}>
-                    <HashLink
-                      to={`/sportsinfra#${item.id}`}
+                <span className={styles.mobile_link_inner}>
+                  <span className={styles.mobile_link_icon}>
+                    <FaRunning />
+                  </span>
+                  <span>Sports Infra</span>
+                </span>
+                <span
+                  className={`${styles.mobile_chevron} ${
+                    subMenuSportsInfraOpen ? styles.mobile_chevron_open : ""
+                  }`}
+                >
+                  <HiChevronDown />
+                </span>
+              </button>
+              {subMenuSportsInfraOpen && (
+                <ul className={styles.mobile_submenu}>
+                  <li className={styles.mobile_submenu_overview}>
+                    <Link
+                      to="/sportsinfra"
                       onClick={() => setNavdropOpen(false)}
                     >
-                      {item.title}
-                    </HashLink>
+                      View Sports Infra Overview →
+                    </Link>
                   </li>
-                ))}
-              </ul>
-            )}
-          </li>
-          <li>
-            <Link
+                  {sportsInfraListItems.map((item, index) => (
+                    <li key={index}>
+                      <HashLink
+                        to={`/sportsinfra#${item.id}`}
+                        onClick={() => setNavdropOpen(false)}
+                      >
+                        {item.title}
+                      </HashLink>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+
+            <MobileLink
               to="/about"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/about") ? styles.mobile_active : ""}`}
-            >
-              Our School
-            </Link>
-          </li>
-          <li>
-            <Link
+              icon={<HiOutlineAcademicCap />}
+              label="Our School"
+              active={isActive("/about")}
+              onClose={() => setNavdropOpen(false)}
+            />
+            <MobileLink
               to="/threesformula"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/threesformula") ? styles.mobile_active : ""}`}
-            >
-              3S Formula
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/publicdisclosure"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/publicdisclosure") ? styles.mobile_active : ""}`}
-            >
-              Public Disclosure
-            </Link>
-          </li>
-          <li>
-            <Link
+              icon={<HiOutlineSparkles />}
+              label="3S Formula"
+              active={isActive("/threesformula")}
+              onClose={() => setNavdropOpen(false)}
+            />
+            <MobileLink
               to="/admission"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/admission") ? styles.mobile_active : ""}`}
-            >
-              Admissions
-            </Link>
-          </li>
+              icon={<HiOutlineIdentification />}
+              label="Admissions"
+              active={isActive("/admission")}
+              onClose={() => setNavdropOpen(false)}
+            />
 
-          <li>
-            <button
-              onClick={() => handleSubMenuToggle("feeStructure")}
-              className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
-            >
-              <span>Fee Structure</span>
-              <span
-                className={`${styles.mobile_chevron} ${
-                  subMenuFeeStructureOpen ? styles.mobile_chevron_open : ""
-                }`}
+            {/* FEE STRUCTURE */}
+            <li>
+              <button
+                onClick={() => handleSubMenuToggle("feeStructure")}
+                className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
+                aria-expanded={subMenuFeeStructureOpen}
               >
-                <HiChevronDown />
-              </span>
-            </button>
-            {subMenuFeeStructureOpen && (
-              <ul className={styles.mobile_submenu}>
-                <li
-                  onClick={() =>
-                    handleDownloadPDF(
-                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
-                    )
-                  }
+                <span className={styles.mobile_link_inner}>
+                  <span className={styles.mobile_link_icon}>
+                    <HiOutlineCurrencyRupee />
+                  </span>
+                  <span>Fee Structure</span>
+                </span>
+                <span
+                  className={`${styles.mobile_chevron} ${
+                    subMenuFeeStructureOpen ? styles.mobile_chevron_open : ""
+                  }`}
                 >
-                  Fee Structure 2026-27
-                </li>
-                <li
-                  onClick={() =>
-                    handleDownloadPDF(
-                      "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
-                    )
-                  }
-                >
-                  FRC Fee approval 2026-2027
-                </li>
-                <li>
-                  <a
-                    href="./pdfs/Cancellation_Policy.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <HiChevronDown />
+                </span>
+              </button>
+              {subMenuFeeStructureOpen && (
+                <ul className={styles.mobile_submenu}>
+                  <li
+                    onClick={() =>
+                      handleDownloadPDF(
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
+                      )
+                    }
                   >
-                    Cancellation Policy
-                  </a>
-                </li>
-              </ul>
-            )}
-          </li>
+                    Fee Structure 2026-27
+                  </li>
+                  <li
+                    onClick={() =>
+                      handleDownloadPDF(
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                      )
+                    }
+                  >
+                    FRC Fee approval 2026-2027
+                  </li>
+                  <li>
+                    <a
+                      href="./pdfs/Cancellation_Policy.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Cancellation Policy
+                    </a>
+                  </li>
+                </ul>
+              )}
+            </li>
 
-          <li>
+            <MobileLink
+              to="/publicdisclosure"
+              icon={<HiOutlineDocumentText />}
+              label="Public Disclosure"
+              active={isActive("/publicdisclosure")}
+              onClose={() => setNavdropOpen(false)}
+            />
+            <MobileLink
+              to="/gallery"
+              icon={<HiOutlinePhoto />}
+              label="Gallery"
+              active={isActive("/gallery")}
+              onClose={() => setNavdropOpen(false)}
+            />
+            <MobileLink
+              to="/blogs"
+              icon={<HiOutlineNewspaper />}
+              label="Blogs"
+              active={isActive("/blogs")}
+              onClose={() => setNavdropOpen(false)}
+            />
+            <MobileLink
+              to="/transfer-certificates"
+              icon={<HiOutlineDocumentArrowDown />}
+              label="Transfer Certificates"
+              active={isActive("/transfer-certificates")}
+              onClose={() => setNavdropOpen(false)}
+            />
+          </ul>
+
+          <div className={styles.mobile_cta_block}>
+            <p className={styles.mobile_section_label}>Get in touch</p>
             <a
               href="https://paydirect.eduqfix.com/app/cc7fae31LEgC3KwoRYfopzX0IGSOFiTS236Et2re/9810/28628"
               target="_blank"
               rel="noopener noreferrer"
-              className={`${styles.mobile_navlink} ${styles.mobile_cta}`}
+              className={styles.mobile_cta}
               onClick={() => setNavdropOpen(false)}
             >
-              Fee Payment
+              <HiOutlineCurrencyRupee size={18} />
+              Pay Fees Online
             </a>
-          </li>
-
-          <li>
-            <Link
-              to="/gallery"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/gallery") ? styles.mobile_active : ""}`}
-            >
-              Gallery
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/blogs"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/blogs") ? styles.mobile_active : ""}`}
-            >
-              Blogs
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/transfer-certificates"
-              onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/transfer-certificates") ? styles.mobile_active : ""}`}
-            >
-              Transfer Certificates
-            </Link>
-          </li>
-          <li>
             <Link
               to="/contact"
               onClick={() => setNavdropOpen(false)}
-              className={`${styles.mobile_navlink} ${isActive("/contact") ? styles.mobile_active : ""}`}
+              className={styles.mobile_cta_secondary}
             >
+              <HiOutlineEnvelope size={16} />
               Contact Us
             </Link>
-          </li>
-        </ul>
+          </div>
+        </nav>
       </div>
     </>
   );
 };
+
+function MobileLink({ to, icon, label, active, onClose }) {
+  return (
+    <li>
+      <Link
+        to={to}
+        onClick={onClose}
+        className={`${styles.mobile_navlink} ${active ? styles.mobile_active : ""}`}
+      >
+        <span className={styles.mobile_link_inner}>
+          <span className={styles.mobile_link_icon}>{icon}</span>
+          <span>{label}</span>
+        </span>
+      </Link>
+    </li>
+  );
+}
 
 export default Navbar;
