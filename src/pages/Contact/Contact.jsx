@@ -191,40 +191,40 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
+          </div>
 
-            {/* Floating place card */}
-            <div className={styles.map_card}>
-              <div className={styles.map_card_head}>
-                <span className={styles.map_card_pin}>
-                  <HiOutlineMapPin size={18} />
-                </span>
-                <div className={styles.map_card_text}>
-                  <p className={styles.map_card_name}>
-                    The Green School International
-                  </p>
-                  <p className={styles.map_card_addr}>
-                    Mahapurush Madhabdev Path · Sarusajai · Guwahati 781040
-                  </p>
-                </div>
+          {/* Place card below the map — keeps the iframe controls fully usable */}
+          <div className={styles.map_card}>
+            <div className={styles.map_card_head}>
+              <span className={styles.map_card_pin}>
+                <HiOutlineMapPin size={18} />
+              </span>
+              <div className={styles.map_card_text}>
+                <p className={styles.map_card_name}>
+                  The Green School International
+                </p>
+                <p className={styles.map_card_addr}>
+                  Mahapurush Madhabdev Path · Sarusajai · Guwahati 781040
+                </p>
               </div>
-              <div className={styles.map_card_actions}>
-                <a
-                  href="https://www.google.com/maps/dir/?api=1&destination=The+Green+School+International+Guwahati"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.map_action_primary}
-                >
-                  <FaDirections size={14} />
-                  Get Directions
-                </a>
-                <a
-                  href="tel:+919387130617"
-                  className={styles.map_action_secondary}
-                >
-                  <AiFillPhone size={13} />
-                  Call school
-                </a>
-              </div>
+            </div>
+            <div className={styles.map_card_actions}>
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=The+Green+School+International+Guwahati"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.map_action_primary}
+              >
+                <FaDirections size={14} />
+                Get Directions
+              </a>
+              <a
+                href="tel:+919387130617"
+                className={styles.map_action_secondary}
+              >
+                <AiFillPhone size={13} />
+                Call school
+              </a>
             </div>
           </div>
         </div>
