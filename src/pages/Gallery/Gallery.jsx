@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Gallery.module.css";
 import Header from "../../components/Header/Header";
 import axiosInstance from "../../api/axiosInstance";
@@ -6,9 +7,11 @@ import { baseURL } from "../../api/axiosInstance";
 import captions from "./galleryCaptions.json";
 import videoLinks from "./videoLinks.json";
 import { FaPlay } from "react-icons/fa";
+import { HiXMark, HiOutlinePhoto, HiOutlineFilm } from "react-icons/hi2";
+import { HiOutlineDownload } from "react-icons/hi";
 
 const Gallery = () => {
-  const baseApi = "https://api.greenschoolguwahati.com"; // https://api.greenschoolguwahati.com/
+  const baseApi = "https://api.greenschoolguwahati.com";
   const [galleryList, setGalleryList] = useState([]);
   const [activeImage, setActiveImage] = useState(null);
   const [activeTab, setActiveTab] = useState("images");
@@ -17,15 +20,13 @@ const Gallery = () => {
     title: "Green School Moments",
     subtitle: "Life at The Green School International",
   };
+
   useEffect(() => {
     axiosInstance
       .get(`${baseApi}/api/get-images`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       })
       .then((response) => {
-        // console.log(response.data.imgPath);
         setGalleryList([...response.data.imgPath]);
       });
   }, []);
@@ -33,9 +34,7 @@ const Gallery = () => {
   useEffect(() => {
     if (!activeImage) return;
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setActiveImage(null);
-      }
+      if (event.key === "Escape") setActiveImage(null);
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
@@ -77,12 +76,19 @@ const Gallery = () => {
     return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : "";
   };
 
-  // console.log(galleryList);
   return (
     <>
-      <Header title="Gallery" className="gallery" />{" "}
+      <Header title="Gallery" className="gallery" />
+
       <div className={styles.gallery_images}>
-        <h2>Gallery</h2>
+        <div className={styles.gallery_header}>
+          <span className="section-eyebrow">Moments captured</span>
+          <h2>
+            Stories from{" "}
+            <span className="gradient-text">The Green School</span>.
+          </h2>
+          <p>A glimpse of campus life — from awards and assemblies to learning, sport and celebration.</p>
+        </div>
 
         <div className={styles.tabs_container}>
           <button
@@ -91,7 +97,7 @@ const Gallery = () => {
             }`}
             onClick={() => setActiveTab("images")}
           >
-            Images
+            <HiOutlinePhoto size={18} /> Images
           </button>
           <button
             className={`${styles.tab_button} ${
@@ -99,34 +105,43 @@ const Gallery = () => {
             }`}
             onClick={() => setActiveTab("videos")}
           >
-            Videos
+            <HiOutlineFilm size={18} /> Videos
           </button>
         </div>
 
         {activeTab === "images" && (
           <>
-            {galleryList ? (
+            {galleryList && galleryList.length > 0 ? (
               <div className={styles.gallery_images_container}>
                 {galleryList.map((item, index) => {
                   const caption = captions[index] || defaultCaption;
                   const isVisible = caption.isVisible !== false;
-
                   if (!isVisible) return null;
-
                   const imgSrc = item.image
                     ? baseURL + item.image
                     : baseApi + item;
                   return (
-                    <div className={styles.gallery_item} key={index}>
-                      <img
-                        src={imgSrc}
-                        alt={caption.title}
-                        loading="lazy"
-                        className={styles.gallery_image}
-                        onClick={() =>
-                          setActiveImage({ src: imgSrc, caption: caption })
-                        }
-                      />
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 24 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, margin: "-60px" }}
+                      transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
+                      whileHover={{ y: -6 }}
+                      className={styles.gallery_item}
+                      onClick={() => setActiveImage({ src: imgSrc, caption })}
+                    >
+                      <div className={styles.gallery_image_wrap}>
+                        <img
+                          src={imgSrc}
+                          alt={caption.title}
+                          loading="lazy"
+                          className={styles.gallery_image}
+                        />
+                        <div className={styles.gallery_hover}>
+                          <span>View image</span>
+                        </div>
+                      </div>
                       <div className={styles.gallery_caption}>
                         <p className={styles.gallery_caption_title}>
                           {caption.title}
@@ -135,12 +150,12 @@ const Gallery = () => {
                           {caption.subtitle}
                         </span>
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
             ) : (
-              <p>No Images :-(</p>
+              <p className={styles.empty_state}>Loading images…</p>
             )}
           </>
         )}
@@ -152,14 +167,19 @@ const Gallery = () => {
                 (video) =>
                   video?.url?.trim()?.length &&
                   video?.title?.trim()?.length &&
-                  video?.isVisible !== false,
+                  video?.isVisible !== false
               )
               .map((video, index) => (
-                <a
+                <motion.a
                   key={index}
                   href={video.url}
                   target="_blank"
                   rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
+                  whileHover={{ y: -6 }}
                   className={`${styles.gallery_item} ${styles.video_item}`}
                 >
                   <div className={styles.video_thumbnail_container}>
@@ -170,7 +190,7 @@ const Gallery = () => {
                       loading="lazy"
                     />
                     <div className={styles.play_icon}>
-                      <FaPlay size={20} />
+                      <FaPlay size={18} />
                     </div>
                   </div>
                   <div
@@ -180,52 +200,60 @@ const Gallery = () => {
                       {video.title}
                     </p>
                     <span className={styles.gallery_caption_subtitle}>
-                      Watch on YouTube
+                      ▶ Watch on YouTube
                     </span>
                   </div>
-                </a>
+                </motion.a>
               ))}
           </div>
         )}
       </div>
-      {activeImage && (
-        <div
-          className={styles.lightbox_overlay}
-          onClick={() => setActiveImage(null)}
-        >
-          <div
-            className={styles.lightbox_content}
-            onClick={(e) => e.stopPropagation()}
+
+      <AnimatePresence>
+        {activeImage && (
+          <motion.div
+            className={styles.lightbox_overlay}
+            onClick={() => setActiveImage(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
           >
-            <button
-              className={styles.lightbox_close}
-              onClick={() => setActiveImage(null)}
-              aria-label="Close image preview"
+            <motion.div
+              className={styles.lightbox_content}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.94 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              &times;
-            </button>
-            <button
-              className={styles.lightbox_download}
-              onClick={() => downloadImage(activeImage)}
-              aria-label="Download image"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M11 3h2v9h3.5L12 18.5 7.5 12H11z" />
-                <path d="M5 14h2v5h10v-5h2v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z" />
-              </svg>
-            </button>
-            <img
-              src={activeImage.src}
-              alt={activeImage.caption.title}
-              className={styles.lightbox_image}
-            />
-            <div className={styles.lightbox_caption}>
-              <h4>{activeImage.caption.title}</h4>
-              <p>{activeImage.caption.subtitle}</p>
-            </div>
-          </div>
-        </div>
-      )}
+              <button
+                className={styles.lightbox_close}
+                onClick={() => setActiveImage(null)}
+                aria-label="Close image preview"
+              >
+                <HiXMark size={22} />
+              </button>
+              <button
+                className={styles.lightbox_download}
+                onClick={() => downloadImage(activeImage)}
+                aria-label="Download image"
+              >
+                <HiOutlineDownload size={20} />
+              </button>
+              <img
+                src={activeImage.src}
+                alt={activeImage.caption.title}
+                className={styles.lightbox_image}
+              />
+              <div className={styles.lightbox_caption}>
+                <h4>{activeImage.caption.title}</h4>
+                <p>{activeImage.caption.subtitle}</p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

@@ -1,53 +1,48 @@
-.chat-bubble {
-    background-color:#E6F8F1;
-    padding:16px 28px;
-    -webkit-border-radius: 20px;
-    -webkit-border-bottom-left-radius: 2px;
-    -moz-border-radius: 20px;
-    -moz-border-radius-bottomleft: 2px;
-    border-radius: 20px;
-    border-bottom-left-radius: 2px;
-    display:inline-block;
+.chat_bubble {
+  background-color: #e6f8f1;
+  padding: 12px 18px;
+  border-radius: 20px;
+  border-bottom-left-radius: 4px;
+  display: inline-block;
+}
+.typing {
+  align-items: center;
+  display: flex;
+  height: 17px;
+}
+.dot {
+  animation: typingAnim 1.4s infinite ease-in-out;
+  background-color: #1f7d49;
+  border-radius: 50%;
+  height: 7px;
+  margin-right: 4px;
+  vertical-align: middle;
+  width: 7px;
+  display: inline-block;
+}
+.dot:nth-child(1) {
+  animation-delay: 200ms;
+}
+.dot:nth-child(2) {
+  animation-delay: 300ms;
+}
+.dot:nth-child(3) {
+  animation-delay: 400ms;
+}
+.dot:last-child {
+  margin-right: 0;
+}
+@keyframes typingAnim {
+  0% {
+    transform: translateY(0);
+    background-color: #1f7d49;
   }
-  .typing {
-    align-items: center;
-    display: flex;
-    height: 17px;
+  28% {
+    transform: translateY(-7px);
+    background-color: #2e9b5e;
   }
-  .typing .dot {
-    animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
-    background-color: #6CAD96 ;
-    border-radius: 50%;
-    height: 7px;
-    margin-right: 4px;
-    vertical-align: middle;
-    width: 7px;
-    display: inline-block;
+  44% {
+    transform: translateY(0);
+    background-color: #b8e6c9;
   }
-  .typing .dot:nth-child(1) {
-    animation-delay: 200ms;
-  }
-  .typing .dot:nth-child(2) {
-    animation-delay: 300ms;
-  }
-  .typing .dot:nth-child(3) {
-    animation-delay: 400ms;
-  }
-  .typing .dot:last-child {
-    margin-right: 0;
-  }
-  
-  @keyframes mercuryTypingAnimation {
-    0% {
-      transform: translateY(0px);
-      background-color:#6CAD96; 
-    }
-    28% {
-      transform: translateY(-7px);
-      background-color:#9ECAB9; 
-    }
-    44% {
-      transform: translateY(0px);
-      background-color: #B5D9CB;
-    }
-  }
+}

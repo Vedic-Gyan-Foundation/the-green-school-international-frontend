@@ -1,5 +1,3 @@
-import { title } from "framer-motion/client";
-
 class SportsInfraUtil {
   static sportInfraList = [
     {

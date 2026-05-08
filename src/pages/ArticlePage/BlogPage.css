@@ -59,25 +59,26 @@
 .article-body blockquote {
   margin: 32px 0;
   padding: 20px 24px;
-  border-left: 4px solid #3b82f6;
-  background: #f8fafc;
+  border-left: 4px solid #08703d;
+  background: #f0faf3;
   font-size: 20px;
   font-style: italic;
-  color: #1e293b;
+  color: #0e3302;
   line-height: 1.7;
+  border-radius: 12px;
 }
 
 /* Link styles */
 .article-body a {
-  color: #3b82f6;
+  color: #08703d;
   text-decoration: none;
-  border-bottom: 1px solid #3b82f6;
+  border-bottom: 1px solid #08703d;
   transition: all 0.2s ease;
 }
 
 .article-body a:hover {
-  color: #2563eb;
-  border-bottom-color: #2563eb;
+  color: #0e3302;
+  border-bottom-color: #0e3302;
 }
 
 /* Text formatting */

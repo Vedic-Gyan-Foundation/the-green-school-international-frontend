@@ -1,675 +1,489 @@
-// import React from "react";
-// import Navbar from "../../components/Navbar/Navbar";
 import Header from "../../components/Header/Header";
-// import Footer from "../../components/Footer/Footer";
 import styles from "./PublicDisclosure.module.css";
 
+const Section = ({ id, title, letter, children }) => (
+  <section className={styles.section} id={id}>
+    <div className={styles.section_header}>
+      <span className={styles.section_letter}>{letter}</span>
+      <h3>{title}</h3>
+    </div>
+    <div className={styles.table_wrap}>{children}</div>
+  </section>
+);
+
+const DownloadLink = ({ href, label = "Click to Download" }) => (
+  <a
+    href={href}
+    rel="noreferrer"
+    target="_blank"
+    className={styles.download_link}
+  >
+    {label}
+  </a>
+);
+
 const PublicDisclosure = () => {
-  // console.log()
   return (
     <>
       <Header title="Public Disclosure" />
       <div className={styles.publicdisclosure}>
-        <h2>Mandatory Public Disclosure</h2>
-        <div className={styles.publicdisclosure_generalinfo}>
-          <h3>A. General Info</h3>
-          <div className={styles.publicdisclosure_generalinfo_table}>
-            <table className="my_table">
-              <thead>
-                <tr>
-                  <th>SL. No</th>
-                  <th>INFORMATION</th>
-                  <th className="has-text-align-left" data-align="left">
-                    DETAILS
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>NAME OF THE SCHOOL</td>
-                  <td className="has-text-align-left" data-align="left">
-                    THE GREEN SCHOOL INTERNATIONAL, GUWAHATI
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>AFFILIATION NO.(IF APPLICABLE)</td>
-                  <td className="has-text-align-left" data-align="left">
-                    230317
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>SCHOOL CODE (IF APPLICABLE)</td>
-                  <td className="has-text-align-left" data-align="left">
-                    35575
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>COMPLETE ADDRESS WITH PIN CODE</td>
-                  <td className="has-text-align-left" data-align="left">
-                    MAHAPURUSH MADHABDEV PATH, NEAR ITI, NALAPARA, SARUSAJAI,
-                    <br />
-                    GUWAHATI 781040, 31, ASSAM – 781040
-                  </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>PRINCIPAL NAME</td>
-                  <td className="has-text-align-left" data-align="left">
-                    Mrs. MOUSUMI GANGULY
-                  </td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>PRINCIPAL QUALIFICATION</td>
-                  <td className="has-text-align-left" data-align="left">
-                    MA (Sociology and Economics) B.Ed
-                  </td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>SCHOOL EMAIL ID</td>
-                  <td className="has-text-align-left" data-align="left">
-                    <a
-                      href="mailto:thegreenschoolinternational@gmail.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      thegreenschoolinternational@gmail.com
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>CONTACT DETAILS (LANDLINE/MOBILE)</td>
-                  <td className="has-text-align-left" data-align="left">
-                    <a
-                      href="tel:+919856199105"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      +91-9856199105
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div className={styles.intro}>
+          <span className="section-eyebrow">Mandatory Public Disclosure</span>
+          <h2>The Green School International — Compliance &amp; transparency</h2>
+          <p>
+            All school documentation, results, staff details and infrastructure
+            data, accessible in one place — as mandated by CBSE.
+          </p>
         </div>
 
-        <div className={styles.publicdisclosure_documents}>
-          <h3>B. DOCUMENTS AND INFORMATION:</h3>
-          <div className={styles.publicdisclosure_documents_table}>
-            <table className="my_table">
-              <thead>
-                <tr>
-                  <th>SL No.</th>
-                  <th>DOCUMENTS/INFORMATION</th>
-                  <th>
-                    LINKS OF UPLOADED DOCUMENTS ON YOUR SCHOOL&apos;S WEBSITE
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>
-                    COPIES OF AFFILIATION/UPGRADATION LETTER AND RECENT
-                    EXTENSION
-                    <br />
-                    OF AFFILIATION, IF ANY
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>
-                    COPIES OF SOCIETIES/TRUST/COMPANY REGISTRATION/RENEWAL
-                    <br />
-                    CERTIFICATE, AS APPLICABLE
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/VEDIC_GYAN_FOUNDATION_TRUST_DEED.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
-                    COPY OF NO OBJECTION CERTIFICATE (NOC) ISSUED, IF
-                    APPLICABLE, BY
-                    <br />
-                    THE STATE GOVT./UT
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/COPIES_OF_NOC.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>
-                    COPIES OF THE RECOGNITION CERTIFICATE UNDER THE RTE ACT,
-                    2009, AND IT&apos;S
-                    <br />
-                    RENEWAL IF APPLICABLE
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/RECOGNITION_CERTIFICATE.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>
-                    COPY OF VALID BUILDING SAFETY CERTIFICATE AS PER THE
-                    NATIONAL
-                    <br />
-                    BUILDING CODE
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/BUILDING_SAFETY_CERTIFICATE.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>
-                    COPY OF VALID FIRE SAFETY CERTIFICATE ISSUED BY THE
-                    COMPETENT
-                    <br />
-                    AUTHORITY
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/FIRE_NOC.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>
-                    COPY OF THE SELF CERTIFICATION SUBMITTED BY THE SCHOOL FOR
-                    AFFILIATION/UPGRADATION/EXTENSION OF AFFILIATION
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
+        {/* A. General Info */}
+        <Section letter="A" title="General Info" id="general-info">
+          <table className="my_table">
+            <thead>
+              <tr>
+                <th>SL. No</th>
+                <th>Information</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Name of the School</td>
+                <td>THE GREEN SCHOOL INTERNATIONAL, GUWAHATI</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Affiliation No. (if applicable)</td>
+                <td>230317</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>School Code (if applicable)</td>
+                <td>35575</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Complete Address with PIN code</td>
+                <td>
+                  Mahapurush Madhabdev Path, Near ITI, Nalapara, Sarusajai,
+                  <br />
+                  Guwahati 781040, 31, Assam – 781040
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Principal Name</td>
+                <td>Mrs. Mousumi Ganguly</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Principal Qualification</td>
+                <td>MA (Sociology and Economics) B.Ed</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>School Email ID</td>
+                <td>
+                  <a
+                    href="mailto:thegreenschoolinternational@gmail.com"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.inline_link}
+                  >
+                    thegreenschoolinternational@gmail.com
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Contact Details (Landline / Mobile)</td>
+                <td>
+                  <a
+                    href="tel:+919856199105"
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.inline_link}
+                  >
+                    +91-9856199105
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
 
-                <tr>
-                  <td>8</td>
-                  <td>SELF CERTIFICATION FOR SECTION INCRESE </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION_FOR_SECTION_INCRESE.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
+        {/* B. Documents and Information */}
+        <Section letter="B" title="Documents and Information" id="documents">
+          <table className="my_table">
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Documents / Information</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>
+                  Copies of affiliation/upgradation letter and recent extension
+                  of affiliation, if any
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>
+                  Copies of societies/trust/company registration/renewal
+                  certificate, as applicable
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/VEDIC_GYAN_FOUNDATION_TRUST_DEED.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>
+                  Copy of No Objection Certificate (NOC) issued, if applicable,
+                  by the State Govt./UT
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/COPIES_OF_NOC.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>
+                  Copies of the recognition certificate under the RTE Act, 2009,
+                  and its renewal if applicable
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/RECOGNITION_CERTIFICATE.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>
+                  Copy of valid building safety certificate as per the National
+                  Building Code
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/BUILDING_SAFETY_CERTIFICATE.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>
+                  Copy of valid fire safety certificate issued by the competent
+                  authority
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/FIRE_NOC.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>
+                  Copy of the self certification submitted by the school for
+                  affiliation/upgradation/extension of affiliation
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Self certification for section increase</td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION_FOR_SECTION_INCRESE.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>
+                  Copies of valid water, health and sanitation certificates
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/HEALTH_AND_HYGENE.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>Land Certificate</td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/LAND_CERTIFICATE.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Mandatory Disclosure</td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/MANDATORY_DISCLOSURE.pdf" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table className={`my_table ${styles.tight_table}`}>
+            <tbody>
+              <tr>
+                <td>Link of YouTube video of the inspection of school</td>
+                <td>
+                  <DownloadLink
+                    href="https://youtu.be/xflXKP24fjY"
+                    label="Click to View"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p className={styles.note}>
+            <b>NOTE:</b> The schools need to upload self-attested copies of the
+            above-listed documents by Chairman/Manager/Secretary and Principal.
+            In case it is noticed at a later stage that uploaded documents are
+            not genuine, the school shall be liable for action as per norms.
+          </p>
+        </Section>
 
-                <tr>
-                  <td>9</td>
-                  <td>
-                    COPIES OF VALID WATER, HEALTH AND SANITATION CERTIFICATES
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/HEALTH_AND_HYGENE.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>LAND CERTIFICATE</td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/LAND_CERTIFICATE.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>11</td>
-                  <td>MANDATORY DISCLOSURE</td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/MANDATORY_DISCLOSURE.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <table style={{ marginBlock: "2rem" }}>
-              <tbody>
-                {/* <tr>
-                  <td>
-                    APPENDIX -IX
-                    <br />
-                    MANDATORY PUBLIC DISCLOSURE
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/MANDATORY_PUBLIC_DISCLOSURE.pdf"
-                      rel="noreferrer"
-                      target="_blank"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr> */}
-                <tr>
-                  <td>LINK OF YOUTUBE VIDEO OF THE INSPECTION OF SCHOOL</td>
-                  <td>
-                    <a
-                      href="https://youtu.be/xflXKP24fjY"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to View
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        {/* C. Result and Academics */}
+        <Section letter="C" title="Result and Academics" id="results-academics">
+          <table className="my_table">
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Documents / Information</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Fee Structure of the School</td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/FEE_STRUCTURE_2025_26.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Annual Academic Calendar</td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2026_27.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>List of School Management Committee (SMC)</td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2025_26.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>List of Parents Teachers Association (PTA) Members</td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2025_26.pdf" />
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>
+                  Last three-year result of the board examination as per
+                  applicability
+                </td>
+                <td>
+                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/LAST_THREE_YEARS_RESULT.pdf" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
 
-            <div style={{ marginBlock: "1rem" }}>
-              <p>
-                <b>NOTE:</b> THE SCHOOLS NEEDS TO UPLOAD THE SELF ATTESTED
-                COPIES OF ABOVE LISTED DOCUMETNS BY CHAIRMAN/MANAGER/SECRETARY
-                AND PRINCIPAL. IN CASE, IT IS NOTICED AT LATER STAGE THAT
-                UPLOADED DOCUMENTS ARE NOT GENUINE THEN SCHOOL SHALL BE LIABLE
-                FOR ACTION AS PER NORMS.
-              </p>
-            </div>
-          </div>
-        </div>
+        {/* D. Staff (Teaching) */}
+        <Section letter="D" title="Staff (Teaching)" id="staff">
+          <table className="my_table">
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Information</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Principal</td>
+                <td>Mousumi Ganguly</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Vice Principal</td>
+                <td>N. Sweety Singh</td>
+              </tr>
+              <tr>
+                <td rowSpan="6">3</td>
+                <td>Total no. of teachers</td>
+                <td>118</td>
+              </tr>
+              <tr>
+                <td>PGT</td>
+                <td>16</td>
+              </tr>
+              <tr>
+                <td>TGT</td>
+                <td>28</td>
+              </tr>
+              <tr>
+                <td>PRT</td>
+                <td>55</td>
+              </tr>
+              <tr>
+                <td>NTT</td>
+                <td>11</td>
+              </tr>
+              <tr>
+                <td>Librarian</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Teachers section ratio</td>
+                <td>1:1.85</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Details of special educator</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Details of counsellor and wellness teacher</td>
+                <td>1</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>PET</td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
 
-        <div className={styles.publicdisclosure_results}>
-          <h3>C. RESULT AND ACADEMICS :</h3>
-          <div className={styles.publicdisclosure_results_table}>
-            <table className="my_table">
-              <thead>
-                <tr>
-                  <th>SL No.</th>
-                  <th>DOCUMENTS/INFORMATION</th>
-                  <th>LINKS OF UPLOADED DOCUMENTS ON YOUR SCHOOL’S WEBSITE</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>FEE STRUCTURE OF THE SCHOOL</td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/FEE_STRUCTURE_2025_26.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>ANNUAL ACADEMIC CALANDER</td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2026_27.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>LIST OF SCHOOL MANAGEMENT COMMITTEE (SMC)</td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2025_26.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>LIST OF PARENTS TEACHERS ASSOCIATION (PTA) MEMBERS</td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2025_26.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>
-                    LAST THREE-YEAR RESULT OF THE BOARD EXAMINATION AS PER
-                    <br />
-                    APPLICABLILITY
-                  </td>
-                  <td>
-                    <a
-                      href="https://api.greenschoolguwahati.com/public_disclosure/LAST_THREE_YEARS_RESULT.pdf"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Click to Download
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div className={styles.publicdisclosure_staff}>
-          <h3>D. STAFF (Teaching) :</h3>
-          <div className={styles.publicdisclosure_staff_table}>
-            <table className="my_table">
-              <thead>
-                <tr>
-                  <th>SL No.</th>
-                  <th>INFORMATION</th>
-                  <th>DETAILS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>PRINCIPAL</td>
-                  <td>Mousumi Ganguly</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>VICE PRINCIPAL</td>
-                  <td>N.Sweety Singh</td>
-                </tr>
+        {/* E. Result Class X */}
+        <Section letter="E" title="Result · Class X" id="class-x">
+          <table className="my_table">
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Year</th>
+                <th>Registered Students</th>
+                <th>Students Passed</th>
+                <th>Pass Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>2</td>
+                <td>2023</td>
+                <td>15</td>
+                <td>15</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>2024</td>
+                <td>32</td>
+                <td>32</td>
+                <td>100</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>2025</td>
+                <td>39</td>
+                <td>39</td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
 
-                <tr>
-                  <td rowSpan="6">3</td>
-                  <td>TOTAL NO. OF TEACHERS</td>
-                  <td>118</td>
-                </tr>
-                <tr>
-                  <td>PGT</td>
-                  <td>16</td>
-                </tr>
-                <tr>
-                  <td>TGT</td>
-                  <td>28</td>
-                </tr>
-                <tr>
-                  <td>PRT</td>
-                  <td>55</td>
-                </tr>
-                <tr>
-                  <td>NTT</td>
-                  <td>11</td>
-                </tr>
-                <tr>
-                  <td>Librarian</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>TEACHERS SECTION RATIO</td>
-                  <td>1:1.85</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>DETAILS OF SPECIAL EDUCATOR</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>DETAILS OF COUNSELLOR AND WELNESS TEACHER</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>PET</td>
-                  <td>3</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        {/* F. Result Class XII */}
+        <Section letter="F" title="Result · Class XII" id="class-xii">
+          <table className="my_table">
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Year</th>
+                <th>Registered Students</th>
+                <th>Students Passed</th>
+                <th>Pass Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>2025</td>
+                <td>15</td>
+                <td>15</td>
+                <td>100</td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
 
-        <div className={styles.publicdisclosure_classx}>
-          <h3>E. RESULT CLASS: X</h3>
-          <div className={styles.publicdisclosure_classx_table}>
-            <table className="my_table">
-              <thead>
-                <tr>
-                  <th>
-                    SL
-                    <br />
-                    No.
-                  </th>
-                  <th>YEAR</th>
-                  <th>
-                    NO. OF REGISTERED
-                    <br />
-                    STUDENTS
-                  </th>
-                  <th>
-                    NO. OF STUDETNS
-                    <br />
-                    PASSED
-                  </th>
-                  <th>PASS PERCENTAGE</th>
-                </tr>
-              </thead>
-              <tbody>
-                {/* <tr>
-                  <td>1</td>
-                  <td>2022</td>
-                  <td>N/A</td>
-                  <td>N/A</td>
-                  <td>N/A</td>
-                </tr> */}
-                <tr>
-                  <td>2</td>
-                  <td>2023</td>
-                  <td>15</td>
-                  <td>15</td>
-                  <td>100</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>2024</td>
-                  <td>32</td>
-                  <td>32</td>
-                  <td>100</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>2025</td>
-                  <td>39</td>
-                  <td>39</td>
-                  <td>100</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className={styles.publicdisclosure_classxii}>
-          <h3>F. RESULT CLASS: XII</h3>
-          <div className={styles.publicdisclosure_classx_table}>
-            <table className="my_table">
-              <thead>
-                <tr>
-                  <th>
-                    SL
-                    <br />
-                    No.
-                  </th>
-                  <th>YEAR</th>
-                  <th>
-                    NO. OF REGISTERED
-                    <br />
-                    STUDENTS
-                  </th>
-                  <th>
-                    NO. OF STUDENTS
-                    <br />
-                    PASSED
-                  </th>
-                  <th>PASS PERCENTAGE</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>2025</td>
-                  <td>15</td>
-                  <td>15</td>
-                  <td>100</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div className={styles.publicdisclosure_infrastructure}>
-          <h3>G. SCHOOL INFRASTRUCTURE:</h3>
-          <div
-            className={
-              styles.publicdisclosure_publicdisclosure_infrastructure_table
-            }
-          >
-            <table className="my_table">
-              <thead>
-                <tr>
-                  <th>SL No.</th>
-                  <th>INFORMATION</th>
-                  <th>DETAILS</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>TOTAL CAMPUS AREA OF THE SCHOOL (IN SQUARE MTR)</td>
-                  <td>12096</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>NO. AND SIZE OF THE CLASS ROOMS (IN SQ FTMTR)</td>
-                  <td>77 &amp; 50</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>
-                    NO. AND SIZE OF LABORATORIES INCLUDING COMPUTER LABS (IN SQ
-                    MTR)
-                  </td>
-                  <td>9 &amp; 79</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>INTERNET FACILITY</td>
-                  <td>YES</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>NO. OF GIRLS TOILETS</td>
-                  <td>18</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>NO. OF BOYS TOILETS</td>
-                  <td>18</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        {/* G. School Infrastructure */}
+        <Section
+          letter="G"
+          title="School Infrastructure"
+          id="infrastructure"
+        >
+          <table className="my_table">
+            <thead>
+              <tr>
+                <th>SL No.</th>
+                <th>Information</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Total campus area of the school (in sq. m)</td>
+                <td>12096</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>No. and size of the classrooms (in sq. m)</td>
+                <td>77 &amp; 50</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>
+                  No. and size of laboratories including computer labs (in sq.
+                  m)
+                </td>
+                <td>9 &amp; 79</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Internet facility</td>
+                <td>YES</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>No. of girls toilets</td>
+                <td>18</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>No. of boys toilets</td>
+                <td>18</td>
+              </tr>
+            </tbody>
+          </table>
+        </Section>
       </div>
-      <div></div>
     </>
   );
 };

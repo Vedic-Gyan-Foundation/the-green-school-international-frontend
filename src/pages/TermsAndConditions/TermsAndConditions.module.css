@@ -1,35 +1,92 @@
 .terms_container {
-  padding: 2.5rem 1rem;
-  max-width: 900px;
+  padding: 3rem 1.25rem 5rem;
+  max-width: 920px;
   margin: 0 auto;
-  color: #111827;
-  line-height: 1.7;
+  color: #1f2933;
+  line-height: 1.75;
 }
 
-.terms_heading {
+.terms_intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 1rem;
+  gap: 0.6rem;
+  margin-bottom: 2.25rem;
+}
+.terms_intro h1 {
+  color: #0e3302;
+  font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 .terms_lastupdated {
-  text-align: center;
-  color: #6b7280;
-  margin-bottom: 1.5rem;
+  color: #525a6e;
+  font-size: 0.95rem;
+  background: rgba(8, 112, 61, 0.06);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+}
+
+.terms_body {
+  background: white;
+  padding: 2.25rem;
+  border-radius: 22px;
+  border: 1px solid rgba(8, 112, 61, 0.08);
+  box-shadow: 0 25px 50px -30px rgba(8, 112, 61, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .terms_section {
-  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
-
 .terms_section h3 {
-  margin-bottom: 0.5rem;
+  color: #08703d;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.terms_section h4 {
+  color: #0e3302;
+  font-weight: 700;
+  font-size: 0.98rem;
+  margin-top: 0.5rem;
+}
+.terms_section p {
+  color: #3a3f4f;
 }
 
 .terms_list {
-  padding-left: 1rem;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  list-style: disc;
+}
+.terms_list li::marker {
+  color: #08703d;
 }
 
 .terms_link {
-  color: #065f46;
+  color: #08703d;
+  font-weight: 600;
   text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.terms_link:hover {
+  color: #0e3302;
+}
+
+@media screen and (max-width: 700px) {
+  .terms_container {
+    padding: 2.5rem 1rem 4rem;
+  }
+  .terms_body {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
 }

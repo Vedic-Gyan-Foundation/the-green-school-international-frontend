@@ -6,71 +6,68 @@ import {
   FaLinkedin,
 } from "react-icons/fa";
 
+const links = [
+  {
+    href: "https://www.facebook.com/greenschoolinternational/",
+    label: "Facebook",
+    Icon: FaFacebookF,
+  },
+  {
+    href: "https://www.instagram.com/the_green_school_international?igsh=azAxbHdiMXQ3eTU=",
+    label: "Instagram",
+    Icon: FaInstagram,
+  },
+  {
+    href: "https://www.youtube.com/@thegreenschoolinternational",
+    label: "YouTube",
+    Icon: FaYoutube,
+  },
+  {
+    href: "https://www.linkedin.com/company/the-green-school-international/",
+    label: "LinkedIn",
+    Icon: FaLinkedin,
+  },
+];
+
 function SocialLinks() {
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollingRef = useRef(null);
 
   useEffect(function () {
     function handleScroll() {
-      setIsScrolling(true); // Hide the social_link on scroll
-
-      if (scrollingRef.current) {
-        clearTimeout(scrollingRef.current);
-      }
-
-      //   Show the social_links of no scroll activity
+      setIsScrolling(true);
+      if (scrollingRef.current) clearTimeout(scrollingRef.current);
       scrollingRef.current = setTimeout(function () {
         setIsScrolling(false);
       }, 300);
     }
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
-      window.removeEventListener(handleScroll);
-      if (scrollingRef.current) {
-        clearTimeout(scrollingRef.current);
-      }
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollingRef.current) clearTimeout(scrollingRef.current);
     };
   }, []);
 
-  //   Hiding the social_link div if scrolling is true
   if (isScrolling) return null;
 
   return (
     <div className="social_links">
-      <a
-        href="https://www.facebook.com/greenschoolinternational/"
-        className="social_link"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <FaFacebookF color="yellow" size={25} />
-      </a>
-      <a
-        href="https://www.instagram.com/the_green_school_international?igsh=azAxbHdiMXQ3eTU="
-        className="social_link"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <FaInstagram color="yellow" size={25} />
-      </a>
-      <a
-        href="https://www.youtube.com/@thegreenschoolinternational"
-        className="social_link"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <FaYoutube color="yellow" size={25} />
-      </a>
-      <a
-        href="https://www.linkedin.com/company/the-green-school-international/"
-        className="social_link"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <FaLinkedin color="yellow" size={25} />
-      </a>
+      {links.map(({ href, Icon, label }) => (
+        <a
+          key={label}
+          href={href}
+          className="social_link group"
+          target="_blank"
+          rel="noreferrer"
+          aria-label={label}
+          title={label}
+        >
+          <Icon
+            className="text-sun-300 group-hover:text-white transition-colors duration-300"
+            size={20}
+          />
+        </a>
+      ))}
     </div>
   );
 }

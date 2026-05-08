@@ -1,105 +1,186 @@
 .container {
-  margin-block: 4rem;
+  margin: 4rem auto;
   max-width: 1300px;
-  margin-inline: auto;
+  padding-inline: 2rem;
 }
-.preheader {
-  color: #eabe61;
-  margin-inline: 2rem;
-}
-.header {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--primarycolortwo);
-  margin-inline: 2rem;
-}
-.cards {
-  margin-top: 4rem;
+
+.intro {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  margin-inline: 2rem;
+  gap: 1rem;
+  align-items: flex-start;
+  max-width: 880px;
+  margin-bottom: 4rem;
 }
-.card {
+.header {
+  font-size: clamp(1.85rem, 3.5vw, 2.6rem);
+  font-weight: 700;
+  color: #0e3302;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.intro_lead {
+  color: #525a6e;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  max-width: 700px;
+}
+
+.cards {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 3.5rem;
   align-items: center;
   position: relative;
 }
+.card_reverse {
+  grid-template-columns: 1.2fr 0.8fr;
+}
+.card_reverse .card_header {
+  order: 2;
+}
+.card_reverse .card_desc {
+  order: 1;
+}
+
 .card_header {
-  width: 30vw;
-  font-size: 1.5rem;
-  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
   position: sticky;
-  top: 0;
-  left: 0;
+  top: 100px;
 }
-.card_header > img {
-  width: 120px;
+.icon_wrap {
+  width: 96px;
+  height: 96px;
+  border-radius: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 25px 50px -25px rgba(8, 112, 61, 0.55);
 }
-.card_text {
-  padding: 1rem;
-  font-size: 1.1rem;
-  color: rgb(107, 107, 107);
-  text-align: justify;
+.icon_wrap img {
+  width: 56px;
+  height: 56px;
+  filter: brightness(0) invert(1);
+  border-radius: 0;
+}
+.card_header h3 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: #0e3302;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.accent {
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #08703d;
+  font-weight: 600;
+}
+.number {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 5rem;
+  font-weight: 800;
+  color: rgba(8, 112, 61, 0.06);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
 }
 
 .card_desc {
-  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
-.card_desc img {
+.image_frame {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -25px rgba(8, 112, 61, 0.4);
+  isolation: isolate;
+}
+.image_frame img {
   width: 100%;
-  height: 350px;
+  height: 380px;
   object-fit: cover;
   object-position: top;
+  display: block;
+  border-radius: 28px;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.image_frame:hover img {
+  transform: scale(1.04);
+}
+.image_overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(8, 112, 61, 0.4) 100%
+  );
+  z-index: 1;
+}
+
+.card_text {
+  font-size: 1.02rem;
+  color: #525a6e;
+  text-align: justify;
+  line-height: 1.8;
 }
 
 @media screen and (max-width: 991px) {
-  .card {
-    flex-direction: column;
+  .card,
+  .card_reverse {
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .card_header {
-    width: 100%;
-    font-size: 1.5rem;
-    text-align: center;
-    position: static;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .card_reverse .card_header,
+  .card_reverse .card_desc {
+    order: initial;
   }
-  .card_desc {
-    width: 100%;
+  .card_header {
+    position: static;
+    align-items: center;
+    text-align: center;
   }
 }
 @media screen and (max-width: 576px) {
   .container {
     margin-block: 2rem;
-  }
-  .preheader {
-    margin-inline: 1rem;
-    font-size: 0.9rem;
-  }
-  .header {
-    margin-inline: 1rem;
-    font-size: 1.5rem;
-    line-height: 1.3;
+    padding-inline: 1rem;
   }
   .cards {
-    margin-inline: 1rem;
-    margin-top: 2rem;
-    gap: 3rem;
+    gap: 4rem;
   }
-  .card_header > img {
-    width: 80px;
-  }
-  .card_desc img {
-    height: 200px;
+  .image_frame img {
+    height: 240px;
   }
   .card_text {
-    padding: 0rem;
-    padding-block: 10px;
     text-align: left;
-    font-size: 1rem;
+    font-size: 0.95rem;
+  }
+  .icon_wrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 22px;
+  }
+  .icon_wrap img {
+    width: 44px;
+    height: 44px;
   }
 }

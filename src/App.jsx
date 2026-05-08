@@ -1,6 +1,11 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Chatbot from "./components/Chatbot/Chatbot";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
@@ -8,6 +13,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import SocialLinks from "./components/SocialLinks/SocialLinks";
 import Loader from "./components/Loader/Loader";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
@@ -30,6 +36,16 @@ const TermsAndConditions = lazy(() =>
 );
 const ArticlePage = lazy(() => import("./pages/ArticlePage/ArticlePage"));
 
+// Scrolls to top on route change (preserves hash navigation)
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (hash) return;
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname, hash]);
+  return null;
+}
+
 const App = () => {
   const [isChatbotOpen, setIsChatbotOpen] = useState(false);
   const toggleChatbot = () => {
@@ -42,20 +58,26 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    AOS.init({ duration: 500 });
+    AOS.init({ duration: 600, easing: "ease-out-cubic", once: true });
   }, []);
 
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <div className="chatbot_container">
           {isChatbotOpen ? (
             <div className="chatbot">
               <Chatbot setIsChatbotOpen={setIsChatbotOpen} />
             </div>
           ) : (
-            <button onClick={toggleChatbot} className="chatbot_btn">
-              Chat with us
+            <button
+              onClick={toggleChatbot}
+              className="chatbot_btn"
+              aria-label="Open chatbot"
+            >
+              <IoChatbubbleEllipsesOutline size={20} />
+              <span>Chat with us</span>
             </button>
           )}
         </div>
@@ -87,7 +109,6 @@ const App = () => {
         </Suspense>
         <Footer />
       </BrowserRouter>
-      {/* <!-- Social Links --> */}
       <SocialLinks />
     </>
   );

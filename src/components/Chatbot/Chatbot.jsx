@@ -1,14 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Chatbot.module.css";
-import { fetchChatQuestions } from "./ChatbotQuestions";
 import axiosInstance from "../../api/axiosInstance";
 import TypingAnimation from "../TypingAnimation/TypingAnimation";
-import { IoIosSend } from "react-icons/io";
-import { MdClose } from "react-icons/md";
-import { MdMinimize } from "react-icons/md";
+import { MdClose, MdMinimize } from "react-icons/md";
+import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const Chatbot = ({ setIsChatbotOpen }) => {
-  const [userMessage, setUserMessage] = useState("");
+  const [, setUserMessage] = useState("");
   const [conversation, setConversation] = useState([]);
   const [selectedCategoryItems, setSelectedCategoryItems] = useState([]);
   const [questionAnswer, setQuestionAnswer] = useState([]);
@@ -16,16 +14,12 @@ const Chatbot = ({ setIsChatbotOpen }) => {
   const [show, setShow] = useState("category");
   const [categories, setCategories] = useState([]);
   const [isClicked, setIsClick] = useState(false);
-  const [userId, setUserId] = useState(null);
   const [questions, setQuestions] = useState([]);
-  const [isTyping, setIsTyping] = useState(false);
+  const [isTyping] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [minimized, setMinimized] = useState(false);
 
   const chatbotRef = useRef();
-
-  const messageHandler = (option) => {
-    setUserMessage(option);
-  };
 
   const extractCategoryFromQuestions = (questionsData) => {
     return questionsData.map((category) => category.category);
@@ -52,162 +46,127 @@ const Chatbot = ({ setIsChatbotOpen }) => {
     const selectedCategory = questions.find(
       (category) => category.category === categoryName
     );
-
-    if (selectedCategory) {
-      setSelectedCategoryItems(selectedCategory.items);
-    } else {
-      console.log("Category not found:", categoryName);
-    }
-
-    if (show === "category") {
-      setShow("items");
-    }
-    const updatedConversation = [
-      ...conversation,
-      { type: "user", text: categoryName },
-    ];
-    setConversation(updatedConversation);
+    if (selectedCategory) setSelectedCategoryItems(selectedCategory.items);
+    if (show === "category") setShow("items");
+    setConversation([...conversation, { type: "user", text: categoryName }]);
     setUserMessage("");
-    setCurrentStep((prevStep) => prevStep + 1);
+    setCurrentStep((prev) => prev + 1);
   };
 
   const handleQuestionClick = (index) => {
     const selectedQuestion = selectedCategoryItems[index];
-    const updatedConversation = [
+    setQuestionAnswer(selectedQuestion);
+    setConversation([
       ...conversation,
       { type: "user", text: selectedQuestion?.question },
-    ];
-    setQuestionAnswer(selectedQuestion);
-    setConversation(updatedConversation);
+    ]);
     setUserMessage("");
-    setCurrentStep((prevStep) => prevStep + 1);
+    setCurrentStep((prev) => prev + 1);
   };
 
   useEffect(() => {
     if (!isClicked) {
-      setConversation((prevConversation) => [
-        ...prevConversation,
+      setConversation((prev) => [
+        ...prev,
         {
           type: "chatbot",
-          text: "Hi, I'm the Green School Assistant, I'm here to help you get the right quote",
+          text: "Hi 👋, I'm the Green School Assistant — here to help you find answers quickly.",
         },
-        {
-          type: "chatbot",
-          text: "Please choose a category that I can help you!",
-        },
+        { type: "chatbot", text: "Choose a category to get started:" },
       ]);
       setIsClick(true);
-    } else {
-      // Check if questions exist and currentStep is within the valid range
-      if (selectedCategoryItems && currentStep > 1) {
-        setConversation((prevConversation) => [
-          ...prevConversation,
-          {
-            type: "chatbot",
-            text: questionAnswer?.answer,
-          },
-        ]);
-      }
+    } else if (selectedCategoryItems && currentStep > 1) {
+      setConversation((prev) => [
+        ...prev,
+        { type: "chatbot", text: questionAnswer?.answer },
+      ]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentStep, selectedCategoryItems]);
 
-  const minimizeChatbotHandler = () => {
-    const chatbotElement = chatbotRef.current;
-    const currentHeight = parseFloat(getComputedStyle(chatbotElement).height);
-    chatbotElement.style.height = currentHeight === 435 ? "0" : "435px";
-  };
   useEffect(() => {
-    // Scroll to the bottom of the chat body when the conversation changes
+    if (!chatbotRef.current) return;
     const chatBody = chatbotRef.current.querySelector(`.${styles.body}`);
-    chatBody.scrollTop = chatBody.scrollHeight;
+    if (chatBody) chatBody.scrollTop = chatBody.scrollHeight;
   }, [conversation]);
 
-  const sendMessageHandler = (e) => {
-    e.preventDefault();
-    const updatedConversation = [
-      ...conversation,
-      { type: "user", text: userMessage },
-    ];
-    setConversation(updatedConversation);
-    setUserMessage("");
-    setCurrentStep((prevStep) => prevStep + 1);
-  };
-
   return (
-    <div className={styles.container}>
+    <div
+      className={`${styles.container} ${minimized ? styles.minimized : ""}`}
+    >
       <div className={styles.header}>
-        <h2>Chat with us</h2>
+        <div className={styles.header_title}>
+          <span className={styles.avatar}>
+            <IoChatbubbleEllipsesOutline size={18} />
+          </span>
+          <div>
+            <h2>Green Assistant</h2>
+            <span className={styles.status}>● Online</span>
+          </div>
+        </div>
         <div className={styles.header_controls}>
-          <button onClick={minimizeChatbotHandler}>
-            <MdMinimize color="white" size={22} />
+          <button
+            onClick={() => setMinimized((m) => !m)}
+            aria-label="Minimize chat"
+          >
+            <MdMinimize color="white" size={18} />
           </button>
           <button
-            onClick={() => {
-              setIsChatbotOpen(false);
-            }}
+            onClick={() => setIsChatbotOpen(false)}
+            aria-label="Close chat"
           >
-            <MdClose color="white" size={22} />
+            <MdClose color="white" size={20} />
           </button>
         </div>
       </div>
-      <div className={styles.body_container} ref={chatbotRef}>
-        <div className={styles.body}>
-          {isTyping && <TypingAnimation />}
-          {conversation?.map((message, index) => (
-            <p
-              key={index}
-              className={
-                message.type === "chatbot"
-                  ? styles.chatbot_msg
-                  : styles.user_msg
-              }
-            >
-              {message.text}
-            </p>
-          ))}
-          <form onSubmit={sendMessageHandler}>
+
+      {!minimized && (
+        <div className={styles.body_container} ref={chatbotRef}>
+          <div className={styles.body}>
+            {conversation?.map((message, index) => (
+              <p
+                key={index}
+                className={
+                  message.type === "chatbot"
+                    ? styles.chatbot_msg
+                    : styles.user_msg
+                }
+              >
+                {message.text}
+              </p>
+            ))}
+            {isTyping && <TypingAnimation />}
+
             {isLoading ? (
-              <span class="loader"></span>
+              <span className={styles.spinner} />
             ) : (
               <div className={styles.choices}>
                 {show === "category"
                   ? categories?.map((answer, index) => (
-                      <div
+                      <button
+                        type="button"
                         onClick={() => handleCategoryClick(answer)}
                         key={index}
                         className={styles.choice}
                       >
-                        <label for={index}>{answer}</label>
-                      </div>
+                        {answer}
+                      </button>
                     ))
                   : selectedCategoryItems?.map((item, index) => (
-                      <div
+                      <button
+                        type="button"
                         onClick={() => handleQuestionClick(index)}
                         key={index}
                         className={styles.choice}
                       >
-                        <label for={index}>{item.question}</label>
-                      </div>
+                        {item.question}
+                      </button>
                     ))}
               </div>
             )}
-          </form>
+          </div>
         </div>
-        <form onSubmit={sendMessageHandler} className={styles.form}>
-          {/* <div className={styles.form_input_section}>
-            <input
-              type="text"
-              placeholder="Type here"
-              value={userMessage}
-              required
-              onChange={messageHandler}
-            />
-            <button type="submit">
-              <IoIosSend color="white" size={22} />
-            </button>
-          </div> */}
-        </form>
-      </div>
+      )}
     </div>
   );
 };

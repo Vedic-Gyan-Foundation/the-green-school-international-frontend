@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
+import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
 import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import styles from "./Admission.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Button from "../../components/Button/Button";
+import { fadeUp, inViewProps } from "../../utils/motion";
 
 const classOptions = [
   { value: "pre_nursery", label: "Pre Nursery" },
@@ -30,6 +30,57 @@ const classOptions = [
   { value: "class12_science", label: "Class 12 (Science)" },
 ];
 
+const ageBands = [
+  {
+    title: "Foundation",
+    age: "Age 3+ years",
+    detail: "as on 31st March of the year of admission",
+    color: "from-amber-400 to-orange-500",
+  },
+  {
+    title: "Junior",
+    age: "Age 4+ years",
+    detail: "as on 31st March of the year of admission",
+    color: "from-orange-500 to-rose-500",
+  },
+  {
+    title: "Senior",
+    age: "Age 5+ years",
+    detail: "as on 31st March of the year of admission",
+    color: "from-sky-500 to-blue-600",
+  },
+  {
+    title: "Grade 1",
+    age: "Age 6+ years",
+    detail: "as on 31st March of the year of admission",
+    color: "from-indigo-500 to-violet-700",
+  },
+];
+
+const documentsRequired = [
+  "One Copies of Passport Size Photographs of the child & one of each parent, duly affixed on the form.",
+  "Photocopy of the Birth Certificate issued by the Municipal/Civil Authorities",
+  "Photocopy of the latest Progress Report Card",
+  "Photocopy of Aadhar Card of student",
+  "Photocopy of Transfer Certificate issued by previous school. Transfer certificate to be signed by DEO if transferred from other states (Not Applicable for Pre primary classes)",
+  "Photocopy of residential proof (Copy of Aadhar Card/Passport).",
+  "Certificate issued by a registered medical practitioner capturing the details of vaccinations/immunizations underwent by the child. The school should also be informed about any existing ailments or health conditions if applicable.",
+  "PEN (Permanent Education Number) of the student issued from Previous school.",
+];
+
+const documentsOriginal = [
+  "Birth Certificate issued by MCD/Civic Authorities",
+  "Evidence of passing the last class or promotion to the present class",
+  "Proof of residence of the child (Ration Card/voter's ID/Passport)",
+];
+
+const admissionCriteria = [
+  "The selection of the candidates will depend upon the child's performance in the test/interview and availability of seats in the concerned class.",
+  "Assessment of the child for admission is also based on academic readiness and motivation, social and emotional development, family cooperation in working with the school and meeting the needs of the students, the ability of the school to fulfill the needs of the child.",
+  "The date of the result of the interview & the last date for the submission of fee will be specified at the time of the test/interview.",
+  "Based on the Admission Test and other criteria, the School reserves the right to admit any student who is found fit for admission or refuse admission without assigning any reason whatsoever. For all matters related to admissions, the decision of the School Head/Management will be final.",
+];
+
 const Admission = () => {
   const [admissionFormData, setAdmissionFormData] = useState({
     childname: "",
@@ -41,6 +92,7 @@ const Admission = () => {
     query: "",
   });
   const form = useRef(null);
+
   const admissionFormChangeHandler = (e) => {
     setAdmissionFormData({
       ...admissionFormData,
@@ -49,10 +101,19 @@ const Admission = () => {
     setError(e.target.parentNode.id, "");
   };
 
+  const setError = (id, error) => {
+    const element = document.getElementById(id);
+    if (!element) return;
+    const errorEl = element.getElementsByClassName(
+      "AdmissionFormErrorClass"
+    )[0];
+    if (errorEl) errorEl.innerHTML = error;
+  };
+
   const admissionFormSubmitHandler = (e) => {
     e.preventDefault();
     const admissionFormSubmitBtn = document.getElementById(
-      "admissionFormSubmitbtn",
+      "admissionFormSubmitbtn"
     );
 
     let flag = true;
@@ -66,56 +127,56 @@ const Admission = () => {
     const regName = /^[a-zA-Z ]*$/;
     const regEmail = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/;
 
-    if (childname.length == 0) {
+    if (childname.length === 0) {
       setError("childName", "*Child name cannot be empty");
       flag = false;
     }
-    if (childname.length < 3 && childname.length != 0) {
+    if (childname.length < 3 && childname.length !== 0) {
       setError("childName", "*Child name too short");
       flag = false;
     }
-    if (!regName.test(childname) && childname.length != 0) {
+    if (!regName.test(childname) && childname.length !== 0) {
       setError("childName", "*Please write a valid name");
       flag = false;
     }
-    if (fathername.length == 0) {
+    if (fathername.length === 0) {
       setError("fatherName", "*Father name cannot be empty");
       flag = false;
     }
-    if (fathername.length < 3 && fathername.length != 0) {
+    if (fathername.length < 3 && fathername.length !== 0) {
       setError("fatherName", "*Father name too short");
       flag = false;
     }
-    if (!regName.test(fathername) && fathername.length != 0) {
+    if (!regName.test(fathername) && fathername.length !== 0) {
       setError("fatherName", "*Please write a valid name");
       flag = false;
     }
-    if (whatsappnum.length != 10) {
+    if (whatsappnum.length !== 10) {
       setError("whatsappNum", "*Whatsapp number must be 10 digits");
       flag = false;
     }
-    if (classgr.length == 0) {
+    if (classgr.length === 0) {
       setError("classgr", "*Class cannot be empty");
       flag = false;
     }
-    if (email.length == 0) {
+    if (email.length === 0) {
       setError("email", "*Email id cannot be empty");
       flag = false;
     }
-    if (!regEmail.test(email) && email.length != 0) {
+    if (!regEmail.test(email) && email.length !== 0) {
       setError("email", "*Invalid Email");
       flag = false;
     }
-    if (address.length == 0) {
+    if (address.length === 0) {
       setError("address", "*Address cannot be empty");
       flag = false;
     }
-    if (query.length == 0) {
+    if (query.length === 0) {
       setError("query", "*Query cannot be empty");
       flag = false;
     }
 
-    if (flag == true) {
+    if (flag) {
       admissionFormSubmitBtn.disabled = true;
       admissionFormSubmitBtn.innerHTML = "Please Wait..";
       axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -130,9 +191,9 @@ const Admission = () => {
             email: admissionFormData.email,
             address: admissionFormData.address,
             query: admissionFormData.query,
-          },
+          }
         )
-        .then((response) => {
+        .then(() => {
           Swal.fire({
             icon: "success",
             title: "Form Submitted",
@@ -151,7 +212,7 @@ const Admission = () => {
             query: "",
           });
         })
-        .catch((error) => {
+        .catch(() => {
           Swal.fire({
             icon: "error",
             title: "Error",
@@ -172,22 +233,17 @@ const Admission = () => {
         });
     }
   };
-  const setError = (id, error) => {
-    const element = document.getElementById(id);
-    element.getElementsByClassName("AdmissionFormErrorClass")[0].innerHTML =
-      error;
-  };
 
   function ActionButton() {
     return (
-      <button className={styles.button_primary_submit}>
-        <a
-          href="https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf"
-          download="green-school-admission-form.pdf"
-        >
-          Download admission form
-        </a>
-      </button>
+      <a
+        href="https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf"
+        download="green-school-admission-form.pdf"
+        className={styles.download_btn}
+      >
+        <HiOutlineDocumentArrowDown size={20} />
+        Download Admission Form
+      </a>
     );
   }
 
@@ -195,149 +251,123 @@ const Admission = () => {
     <>
       <Header title="Admission" ActionButton={ActionButton} />
 
-      <div className={styles.admission_head}>
-        <h2>The Green School International</h2>
+      <motion.section
+        {...inViewProps}
+        variants={fadeUp}
+        className={styles.admission_head}
+      >
+        <span className="section-eyebrow">Begin your journey</span>
+        <h2>
+          The Green School{" "}
+          <span className="gradient-text">International</span>
+        </h2>
         <p>
-          Education is the passport to the future so create your passport today
-          by enrolling yourself in The Green School International
+          Education is the passport to the future — create your passport today
+          by enrolling at The Green School International.
         </p>
-      </div>
+      </motion.section>
 
-      <div className={styles.admission_details}>
-        <h2>Admission Details</h2>
-        <div className={styles.admission_details_head}>
-          <div
-            className={styles.admission_details_card}
-            style={{ backgroundColor: "#f7931e" }}
-          >
-            <h3>Foundation:</h3>
-            <p>Age 3+ years as on 31st March of the year of admission</p>
-          </div>
-          <div
-            className={styles.admission_details_card}
-            style={{ backgroundColor: "#d66a21" }}
-          >
-            <h3>Junior:</h3>
-            <p>Age 4+ years as on 31st March of the year of admission</p>
-          </div>
-          <div
-            className={styles.admission_details_card}
-            style={{ backgroundColor: "#0071bc" }}
-          >
-            <h3>Senior:</h3>
-            <p>Age 5+ years as on 31st March of the year of admission</p>
-          </div>
-          <div
-            className={styles.admission_details_card}
-            style={{ backgroundColor: "#3e4095" }}
-          >
-            <h3>Grade 1:</h3>
-            <p>Age 6+ years as on 31st March of the year of admission</p>
-          </div>
+      <section className={styles.admission_details}>
+        <div className={styles.section_header_left}>
+          <span className="section-eyebrow">Age Eligibility</span>
+          <h2>Admission details</h2>
         </div>
-      </div>
-      <div className={styles.admission_list}>
+        <div className={styles.admission_details_head}>
+          {ageBands.map((band, idx) => (
+            <motion.div
+              key={band.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: idx * 0.06 }}
+              whileHover={{ y: -6 }}
+              className={`${styles.admission_details_card} bg-gradient-to-br ${band.color}`}
+            >
+              <h3>{band.title}</h3>
+              <p className={styles.age_text}>{band.age}</p>
+              <span className={styles.age_detail}>{band.detail}</span>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      <motion.section
+        {...inViewProps}
+        variants={fadeUp}
+        className={styles.admission_list}
+      >
+        <h3>Documents to submit with the Registration Form</h3>
+        <ul>
+          {documentsRequired.map((doc, i) => (
+            <li key={i}>{doc}</li>
+          ))}
+        </ul>
+      </motion.section>
+
+      <motion.section
+        {...inViewProps}
+        variants={fadeUp}
+        className={styles.admission_list}
+      >
         <h3>
-          Students offered admission are required to submit the following
-          documents along with their Registration Forms:
+          Original documents to carry (returned post verification)
         </h3>
         <ul>
-          <li>
-            One Copies of Passport Size Photographs of the child & one of each
-            parent, duly affixed on the form.
-          </li>
-          <li>
-            Photocopy of the Birth Certificate issued by the Municipal/Civil
-            Authorities
-          </li>
-          <li>Photocopy of the latest Progress Report Card</li>
-          <li>Photocopy of Aadhar Card of student</li>
-          <li>
-            Photocopy of Transfer Certificate issued by previous school.
-            Transfer certificate to be signed by DEO if transferred from other
-            states (Not Applicable for Pre primary classes)
-          </li>
-          <li>Photocopy of residential poof (Copy of Aadhar Card/Passport).</li>
-          <li>
-            Certificate issued by a registered medical practitioner capturing
-            the details of vaccinations/immunizations underwent by the child.
-            The school should also be informed about any existing ailments or
-            health conditions if applicable.
-          </li>
-          <li>
-            PEN (Permanent Education Number) of the student issued from Previous
-            school.
-          </li>
+          {documentsOriginal.map((doc, i) => (
+            <li key={i}>{doc}</li>
+          ))}
         </ul>
-      </div>
-      <div className={styles.admission_list}>
-        <h3>
-          Parents are requested to carry the following Original Documents along,
-          which shall be duly returned post verification:
-        </h3>
-        <ul>
-          <li>Birth Certificate issued by MCD/Civic Authorities</li>
-          <li>
-            Evidence of passing the last class or promotion to the present class
-          </li>
-          <li>
-            Proof of residence of the child (Ration Card/ voter’s ID/Passport)
-          </li>
-        </ul>
-      </div>
-      <div className={styles.admission_list}>
-        <h3>Admission Criteria:</h3>
+      </motion.section>
+
+      <motion.section
+        {...inViewProps}
+        variants={fadeUp}
+        className={styles.admission_list}
+      >
+        <h3>Admission criteria</h3>
         <p>
-          There is no written admission test for junior classes (No interview
-          till class II), but for Grade III onwards, the child has to take an
+          There is no written admission test for junior classes (no interview
+          till Class II), but for Grade III onwards, the child has to take an
           interview & a written test. For Grades below III, an informal
           interaction/interview shall be conducted. The test will be held for
           English, Mathematics and/or any other subject which may be considered
           necessary.
         </p>
-        <ul style={{ width: "100%" }}>
-          <li>
-            The selection of the candidates will depend upon the child’s
-            performance in the test/interview and availability of seats in the
-            concerned class.
-          </li>
-          <li>
-            Assessment of the child for admission is also based on academic
-            readiness and motivation, social and emotional development, family
-            cooperation in working with the school and meeting the needs of the
-            students, the ability of the school to fulfill the needs of the
-            child
-          </li>
-          <li>
-            The date of the result of the interview & the last date for the
-            submission of fee will be specified at the time of the
-            test/interview
-          </li>
-          <li>
-            Based on the Admission Test and other criteria, the School reserves
-            the right to admit any student who is found fit for admission or
-            refuse admission without assigning any reason whatsoever. For all
-            matters related to admissions, the decision of the School
-            Head/Management will be final.
-          </li>
+        <ul>
+          {admissionCriteria.map((criteria, i) => (
+            <li key={i}>{criteria}</li>
+          ))}
         </ul>
-      </div>
-      <div className={styles.admission_list}>
-        <h3>For more Information:</h3>
+      </motion.section>
+
+      <motion.section
+        {...inViewProps}
+        variants={fadeUp}
+        className={styles.admission_list}
+      >
+        <h3>For more information</h3>
         <p>
           Our Admission Team is ready to work with you on processing your
-          child’s application to The Greenschool International Guwahati and to
-          get you started on their path to success. If questions pertaining to
-          any of the admission policies or procedures arise, please do not
-          hesitate to call or e-mail the Admissions Office of the respective
-          branch.
+          child&apos;s application to The Green School International, Guwahati
+          and to get you started on their path to success. If you have
+          questions about admission policies or procedures, please call or
+          e-mail the Admissions Office of the respective branch.
         </p>
-      </div>
+      </motion.section>
 
-      <div className={styles.admission_form}>
-        <h2>
-          <span>Admission</span> <span>Query</span> <span>Form</span>
-        </h2>
+      <motion.section
+        {...inViewProps}
+        variants={fadeUp}
+        className={styles.admission_form}
+      >
+        <div className={styles.form_header}>
+          <span className="section-eyebrow">Admission Query</span>
+          <h2>Tell us about your child</h2>
+          <p>
+            Fill out the form below — our admissions team will reach out
+            shortly.
+          </p>
+        </div>
         <form
           ref={form}
           onSubmit={admissionFormSubmitHandler}
@@ -393,7 +423,11 @@ const Admission = () => {
                 <button
                   type="button"
                   key={opt.value}
-                  className={`${styles.classOption} ${admissionFormData.class === opt.value ? styles.classOptionSelected : ""}`}
+                  className={`${styles.classOption} ${
+                    admissionFormData.class === opt.value
+                      ? styles.classOptionSelected
+                      : ""
+                  }`}
                   onClick={() => {
                     setAdmissionFormData({
                       ...admissionFormData,
@@ -432,6 +466,7 @@ const Admission = () => {
           </div>
           <div id="submit" className={styles.form_item}>
             <button
+              type="submit"
               className={styles.button_primary_submit}
               id="admissionFormSubmitbtn"
             >
@@ -439,7 +474,7 @@ const Admission = () => {
             </button>
           </div>
         </form>
-      </div>
+      </motion.section>
     </>
   );
 };
