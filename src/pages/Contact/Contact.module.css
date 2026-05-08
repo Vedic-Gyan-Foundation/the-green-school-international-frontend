@@ -137,36 +137,6 @@
   filter: saturate(1.15) contrast(1.04);
 }
 
-/* Top-right "Open in Google Maps" pill */
-.map_open_btn {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.96);
-  color: #08703d;
-  font-weight: 600;
-  font-size: 0.78rem;
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  box-shadow: 0 8px 20px -6px rgba(8, 112, 61, 0.25),
-    0 0 0 1px rgba(8, 112, 61, 0.08);
-  backdrop-filter: blur(8px);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.25s ease, color 0.25s ease;
-  z-index: 2;
-}
-.map_open_btn:hover {
-  transform: translateY(-2px);
-  color: #0e3302;
-  box-shadow: 0 14px 28px -8px rgba(8, 112, 61, 0.35),
-    0 0 0 1px rgba(8, 112, 61, 0.18);
-}
-
 /* Floating place card */
 .map_card {
   position: absolute;
@@ -402,12 +372,6 @@
   }
   .map_frame iframe {
     min-height: 360px;
-  }
-  .map_open_btn {
-    top: 10px;
-    right: 10px;
-    padding: 0.45rem 0.7rem;
-    font-size: 0.7rem;
   }
   .map_card {
     left: 10px;

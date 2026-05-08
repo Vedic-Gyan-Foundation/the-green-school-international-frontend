@@ -5,7 +5,7 @@ import Header from "../../components/Header/Header";
 import { MdLocationPin } from "react-icons/md";
 import { AiFillPhone } from "react-icons/ai";
 import { BsFillEnvelopeFill } from "react-icons/bs";
-import { HiArrowTopRightOnSquare, HiOutlineMapPin } from "react-icons/hi2";
+import { HiOutlineMapPin } from "react-icons/hi2";
 import { FaDirections } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -191,17 +191,6 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-
-            {/* Top-right "Open in Google Maps" pill */}
-            <a
-              href="https://maps.google.com/?q=The+Green+School+International+Guwahati"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.map_open_btn}
-            >
-              <HiArrowTopRightOnSquare size={14} />
-              Open in Google Maps
-            </a>
 
             {/* Floating place card */}
             <div className={styles.map_card}>
