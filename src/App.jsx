@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import {
   BrowserRouter,
@@ -6,14 +6,14 @@ import {
   Route,
   useLocation,
 } from "react-router-dom";
-import Chatbot from "./components/Chatbot/Chatbot";
+// import Chatbot from "./components/Chatbot/Chatbot";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SocialLinks from "./components/SocialLinks/SocialLinks";
 import Loader from "./components/Loader/Loader";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
+// import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
@@ -47,10 +47,10 @@ function ScrollToTop() {
 }
 
 const App = () => {
-  const [isChatbotOpen, setIsChatbotOpen] = useState(false);
-  const toggleChatbot = () => {
-    setIsChatbotOpen(true);
-  };
+  // Chatbot state — re-enable along with the JSX block below when wiring the
+  // backend back in.
+  // const [isChatbotOpen, setIsChatbotOpen] = useState(false);
+  // const toggleChatbot = () => setIsChatbotOpen(true);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -65,6 +65,8 @@ const App = () => {
     <>
       <BrowserRouter>
         <ScrollToTop />
+        {/* Chatbot temporarily hidden until backend is wired up.
+            Uncomment to re-enable the floating "Chat with us" button.
         <div className="chatbot_container">
           {isChatbotOpen ? (
             <div className="chatbot">
@@ -81,6 +83,7 @@ const App = () => {
             </button>
           )}
         </div>
+        */}
         <Navbar />
         <Suspense fallback={<Loader />}>
           <Routes>
