@@ -120,8 +120,20 @@
   border-radius: 14px;
   padding: 8px;
   display: none;
-  overflow: hidden;
-  margin-top: 6px;
+  margin-top: 10px;
+}
+
+/* Invisible bridge that keeps :hover continuous as the cursor crosses
+   the gap between the trigger and the dropdown panel. Without this,
+   the dropdown disappears before the cursor reaches it. */
+.dropdown::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
+  background: transparent;
 }
 
 .dropdown_scroll {
@@ -262,10 +274,6 @@
 :global(.group):hover .dropdown {
   display: block;
   animation: dropdownIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-}
-/* Keep dropdown open while hovering it (covers mouse-traveling gap) */
-.dropdown:hover {
-  display: block;
 }
 
 @keyframes dropdownIn {
