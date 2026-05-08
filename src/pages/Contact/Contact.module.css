@@ -108,17 +108,163 @@
 }
 
 .contactus_map {
+  position: relative;
+}
+
+.map_frame {
+  position: relative;
   border-radius: 24px;
   overflow: hidden;
-  background: white;
-  border: 1px solid rgba(8, 112, 61, 0.08);
-  box-shadow: 0 25px 50px -25px rgba(8, 112, 61, 0.25);
+  background: linear-gradient(
+    135deg,
+    rgba(8, 112, 61, 0.08) 0%,
+    rgba(234, 190, 97, 0.1) 100%
+  );
+  padding: 6px;
+  box-shadow: 0 25px 50px -25px rgba(8, 112, 61, 0.3);
+  isolation: isolate;
 }
-.contactus_map iframe {
+.map_frame iframe {
   width: 100%;
   min-height: 480px;
   display: block;
   border: none;
+  border-radius: 18px;
+  filter: saturate(1.05) contrast(1.02);
+  transition: filter 0.4s ease;
+}
+.map_frame:hover iframe {
+  filter: saturate(1.15) contrast(1.04);
+}
+
+/* Top-right "Open in Google Maps" pill */
+.map_open_btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.96);
+  color: #08703d;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 20px -6px rgba(8, 112, 61, 0.25),
+    0 0 0 1px rgba(8, 112, 61, 0.08);
+  backdrop-filter: blur(8px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease, color 0.25s ease;
+  z-index: 2;
+}
+.map_open_btn:hover {
+  transform: translateY(-2px);
+  color: #0e3302;
+  box-shadow: 0 14px 28px -8px rgba(8, 112, 61, 0.35),
+    0 0 0 1px rgba(8, 112, 61, 0.18);
+}
+
+/* Floating place card */
+.map_card {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 18px;
+  padding: 1rem 1.1rem;
+  box-shadow: 0 18px 40px -10px rgba(8, 112, 61, 0.3),
+    0 0 0 1px rgba(8, 112, 61, 0.06);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  z-index: 2;
+  max-width: 420px;
+}
+
+.map_card_head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+.map_card_pin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #08703d 0%, #0e3302 100%);
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 8px 16px -6px rgba(8, 112, 61, 0.45);
+}
+.map_card_text {
+  flex: 1;
+  min-width: 0;
+}
+.map_card_name {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0e3302;
+  line-height: 1.25;
+  margin: 0;
+}
+.map_card_addr {
+  font-size: 0.78rem;
+  color: #525a6e;
+  line-height: 1.4;
+  margin: 4px 0 0;
+}
+
+.map_card_actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.map_action_primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #08703d 0%, #0e3302 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.01em;
+  box-shadow: 0 8px 18px -8px rgba(8, 112, 61, 0.55);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s ease;
+}
+.map_action_primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 25px -8px rgba(8, 112, 61, 0.65);
+}
+.map_action_secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  background: white;
+  color: #08703d;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.8rem;
+  border: 1px solid rgba(8, 112, 61, 0.18);
+  transition: background-color 0.25s ease, border-color 0.25s ease,
+    transform 0.25s ease;
+}
+.map_action_secondary:hover {
+  background: #f0faf3;
+  border-color: rgba(8, 112, 61, 0.4);
+  transform: translateY(-2px);
 }
 
 /* Form */
@@ -237,8 +383,8 @@
     grid-template-columns: 1fr;
     padding-inline: 1.5rem;
   }
-  .contactus_map iframe {
-    min-height: 380px;
+  .map_frame iframe {
+    min-height: 420px;
   }
 }
 @media screen and (max-width: 700px) {
@@ -253,5 +399,30 @@
   .form_grid {
     grid-template-columns: 1fr;
     padding: 1.5rem;
+  }
+  .map_frame iframe {
+    min-height: 360px;
+  }
+  .map_open_btn {
+    top: 10px;
+    right: 10px;
+    padding: 0.45rem 0.7rem;
+    font-size: 0.7rem;
+  }
+  .map_card {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    padding: 0.85rem;
+    border-radius: 14px;
+  }
+  .map_card_actions {
+    flex-wrap: wrap;
+  }
+  .map_card_name {
+    font-size: 0.88rem;
+  }
+  .map_card_addr {
+    font-size: 0.72rem;
   }
 }
