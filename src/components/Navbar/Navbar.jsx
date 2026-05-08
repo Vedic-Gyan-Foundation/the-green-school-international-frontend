@@ -20,6 +20,7 @@ import { FaTrophy, FaSeedling, FaPrayingHands, FaRunning } from "react-icons/fa"
 import { HashLink } from "react-router-hash-link";
 import { SportsInfraUtil } from "../../utils/sports_infra";
 import { sortAlphabetically } from "../../utils/helper";
+import { downloadFile } from "../../utils/download";
 
 const sportsInfraListItems = sortAlphabetically(
   SportsInfraUtil.getProcessedList(),
@@ -51,13 +52,7 @@ const Navbar = () => {
   }, [navdropOpen]);
 
   function handleDownloadPDF(fileURL) {
-    const a = document.createElement("a");
-    a.href = fileURL;
-    a.target = "_blank";
-    a.rel = "noopener noreferrer";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    downloadFile(fileURL);
   }
 
   function handleSubMenuToggle(subMenuFor) {

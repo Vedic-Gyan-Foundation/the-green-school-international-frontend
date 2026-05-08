@@ -3,6 +3,7 @@ import { HiOutlineMagnifyingGlass } from "react-icons/hi2";
 import { HiOutlineDownload } from "react-icons/hi";
 import Header from "../../components/Header/Header";
 import TransferCertificateUtils from "../../utils/transfer_certificates";
+import { downloadFile } from "../../utils/download";
 
 function TransferCertificates() {
   const [query, setQuery] = useState("");
@@ -95,15 +96,14 @@ function TransferCertificates() {
                       {row.name}
                     </td>
                     <td className="px-4 py-3 text-right align-middle">
-                      <a
-                        href={row.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-br from-brand-700 to-brand-900 text-white text-xs font-semibold shadow-[0_8px_18px_-8px_rgba(8,112,61,0.55)] hover:-translate-y-0.5 transition-transform"
+                      <button
+                        type="button"
+                        onClick={() => downloadFile(row.url, `${row.fileName}.pdf`)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gradient-to-br from-brand-700 to-brand-900 text-white text-xs font-semibold shadow-[0_8px_18px_-8px_rgba(8,112,61,0.55)] hover:-translate-y-0.5 transition-transform cursor-pointer"
                       >
                         <HiOutlineDownload size={14} />
                         Download
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))

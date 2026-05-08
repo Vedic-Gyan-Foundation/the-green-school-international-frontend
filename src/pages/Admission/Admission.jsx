@@ -6,6 +6,7 @@ import styles from "./Admission.module.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { fadeUp, inViewProps } from "../../utils/motion";
+import { downloadFile } from "../../utils/download";
 
 const classOptions = [
   { value: "pre_nursery", label: "Pre Nursery" },
@@ -241,14 +242,19 @@ const Admission = () => {
 
   function ActionButton() {
     return (
-      <a
-        href="https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf"
-        download="green-school-admission-form.pdf"
+      <button
+        type="button"
         className={styles.download_btn}
+        onClick={() =>
+          downloadFile(
+            "https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf",
+            "green-school-admission-form.pdf"
+          )
+        }
       >
         <HiOutlineDocumentArrowDown size={20} />
         Download Admission Form
-      </a>
+      </button>
     );
   }
 

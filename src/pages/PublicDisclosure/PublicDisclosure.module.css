@@ -72,12 +72,15 @@
   display: inline-flex;
   align-items: center;
   padding: 0.4rem 0.85rem;
+  border: none;
   border-radius: 999px;
   background: linear-gradient(135deg, #08703d 0%, #0e3302 100%);
   color: white !important;
   font-weight: 600;
   font-size: 0.82rem;
   text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   white-space: nowrap;
 }

@@ -1,5 +1,6 @@
 import Header from "../../components/Header/Header";
 import styles from "./PublicDisclosure.module.css";
+import { downloadFile } from "../../utils/download";
 
 const Section = ({ id, title, letter, children }) => (
   <section className={styles.section} id={id}>
@@ -12,6 +13,17 @@ const Section = ({ id, title, letter, children }) => (
 );
 
 const DownloadLink = ({ href, label = "Click to Download" }) => (
+  <button
+    type="button"
+    onClick={() => downloadFile(href)}
+    className={styles.download_link}
+  >
+    {label}
+  </button>
+);
+
+// External link (e.g. YouTube) — opens in a new tab instead of downloading
+const ViewLink = ({ href, label = "Click to View" }) => (
   <a
     href={href}
     rel="noreferrer"
@@ -231,7 +243,7 @@ const PublicDisclosure = () => {
               <tr>
                 <td>Link of YouTube video of the inspection of school</td>
                 <td>
-                  <DownloadLink
+                  <ViewLink
                     href="https://youtu.be/xflXKP24fjY"
                     label="Click to View"
                   />
