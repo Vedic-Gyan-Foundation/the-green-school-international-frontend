@@ -3,7 +3,9 @@ import Header from "../../components/Header/Header";
 import { SportsInfraUtil } from "../../utils/sports_infra";
 import { sortAlphabetically } from "../../utils/helper";
 import ContactUsBanner from "../../components/ContactUsBanner/ContactUsBanner";
+import SEO from "../../components/SEO/SEO";
 import { fadeUp, fadeRight, fadeLeft, inViewProps } from "../../utils/motion";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 const sportsInfraList = sortAlphabetically(
   SportsInfraUtil.getProcessedList(),
@@ -13,6 +15,16 @@ const sportsInfraList = sortAlphabetically(
 function SportsInfra() {
   return (
     <>
+      <SEO
+        title="Sports Infrastructure"
+        description="Astroturf football and cricket grounds, Olympic-grade swimming pools, basketball, badminton, taekwondo, and more — explore world-class sports facilities at The Green School International."
+        path="/sportsinfra"
+        keywords="best school sports facilities Guwahati, astroturf football school, swimming pool school Guwahati, sports infrastructure CBSE school"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Sports Infra", path: "/sportsinfra" },
+        ])}
+      />
       <Header title="Sports Infra" />
       <section className="max-w-[1300px] mx-auto px-5 sm:px-10 py-16 sm:py-20">
         <motion.div

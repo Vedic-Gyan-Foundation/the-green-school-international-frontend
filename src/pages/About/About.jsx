@@ -6,7 +6,9 @@ import logo from "/assets/logo.png";
 import History from "../../components/About/History";
 import ConceptOfGreenSchool from "../../components/About/ConceptOfGreenSchool";
 import ContactUsBanner from "../../components/ContactUsBanner/ContactUsBanner";
+import SEO from "../../components/SEO/SEO";
 import { fadeUp, fadeRight, fadeLeft, inViewProps } from "../../utils/motion";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 const sanskarValues = [
   ["Respect", "Samman", "सम्मान"],
@@ -66,6 +68,16 @@ const profiles = [
 const About = () => {
   return (
     <>
+      <SEO
+        title="About Our School"
+        description="Learn about The Green School International — a CBSE-affiliated school nestled in the green hills of Guwahati. Our history, mission, vision, Sanskar values, and the leaders behind the school."
+        path="/about"
+        keywords="about Green School International, school history Guwahati, mission vision Green School, Sanskar values, CBSE school principal Guwahati"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Our School", path: "/about" },
+        ])}
+      />
       <Header title="About Our School" />
       <div className={styles.about_container}>
         {/* Intro */}

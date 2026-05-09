@@ -82,7 +82,7 @@ const SlidingBanner = () => {
               )}
               <img
                 src={banner.desktopImg}
-                alt={`Banner ${index + 1}`}
+                alt={`The Green School International — banner ${index + 1}`}
                 className="w-full h-full object-cover transform-gpu scale-100 transition-transform duration-[6000ms] ease-out hover:scale-105"
                 loading={index === 0 ? "eager" : "lazy"}
               />

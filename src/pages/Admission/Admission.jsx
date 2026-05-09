@@ -7,6 +7,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { fadeUp, inViewProps } from "../../utils/motion";
 import { downloadFile } from "../../utils/download";
+import SEO from "../../components/SEO/SEO";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 const classOptions = [
   { value: "pre_nursery", label: "Pre Nursery" },
@@ -260,6 +262,16 @@ const Admission = () => {
 
   return (
     <>
+      <SEO
+        title="Admissions 2026-27"
+        description="Apply for admission to The Green School International, Guwahati. CBSE-affiliated. Pre-Nursery to Class 12. Download the admission form, view eligibility criteria and required documents."
+        path="/admission"
+        keywords="Green School Guwahati admission, CBSE admission Guwahati 2026, school admission Sarusajai, K-12 admission Assam, school registration form download"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Admissions", path: "/admission" },
+        ])}
+      />
       <Header title="Admission" ActionButton={ActionButton} />
 
       <motion.section

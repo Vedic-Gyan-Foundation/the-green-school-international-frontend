@@ -4,6 +4,8 @@ import { HiOutlineDownload } from "react-icons/hi";
 import Header from "../../components/Header/Header";
 import TransferCertificateUtils from "../../utils/transfer_certificates";
 import { downloadFile } from "../../utils/download";
+import SEO from "../../components/SEO/SEO";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 function TransferCertificates() {
   const [query, setQuery] = useState("");
@@ -27,6 +29,16 @@ function TransferCertificates() {
 
   return (
     <div>
+      <SEO
+        title="Transfer Certificates"
+        description="Download student transfer certificates issued by The Green School International, Guwahati."
+        path="/transfer-certificates"
+        noIndex
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Transfer Certificates", path: "/transfer-certificates" },
+        ])}
+      />
       <Header title="Transfer Certificates" />
       <div className="max-w-[1100px] mx-auto px-5 sm:px-8 py-12 sm:py-16">
         <div className="flex flex-col gap-3 mb-6">

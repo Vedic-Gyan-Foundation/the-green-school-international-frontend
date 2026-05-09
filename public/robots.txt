@@ -1,0 +1,20 @@
+# https://www.greenschoolguwahati.com/robots.txt
+User-agent: *
+Allow: /
+Disallow: /transfer-certificates
+
+# Block AI scrapers if you don't want them training on the school's content.
+# Comment these out to allow them.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://www.greenschoolguwahati.com/sitemap.xml

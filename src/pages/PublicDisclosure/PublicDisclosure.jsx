@@ -1,6 +1,8 @@
 import Header from "../../components/Header/Header";
 import styles from "./PublicDisclosure.module.css";
 import { downloadFile } from "../../utils/download";
+import SEO from "../../components/SEO/SEO";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 const Section = ({ id, title, letter, children }) => (
   <section className={styles.section} id={id}>
@@ -37,6 +39,16 @@ const ViewLink = ({ href, label = "Click to View" }) => (
 const PublicDisclosure = () => {
   return (
     <>
+      <SEO
+        title="Public Disclosure · Mandatory CBSE Documents"
+        description="Mandatory public disclosure documents of The Green School International, Guwahati. CBSE affiliation, NOC, fee structure, results, staff details, and infrastructure information."
+        path="/publicdisclosure"
+        keywords="CBSE public disclosure Green School Guwahati, school affiliation NOC, mandatory disclosure CBSE, fee structure"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Public Disclosure", path: "/publicdisclosure" },
+        ])}
+      />
       <Header title="Public Disclosure" />
       <div className={styles.publicdisclosure}>
         <div className={styles.intro}>

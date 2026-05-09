@@ -9,6 +9,8 @@ import videoLinks from "./videoLinks.json";
 import { FaPlay } from "react-icons/fa";
 import { HiXMark, HiOutlinePhoto, HiOutlineFilm } from "react-icons/hi2";
 import { HiOutlineDownload } from "react-icons/hi";
+import SEO from "../../components/SEO/SEO";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 const Gallery = () => {
   const baseApi = "https://api.greenschoolguwahati.com";
@@ -78,6 +80,16 @@ const Gallery = () => {
 
   return (
     <>
+      <SEO
+        title="Gallery"
+        description="Awards, Teachers' Day celebrations, sports days, cultural events and life on campus — moments captured at The Green School International, Guwahati."
+        path="/gallery"
+        keywords="Green School International photos, Guwahati school events, school gallery, school awards Assam"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Gallery", path: "/gallery" },
+        ])}
+      />
       <Header title="Gallery" className="gallery" />
 
       <div className={styles.gallery_images}>

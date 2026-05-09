@@ -3,6 +3,8 @@ import styles from "./ThreeSFormula.module.css";
 import Header from "../../components/Header/Header";
 import { fadeUp, fadeRight, fadeLeft, inViewProps } from "../../utils/motion";
 import ContactUsBanner from "../../components/ContactUsBanner/ContactUsBanner";
+import SEO from "../../components/SEO/SEO";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 const cards = [
   {
@@ -40,6 +42,16 @@ const cards = [
 const ThreeSFormula = () => {
   return (
     <>
+      <SEO
+        title="3S Formula — Sports, Sanskar & Sustainability"
+        description="The 3S Formula is The Green School International's holistic education blueprint. Learn how Sports, Sanskar (values), and Sustainability shape every Eco Champ."
+        path="/threesformula"
+        keywords="3S Formula, holistic education, Sports Sanskar Sustainability, value-based education, Indian school philosophy"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "3S Formula", path: "/threesformula" },
+        ])}
+      />
       <Header title="The 3S Formula" />
       <section className={styles.container}>
         <motion.div

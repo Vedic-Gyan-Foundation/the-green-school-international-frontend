@@ -3,6 +3,8 @@ import "./BlogPage.css";
 import { useParams, Link } from "react-router-dom";
 import { HiArrowLongLeft } from "react-icons/hi2";
 import staticBlogs from "../../data/staticBlogs";
+import SEO from "../../components/SEO/SEO";
+import { articleSchema } from "../../utils/seoSchemas";
 
 const BlogPage = () => {
   const [article, setArticle] = useState({});
@@ -51,8 +53,34 @@ const BlogPage = () => {
     };
   }, [id]);
 
+  // Strip HTML for description
+  const articleDescription = article?.content
+    ? article.content
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 160)
+    : undefined;
+
   return (
     <div className="min-h-screen bg-white">
+      {article?.title && (
+        <SEO
+          title={article.title}
+          description={articleDescription}
+          image={article.cover_image}
+          path={`/article/${id}`}
+          type="article"
+          jsonLd={articleSchema({
+            title: article.title,
+            description: articleDescription,
+            image: article.cover_image,
+            datePublished: article.created_at,
+            author: article.author,
+            path: `/article/${id}`,
+          })}
+        />
+      )}
       <article className="w-full mx-auto bg-white">
         {/* Cover */}
         <div className="relative w-full h-[420px] md:h-[360px] sm:h-[280px] overflow-hidden bg-brand-950">

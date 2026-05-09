@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styles from "./PrivacyPolicy.module.css";
 import Header from "../../components/Header/Header";
+import SEO from "../../components/SEO/SEO";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
@@ -9,6 +10,11 @@ const PrivacyPolicy = () => {
 
   return (
     <>
+      <SEO
+        title="Privacy Policy"
+        description="Privacy policy of The Green School International — how we collect, use, and protect your personal data."
+        path="/privacy-policy"
+      />
       <Header title="Privacy Policy" />
       <div className={styles.container}>
         <div className={styles.intro}>

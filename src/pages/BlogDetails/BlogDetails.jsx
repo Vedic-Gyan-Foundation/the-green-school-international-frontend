@@ -5,6 +5,8 @@ import Header from "../../components/Header/Header";
 import styles from "./BlogDetails.module.css";
 import Loader from "../../components/Loader/Loader";
 import staticBlogs from "../../data/staticBlogs";
+import SEO from "../../components/SEO/SEO";
+import { articleSchema } from "../../utils/seoSchemas";
 
 const BlogDetails = () => {
   const [blog, setBlog] = useState({});
@@ -141,10 +143,33 @@ const BlogDetails = () => {
     return elements;
   };
 
+  // Quick text-derived description: first sentence (or 160-char excerpt)
+  const blogDescription = blog?.content
+    ? blog.content
+        .replace(/\s+/g, " ")
+        .split(/[.!?]/)[0]
+        .trim()
+        .slice(0, 160)
+    : undefined;
+
   return (
     <>
       {Object.keys(blog).length > 0 ? (
         <>
+          <SEO
+            title={blog.title}
+            description={blogDescription}
+            image={blog.banner}
+            path={`/blogdetails/${id}`}
+            type="article"
+            jsonLd={articleSchema({
+              title: blog.title,
+              description: blogDescription,
+              image: blog.banner,
+              datePublished: blog.created_at || new Date().toISOString(),
+              path: `/blogdetails/${id}`,
+            })}
+          />
           <Header title={"Blogs"} />
           <article className={styles.blog_section}>
             <Link to="/blogs" className={styles.back_link}>
@@ -160,7 +185,7 @@ const BlogDetails = () => {
               <div className={styles.blog_image_wrap}>
                 <img
                   src={blog.banner}
-                  alt=""
+                  alt={blog.title || "Blog cover"}
                   className={styles.blog_image}
                 />
               </div>

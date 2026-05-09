@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import styles from "./TermsAndConditions.module.css";
 import Header from "../../components/Header/Header";
+import SEO from "../../components/SEO/SEO";
 
 const TermsAndConditions = () => {
   useEffect(() => {
@@ -9,6 +10,11 @@ const TermsAndConditions = () => {
 
   return (
     <>
+      <SEO
+        title="Terms and Conditions"
+        description="Terms and Conditions governing the use of The Green School International website."
+        path="/terms-and-conditions"
+      />
       <Header title="Terms and Conditions" />
       <div className={styles.terms_container}>
         <div className={styles.terms_intro}>

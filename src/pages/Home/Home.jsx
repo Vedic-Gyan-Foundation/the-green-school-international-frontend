@@ -9,7 +9,9 @@ import WhyChooseUs from "../../components/Home/WhyChooseUs";
 import Highlights from "../../components/Home/Highlights";
 import ContactUsBanner from "../../components/ContactUsBanner/ContactUsBanner";
 import Button from "../../components/Button/Button";
+import SEO from "../../components/SEO/SEO";
 import { fadeUp, inViewProps } from "../../utils/motion";
+import { schoolSchema } from "../../utils/seoSchemas";
 
 const stats = [
   { value: "2018", label: "Founded", icon: MdOutlineSchool },
@@ -45,6 +47,13 @@ const pillars = [
 const Home = () => {
   return (
     <>
+      <SEO
+        title="Best CBSE School in Guwahati"
+        description="The Green School International — a CBSE-affiliated K-12 school in Sarusajai, Guwahati. Founded 2018. World-class sports facilities, Sanskar values, and sustainability-focused education."
+        path="/"
+        keywords="best CBSE school in Guwahati, top schools in Guwahati, school in Sarusajai, K-12 school Assam, eco-friendly school, Green School International, 3S Formula"
+        jsonLd={schoolSchema}
+      />
       <SlidingBanner />
 
       <div className={styles.container}>

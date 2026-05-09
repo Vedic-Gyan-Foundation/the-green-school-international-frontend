@@ -50,7 +50,7 @@ const Highlights = () => {
             className={styles.highlight_card}
           >
             <div className={styles.icon_wrap}>
-              <img src={item.icon} alt="" loading="lazy" />
+              <img src={item.icon} alt={`${item.title} icon`} loading="lazy" />
             </div>
             <h4>{item.title}</h4>
             <p>{item.desc}</p>

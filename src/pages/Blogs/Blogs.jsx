@@ -4,6 +4,8 @@ import styles from "./Blogs.module.css";
 import Header from "../../components/Header/Header";
 import staticBlogs from "../../data/staticBlogs";
 import Loader from "../../components/Loader/Loader";
+import SEO from "../../components/SEO/SEO";
+import { breadcrumbSchema } from "../../utils/seoSchemas";
 
 const Blogs = () => {
   const [articles, setArticles] = useState([]);
@@ -36,6 +38,16 @@ const Blogs = () => {
 
   return (
     <>
+      <SEO
+        title="Blogs · Insights from The Green School"
+        description="Educational insights, school updates, and reflections from The Green School International. Study tips, STEM education, achievements, and more."
+        path="/blogs"
+        keywords="school blog Guwahati, education insights, study tips, STEM education, school achievements"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Blogs", path: "/blogs" },
+        ])}
+      />
       <Header title={"Blogs"} />
       <div className={styles.blogs_container}>
         <div className={styles.blogs_header}>

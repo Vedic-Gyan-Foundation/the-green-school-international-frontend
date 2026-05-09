@@ -23,7 +23,7 @@ const BlogCard = ({ id, image, title, author, readTime, postedOn }) => {
         <img
           src={imgSrc}
           className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-out"
-          alt={`blog-${id}`}
+          alt={title || "Blog post"}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-900/60 via-transparent to-transparent opacity-70" />

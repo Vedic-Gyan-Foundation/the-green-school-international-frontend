@@ -10,6 +10,8 @@ import { FaDirections } from "react-icons/fa";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { fadeUp, inViewProps } from "../../utils/motion";
+import SEO from "../../components/SEO/SEO";
+import { contactPageSchema } from "../../utils/seoSchemas";
 
 const Contact = () => {
   const [contactData, setContactData] = useState({
@@ -126,6 +128,13 @@ const Contact = () => {
 
   return (
     <>
+      <SEO
+        title="Contact Us"
+        description="Get in touch with The Green School International, Guwahati. Mahapurush Madhabdev Path, Sarusajai. Phone: +91 9387130617. Email: thegreenschoolinternational@gmail.com"
+        path="/contact"
+        keywords="contact Green School International, school address Sarusajai Guwahati, school phone Guwahati, school email"
+        jsonLd={contactPageSchema}
+      />
       <Header title="Contact Us" />
 
       <motion.section
