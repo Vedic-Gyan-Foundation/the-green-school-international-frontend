@@ -101,7 +101,7 @@ class SportsInfraUtil {
         title: item.title,
         description: item.description,
         titleLogo: `/assets/SportsInfra/svg/${formattedTitle}.svg`,
-        descriptionImg: `/assets/SportsInfra/jpg/${formattedTitle}.JPG`,
+        descriptionImg: `/assets/SportsInfra/jpg/${formattedTitle}.jpeg`,
       };
     });
   }
