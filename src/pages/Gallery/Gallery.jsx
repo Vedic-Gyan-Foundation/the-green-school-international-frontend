@@ -19,6 +19,7 @@ const Gallery = () => {
   const defaultCaption = {
     title: "Green School Moments",
     subtitle: "Life at The Green School International",
+    isVisible: false
   };
 
   useEffect(() => {
@@ -26,7 +27,7 @@ const Gallery = () => {
       .get(`${baseApi}/api/get-images`, {
         headers: { "Content-Type": "application/json" },
       })
-      .then((response) => {
+      .then((response) => {        
         setGalleryList([...response.data.imgPath]);
       });
   }, []);
