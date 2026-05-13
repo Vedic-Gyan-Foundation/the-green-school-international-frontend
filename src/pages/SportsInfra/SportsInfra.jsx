@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import Header from "../../components/Header/Header";
 import { SportsInfraUtil } from "../../utils/sports_infra";
 import { sortAlphabetically } from "../../utils/helper";
+import ContactUsBanner from "../../components/ContactUsBanner/ContactUsBanner";
+import { fadeUp, fadeRight, fadeLeft, inViewProps } from "../../utils/motion";
 
 const sportsInfraList = sortAlphabetically(
   SportsInfraUtil.getProcessedList(),
@@ -13,95 +14,99 @@ function SportsInfra() {
   return (
     <>
       <Header title="Sports Infra" />
-      <section className="sm:m-16 m-8">
-        <div>
-          <p className="text-[#EABE61]">The Green School International</p>
-          <h2 className="sm:text-3xl leading-relaxed font-semibold tracking-wide text-primarycolortwo">
-            Experience unparalleled infrastructure and facilities at The Green
-            School International, where excellence meets innovation.
+      <section className="max-w-[1300px] mx-auto px-5 sm:px-10 py-16 sm:py-20">
+        <motion.div
+          {...inViewProps}
+          variants={fadeUp}
+          className="flex flex-col gap-3 max-w-3xl mb-12"
+        >
+          <span className="section-eyebrow">The Green School International</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-brand-900 text-balance">
+            Experience unparalleled infrastructure where{" "}
+            <span className="gradient-text">excellence meets innovation</span>.
           </h2>
-        </div>
+          <p className="text-ink-500 text-base sm:text-lg leading-relaxed mt-2">
+            From Olympic-grade aquatic facilities to premium astroturf grounds,
+            every space at our 12,000+ sq.m campus is engineered to nurture the
+            athlete in every Eco Champ.
+          </p>
+        </motion.div>
 
         {/* Contents Container */}
-        <div className="sm:m-16 m-8">
+        <div className="flex flex-col gap-12 sm:gap-20">
           {sportsInfraList.map((item, index) => (
-            <SportsInfraItem key={index} item={item} />
+            <SportsInfraItem
+              key={item.id}
+              item={item}
+              reverse={index % 2 === 1}
+              number={index + 1}
+            />
           ))}
         </div>
       </section>
+      <ContactUsBanner />
     </>
   );
 }
 
-function SportsInfraItem({ item }) {
-  console.log(item)
-  const controls = useAnimation();
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!ref.current) return;
-
-      const rect = ref.current.getBoundingClientRect();
-      const fadeStart = window.innerHeight * 0.4; // Start fading in and out at 40% of viewport
-      const fadeEnd = 0; // Fully disappears when it reaches the top
-
-      if (rect.top >= fadeStart) {
-        // Fade in as it enters
-        controls.start({ opacity: 1, y: 0 });
-      } else if (rect.top <= fadeEnd) {
-        // Fade out as it leaves
-        controls.start({ opacity: 0, y: -20 });
-      } else {
-        // Calculate smooth fade
-        const progress = (rect.top - fadeEnd) / (fadeStart - fadeEnd);
-        controls.start({ opacity: progress, y: (1 - progress) * 20 });
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [controls]);
-
+function SportsInfraItem({ item, reverse, number }) {
   return (
-    <div
+    <motion.article
       id={item.id}
-      className="flex flex-col sm:flex-row items-center sm:justify-between justify-center sm:mx-auto sm:max-w-[1300px] gap-5 sm:gap-32 h-dvh"
+      {...inViewProps}
+      variants={fadeUp}
+      className={`grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-16 scroll-mt-nav`}
     >
-      {/* First Column (Sticky & Fading Effect) */}
+      {/* Image */}
       <motion.div
-        ref={ref}
-        animate={controls}
-        initial={{ opacity: 0, y: 20 }}
-        transition={{ duration: 0.4 }}
-        className="flex flex-col items-center gap-3 sm:gap-9 lg:min-w-64 sticky top-2 left-0"
+        variants={reverse ? fadeRight : fadeLeft}
+        className={`relative ${reverse ? "lg:order-2" : ""}`}
       >
-        {item.titleLogo ? (
-          <img src={item.titleLogo} alt={item.title} className="md:h-32 h-16" />
-        ) : (
-          <p className="text-red-500">No Logo</p>
-        )}
-        <h3 className="lg:font-semibold font-medium lg:text-lg text-sm text-center">
-          {item.title}
-        </h3>
+        <div className="relative rounded-3xl overflow-hidden shadow-elevated isolate">
+          {item.descriptionImg ? (
+            <img
+              src={item.descriptionImg}
+              alt={item.title}
+              loading="lazy"
+              className="w-full h-[260px] sm:h-[360px] object-cover transition-transform duration-[1500ms] ease-out hover:scale-[1.04]"
+            />
+          ) : (
+            <div className="w-full h-[260px] sm:h-[360px] bg-brand-50 grid place-items-center text-brand-700 text-sm">
+              Image coming soon
+            </div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-900/40 via-transparent to-transparent" />
+          {/* Floating chip with logo */}
+          {item.titleLogo && (
+            <div className="absolute top-4 left-4 bg-white/95 backdrop-blur p-3 rounded-2xl shadow-soft border border-brand-100 transition-transform duration-300 ease-out hover:-translate-y-0.5">
+              <img
+                src={item.titleLogo}
+                alt={item.title}
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
+              />
+            </div>
+          )}
+        </div>
+        {/* Decor blob */}
+        <div className="hidden sm:block absolute -bottom-6 -left-6 w-40 h-40 bg-sun-300/40 blur-3xl rounded-full -z-10" />
       </motion.div>
 
-      {/* Second Column */}
-      <div className="w-dvw sm:w-auto mx-[-16px] sm:mx-0">
-        {item.descriptionImg ? (
-          <img
-            src={item.descriptionImg}
-            alt={item.title}
-            className="w-full object-contain object-top px-4 sm:px-0"
-          />
-        ) : (
-          <p className="text-red-500">No Logo</p>
-        )}
-        <p className="py-4 text-justify px-4 sm:px-0 text-sm md:text-base lg:text-lg">
+      {/* Text */}
+      <motion.div
+        variants={reverse ? fadeLeft : fadeRight}
+        className={`flex flex-col gap-4 ${reverse ? "lg:order-1" : ""}`}
+      >
+        <span className="font-display font-extrabold text-7xl leading-none gradient-text-sun opacity-25 select-none">
+          {String(number).padStart(2, "0")}
+        </span>
+        <h3 className="font-display font-bold text-2xl sm:text-3xl text-brand-900 leading-snug -mt-12">
+          {item.title}
+        </h3>
+        <p className="text-ink-500 text-base sm:text-[1.05rem] leading-relaxed">
           {item.description}
         </p>
-      </div>
-    </div>
+      </motion.div>
+    </motion.article>
   );
 }
 

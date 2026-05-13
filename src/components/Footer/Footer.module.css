@@ -1,122 +1,216 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@400;700&display=swap");
 .footer {
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  gap: 1rem;
-  justify-content: center;
-  padding: 2rem;
-  background: linear-gradient(#24364dc4, #24364dc4),
-    url("/assets/school_one.jpg");
-  background-size: cover;
-}
-.footer_container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 6rem;
-}
-.footer_about {
-  width: 40%;
+  position: relative;
+  padding: 4rem 2.5rem 3rem;
+  background: linear-gradient(135deg, #08703d 0%, #0e3302 60%, #040e04 100%);
+  color: #e7f1ec;
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.footer_logo img {
-  width: 250px;
+.bg_overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url("/assets/school_one.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  z-index: 0;
 }
-.footer_container h3 {
-  color: yellow;
+
+.glow_one,
+.glow_two {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 0;
+  pointer-events: none;
 }
+.glow_one {
+  width: 360px;
+  height: 360px;
+  background: rgba(234, 190, 97, 0.25);
+  top: -120px;
+  right: -100px;
+}
+.glow_two {
+  width: 280px;
+  height: 280px;
+  background: rgba(46, 155, 94, 0.4);
+  bottom: -120px;
+  left: -100px;
+}
+
+.footer_inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.2fr;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer_brand img {
+  width: 220px;
+  margin-bottom: 1.25rem;
+}
+.brand_tag {
+  color: #c8d8d0 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.7;
+  max-width: 420px;
+  margin-bottom: 1.5rem;
+}
+
+.social_row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social_btn {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff8e1 !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease, color 0.3s ease;
+}
+.social_btn:hover {
+  background: linear-gradient(135deg, #eabe61 0%, #c89540 100%);
+  color: #0e3302 !important;
+  transform: translateY(-3px);
+}
+
+.footer_links h3,
+.footer_contact_block h3 {
+  color: #fff8e1;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 1.25rem;
+  font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
+  font-weight: 600;
+}
+
 .footer_navlink {
   text-decoration: none;
-  color: white;
+  color: #cfded5 !important;
+  font-size: 0.92rem !important;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+  position: relative;
+}
+.footer_navlink:hover {
+  color: #eabe61 !important;
+  transform: translateX(2px);
 }
 
-.footer p,
-.footer a {
-  font-size: 14px;
-  color: #bdbdbd;
-}
-.footer_about p {
-  margin-top: 1rem;
-  font-size: 1rem;
-}
-.footer_contacts h3 {
-  margin-bottom: 1rem;
-}
-.footer_links {
-  width: 20%;
-}
 .footer_links ul {
   list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 1.25rem;
+}
+
+.footer_contact_block {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 1rem;
-}
-.footer_contacts {
-  width: 30%;
+  gap: 1rem;
 }
 .footer_contact {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap; /* Ensures content wraps properly */
+  align-items: flex-start;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: inherit;
 }
-
-.footer_contact div {
-  display: flex;
+.footer_contact_link p {
+  transition: color 0.2s ease;
+}
+.footer_contact_link:hover p {
+  color: #eabe61 !important;
+}
+.icon_wrap {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  background: rgba(234, 190, 97, 0.15);
+  border: 1px solid rgba(234, 190, 97, 0.25);
+  color: #eabe61;
 }
-
 .footer_contact p {
   flex: 1;
   word-break: break-word;
+  font-size: 0.92rem !important;
+  color: #d4e2da !important;
+  line-height: 1.55;
+  margin: 0;
 }
-.social_links {
-  display: flex;
-  gap: 2rem;
-  margin-top: 1rem;
+
+.directions_btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  padding: 0.65rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(234, 190, 97, 0.15);
+  color: #eabe61 !important;
+  border: 1px solid rgba(234, 190, 97, 0.35);
+  font-weight: 600;
+  font-size: 0.85rem !important;
+  margin-top: 0.5rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
+.directions_btn:hover {
+  background: linear-gradient(135deg, #eabe61 0%, #c89540 100%);
+  color: #0e3302 !important;
+  transform: translateY(-2px);
+}
+
 .copyright {
-  padding: 10px 1rem;
+  padding: 1rem 2rem;
   text-align: center;
-  background-color: rgb(7, 118, 60);
-  color: white;
+  background: #040e04;
+  color: #c8d8d0;
+  border-top: 1px solid rgba(234, 190, 97, 0.12);
 }
-.copyright_text {
+.copyright p {
   font-size: 12px;
-}
-.copyright_text > a {
-  color: yellow;
+  margin: 0;
 }
 
-@media screen and (max-width: 900px) {
-  .footer_logo img {
-    margin-bottom: 1rem;
-  }
-  .footer_container {
-    flex-direction: column;
-
+@media screen and (max-width: 1100px) {
+  .footer_inner {
+    grid-template-columns: 1fr 1fr;
     gap: 3rem;
   }
-  .footer_about {
-    width: 90vw;
-    text-align: justify;
+  .footer_brand {
+    grid-column: 1 / -1;
   }
-  .footer_contacts {
-    width: 100%;
-  }
-  .footer_contact {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-  .footer_links {
-    width: 100%;
-  }
+}
+@media screen and (max-width: 700px) {
   .footer {
-    padding: 1rem;
+    padding: 3rem 1.25rem 2.25rem;
+  }
+  .footer_inner {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer_brand img {
+    width: 180px;
+  }
+  .footer_links ul {
+    grid-template-columns: 1fr 1fr;
   }
 }

@@ -1,85 +1,120 @@
-table {
-    border:1px solid #b3adad;
-    border-collapse:collapse;
-    padding:5px;
-    margin: auto;
-}
-table th {
-    border:1px solid #b3adad;
-    padding:5px;
-    background: #f0f0f0;
-    color: #313030;
-}
-table td {
-    border:1px solid #b3adad;
-    text-align:center;
-    padding:5px;
-    background: #ffffff;
-    color: #313030;
-}
-.publicdisclosure{
-    padding: 2rem 3rem;
-}
-.publicdisclosure h2{
-    text-align: center;
-
-}
-.publicdisclosure_generalinfo{
-    margin-top: 2rem;
-}
-.publicdisclosure_generalinfo h3{
-    text-align: center;
-    margin-bottom: 1rem;
-    font-size: 14px;
-}
-.publicdisclosure_documents{
-    margin-block: 3rem;
-}
-.publicdisclosure_documents h3{
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 1rem;
-}
-.publicdisclosure_results h3{
-    font-size: 14px;
-    text-align: center;
-    margin-bottom: 1rem;
+.publicdisclosure {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.publicdisclosure_staff{
-    margin-block: 3rem;
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 720px;
+  margin-inline: auto;
 }
-.publicdisclosure_staff h3{
-    margin-bottom: 1rem;
-    font-size: 14px;
-    text-align: center;
+.intro h2 {
+  color: #0e3302;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
-.publicdisclosure_classx h3{
-    margin-bottom: 1rem;
-    font-size: 14px;
-    text-align: center;
+.intro p {
+  color: #525a6e;
+  line-height: 1.7;
 }
-.publicdisclosure_classxii{
-    margin-block: 3rem;
-}
-.publicdisclosure_classxii h3{
-    margin-bottom: 1rem;
-    font-size: 14px;
-    text-align: center;
 
+.section {
+  margin-bottom: 3rem;
+  background: white;
+  padding: 1.75rem;
+  border-radius: 22px;
+  border: 1px solid rgba(8, 112, 61, 0.08);
+  box-shadow: 0 18px 40px -25px rgba(8, 112, 61, 0.18);
+  scroll-margin-top: 90px;
 }
-.publicdisclosure_infrastructure h3{
-    margin-bottom: 1rem;
-    font-size: 14px;
-    text-align: center;
+.section_header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+.section_header h3 {
+  color: #0e3302;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.section_letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #08703d 0%, #0e3302 100%);
+  color: white;
+  font-weight: 800;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  box-shadow: 0 6px 14px -4px rgba(8, 112, 61, 0.55);
+}
 
+.table_wrap {
+  overflow-x: auto;
+  border-radius: 12px;
 }
-.publicdisclosure_generalinfo_table,.publicdisclosure_results_table, .publicdisclosure_staff_table, .publicdisclosure_classx_table, .publicdisclosure_publicdisclosure_infrastructure_table, .publicdisclosure_documents_table{
-    overflow-x:auto
+.tight_table {
+  margin-top: 1rem;
 }
-@media screen and (max-width:576px){
-    .publicdisclosure{
-        padding: 2rem 1rem;
-    }
-   
+
+.download_link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.4rem 0.85rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #08703d 0%, #0e3302 100%);
+  color: white !important;
+  font-weight: 600;
+  font-size: 0.82rem;
+  text-decoration: none;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+.download_link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px -8px rgba(8, 112, 61, 0.5);
+}
+
+.inline_link {
+  color: #08703d;
+  text-decoration: underline;
+  font-weight: 600;
+}
+.inline_link:hover {
+  color: #0e3302;
+}
+
+.note {
+  margin-top: 1.25rem;
+  padding: 1rem 1.25rem;
+  border-radius: 14px;
+  background: rgba(234, 190, 97, 0.12);
+  border-left: 4px solid #eabe61;
+  color: #5b3f15;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+@media screen and (max-width: 700px) {
+  .publicdisclosure {
+    padding: 3rem 1rem;
+  }
+  .section {
+    padding: 1.25rem;
+    border-radius: 16px;
+  }
 }

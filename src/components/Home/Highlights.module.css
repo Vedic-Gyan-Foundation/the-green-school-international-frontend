@@ -1,79 +1,143 @@
-.home_highlights{
-    /* background: linear-gradient(#ffffff57,#ffffff6e),url(/assets/green_back.jpg); */
-    background-size: cover;
-    background-position: center;
-    padding-block: 2rem;
-    padding-inline: 4rem ;
-}
-.home_highlights h2{
-    text-align: center;
-    font-size: 2rem;
-    color: var(--primarycolortwo);
-    margin-bottom: 2rem;
-    /* font-family: 'Poppins', sans-serif; */
-}
-.highlights_cards{
-   display: grid;
-   grid-template-columns: repeat(3,1fr);
-   justify-items: center; 
-    gap: 2rem;
-    margin-top: 2rem;
-}
-.highlight_card{
-   
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    padding: 1rem 2rem;
-    border-radius: 7px;
-    background-color: white;
-  
+.home_highlights {
+  background: linear-gradient(180deg, #fafdfb 0%, #ffffff 100%);
+  background-size: cover;
+  background-position: center;
+  padding: 4rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.hightlight_card_icon{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    padding-block: 10px;
-  
+.section_header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 720px;
+  margin-inline: auto;
 }
-.hightlight_card_icon img{
-    width: 45px;
-    filter: hue-rotate(90deg);
+.section_header h2 {
+  font-size: clamp(1.85rem, 3.5vw, 2.5rem);
+  color: #0e3302;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  text-wrap: balance;
 }
-.highlight_card_desc p{
-    font-size: 16px;
-    font-size: 14px;
-    margin-top: 0rem;
+.section_header p {
+  color: #525a6e;
+  font-size: 1rem;
+  line-height: 1.7;
+}
 
+.highlights_cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
-.readMoreBtn{
-    background-color: transparent;
-    border: none;
-    color: green;
-    margin-top: 5px;
-    cursor: pointer;
-}
-div:where(.swal2-container) div:where(.swal2-popup){
-    width: 1000em!important;
-}
-@media screen and (max-width:1060px){
-    .highlights_cards{
-        grid-template-columns: repeat(2,1fr);
-    }
-}
-@media screen and (max-width:991px){
-    .home_highlights{
-        padding-inline: 2rem;
-    }
-    
 
+.highlight_card {
+  background: white;
+  padding: 1.75rem;
+  border-radius: 22px;
+  border: 1px solid rgba(8, 112, 61, 0.08);
+  box-shadow: 0 20px 40px -25px rgba(8, 112, 61, 0.18);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  transition: box-shadow 0.4s ease, transform 0.4s ease,
+    border-color 0.4s ease;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
 }
-@media screen and (max-width:756px){
-    .highlights_cards{
-        grid-template-columns: repeat(1,1fr);
-    }
-    .home_highlights{
-        padding-inline: 1rem;
-    }
+.highlight_card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(
+    135deg,
+    rgba(8, 112, 61, 0.16) 0%,
+    rgba(234, 190, 97, 0.16) 100%
+  );
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+.highlight_card:hover::before {
+  opacity: 1;
+}
+.highlight_card:hover {
+  box-shadow: 0 30px 60px -20px rgba(8, 112, 61, 0.28);
+  border-color: rgba(8, 112, 61, 0.18);
+}
 
+.icon_wrap {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    135deg,
+    rgba(8, 112, 61, 0.12) 0%,
+    rgba(234, 190, 97, 0.16) 100%
+  );
+  margin-bottom: 0.5rem;
+}
+.icon_wrap img {
+  width: 32px;
+  filter: hue-rotate(90deg);
+}
+
+.highlight_card h4 {
+  color: #0e3302;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.highlight_card p {
+  font-size: 0.92rem;
+  color: #525a6e;
+  line-height: 1.7;
+  flex: 1;
+}
+
+.readMoreBtn {
+  background-color: transparent;
+  border: none;
+  color: #08703d;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0;
+  width: fit-content;
+  transition: gap 0.3s ease;
+}
+.readMoreBtn:hover {
+  gap: 0.7rem;
+}
+
+@media screen and (max-width: 1060px) {
+  .highlights_cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 991px) {
+  .home_highlights {
+    padding: 3rem 2rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  .highlights_cards {
+    grid-template-columns: 1fr;
+  }
+  .home_highlights {
+    padding: 3rem 1rem;
+  }
 }
