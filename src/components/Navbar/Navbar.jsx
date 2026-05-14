@@ -16,7 +16,7 @@ import {
   HiOutlineIdentification,
   HiOutlineCurrencyRupee,
 } from "react-icons/hi2";
-import { FaTrophy, FaSeedling, FaPrayingHands, FaRunning } from "react-icons/fa";
+import { FaRunning } from "react-icons/fa";
 import { HashLink } from "react-router-hash-link";
 import { SportsInfraUtil } from "../../utils/sports_infra";
 import { sortAlphabetically } from "../../utils/helper";
@@ -24,7 +24,7 @@ import { downloadFile } from "../../utils/download";
 
 const sportsInfraListItems = sortAlphabetically(
   SportsInfraUtil.getProcessedList(),
-  "title"
+  "title",
 );
 
 const Navbar = () => {
@@ -56,10 +56,8 @@ const Navbar = () => {
   }
 
   function handleSubMenuToggle(subMenuFor) {
-    if (subMenuFor === "feeStructure")
-      setSubMenuFeeStructureOpen((c) => !c);
-    if (subMenuFor === "sportsInfra")
-      setSubMenuSportsInfraOpen((c) => !c);
+    if (subMenuFor === "feeStructure") setSubMenuFeeStructureOpen((c) => !c);
+    if (subMenuFor === "sportsInfra") setSubMenuSportsInfraOpen((c) => !c);
   }
 
   const isActive = (path) => location.pathname === path;
@@ -113,7 +111,10 @@ const Navbar = () => {
                         to={`/sportsinfra#${item.id}`}
                         className={styles.dropdown_link}
                       >
-                        <span className={styles.dropdown_dot} aria-hidden="true" />
+                        <span
+                          className={styles.dropdown_dot}
+                          aria-hidden="true"
+                        />
                         {item.title}
                       </HashLink>
                     </li>
@@ -153,10 +154,17 @@ const Navbar = () => {
                       <span
                         className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
                       >
-                        <FaTrophy />
+                        <img
+                          src="/assets/ThreeS/sports.svg"
+                          alt="Sports"
+                          width={18}
+                          height={18}
+                        />
                       </span>
                       <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>Sports</span>
+                        <span className={styles.dropdown_link_title}>
+                          Sports
+                        </span>
                         <span className={styles.dropdown_link_meta}>
                           Resilience · Teamwork
                         </span>
@@ -171,10 +179,17 @@ const Navbar = () => {
                       <span
                         className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
                       >
-                        <FaPrayingHands />
+                        <img
+                          src="/assets/ThreeS/namaste.svg"
+                          alt="Sanskar"
+                          width={18}
+                          height={18}
+                        />
                       </span>
                       <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>Sanskar</span>
+                        <span className={styles.dropdown_link_title}>
+                          Sanskar
+                        </span>
                         <span className={styles.dropdown_link_meta}>
                           Values · Wisdom
                         </span>
@@ -189,7 +204,12 @@ const Navbar = () => {
                       <span
                         className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
                       >
-                        <FaSeedling />
+                        <img
+                          src="/assets/ThreeS/go_green.svg"
+                          alt="Sustainability"
+                          width={18}
+                          height={18}
+                        />
                       </span>
                       <span className={styles.dropdown_link_body}>
                         <span className={styles.dropdown_link_title}>
@@ -230,9 +250,7 @@ const Navbar = () => {
 
               <div className={`${styles.dropdown} ${styles.dropdown_rich}`}>
                 <div className={styles.dropdown_header}>
-                  <span className={styles.dropdown_eyebrow}>
-                    Download PDFs
-                  </span>
+                  <span className={styles.dropdown_eyebrow}>Download PDFs</span>
                 </div>
                 <ul className={styles.dropdown_list}>
                   <li>
@@ -240,7 +258,7 @@ const Navbar = () => {
                       type="button"
                       onClick={() =>
                         handleDownloadPDF(
-                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
+                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf",
                         )
                       }
                       className={styles.dropdown_link_rich}
@@ -265,7 +283,7 @@ const Navbar = () => {
                       type="button"
                       onClick={() =>
                         handleDownloadPDF(
-                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf",
                         )
                       }
                       className={styles.dropdown_link_rich}
@@ -383,7 +401,9 @@ const Navbar = () => {
         <div className={styles.mobile_menu_header}>
           <div className={styles.mobile_brand}>
             <img src={logo} alt="Logo" className={styles.mobile_menu_logo} />
-            <span className={styles.mobile_brand_tag}>Est. 2018 · Guwahati</span>
+            <span className={styles.mobile_brand_tag}>
+              Est. 2018 · Guwahati
+            </span>
           </div>
           <button
             className={styles.close_btn}
@@ -498,7 +518,7 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf",
                       )
                     }
                   >
@@ -507,7 +527,7 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf",
                       )
                     }
                   >
