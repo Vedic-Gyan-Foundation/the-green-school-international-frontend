@@ -71,7 +71,6 @@
 .icon_wrap img {
   width: 56px;
   height: 56px;
-  filter: brightness(0) invert(1);
   border-radius: 0;
 }
 .card_header h3 {
