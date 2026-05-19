@@ -7,7 +7,7 @@ import { AiFillPhone } from "react-icons/ai";
 import { BsFillEnvelopeFill } from "react-icons/bs";
 import { HiOutlineMapPin } from "react-icons/hi2";
 import { FaDirections } from "react-icons/fa";
-import axios from "axios";
+import axiosInstance from "../../api/axiosInstance";
 import Swal from "sweetalert2";
 import { fadeUp, inViewProps } from "../../utils/motion";
 
@@ -89,18 +89,14 @@ const Contact = () => {
     if (flag) {
       contactSubmitBtn.disabled = true;
       contactSubmitBtn.innerHTML = "Please Wait..";
-      axios.defaults.headers.post["Content-Type"] = "application/json";
-      axios
-        .post(
-          "https://formsubmit.co/ajax/thegreenschoolinternational@gmail.com",
-          {
-            name: contactData.fname,
-            contact: contactData.contact,
-            email: contactData.email,
-            subject: contactData.subject,
-            message: contactData.message,
-          }
-        )
+      axiosInstance
+        .post("send-contact-message", {
+          name: contactData.fname,
+          contact: contactData.contact,
+          email: contactData.email,
+          subject: contactData.subject,
+          message: contactData.message,
+        })
         .then(() => {
           Swal.fire({
             icon: "success",

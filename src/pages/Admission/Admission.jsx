@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
 import Header from "../../components/Header/Header";
 import styles from "./Admission.module.css";
-import axios from "axios";
 import Swal from "sweetalert2";
 import { fadeUp, inViewProps } from "../../utils/motion";
 import { downloadFile } from "../../utils/download";
+import axiosInstance from "../../api/axiosInstance";
 
 const classOptions = [
   { value: "pre_nursery", label: "Pre Nursery" },
@@ -185,20 +185,16 @@ const Admission = () => {
     if (flag) {
       admissionFormSubmitBtn.disabled = true;
       admissionFormSubmitBtn.innerHTML = "Please Wait..";
-      axios.defaults.headers.post["Content-Type"] = "application/json";
-      axios
-        .post(
-          "https://formsubmit.co/ajax/thegreenschoolinternational@gmail.com",
-          {
-            childname: admissionFormData.childname,
-            fathername: admissionFormData.fathername,
-            whatsappnumber: admissionFormData.whatsappnumber,
-            class: admissionFormData.class,
-            email: admissionFormData.email,
-            address: admissionFormData.address,
-            query: admissionFormData.query,
-          }
-        )
+      axiosInstance
+        .post("send-admission-enquiry", {
+          childname: admissionFormData.childname,
+          fathername: admissionFormData.fathername,
+          whatsappnumber: admissionFormData.whatsappnumber,
+          class: admissionFormData.class,
+          email: admissionFormData.email,
+          address: admissionFormData.address,
+          query: admissionFormData.query,
+        })
         .then(() => {
           Swal.fire({
             icon: "success",
