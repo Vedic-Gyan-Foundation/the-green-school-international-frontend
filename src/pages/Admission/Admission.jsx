@@ -123,13 +123,8 @@ const Admission = () => {
     );
 
     let flag = true;
-    const childname = document.forms["admissionForm"]["childname"].value;
-    const fathername = document.forms["admissionForm"]["fathername"].value;
-    const whatsappnum = document.forms["admissionForm"]["whatsappnumber"].value;
+    const { childname, fathername, whatsappnumber, email, address, query } = admissionFormData;
     const classgr = admissionFormData.class;
-    const email = document.forms["admissionForm"]["email"].value;
-    const address = document.forms["admissionForm"]["address"].value;
-    const query = document.forms["admissionForm"]["query"].value;
     const regName = /^[a-zA-Z ]*$/;
     const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -157,7 +152,7 @@ const Admission = () => {
       setError("fatherName", "*Please write a valid name");
       flag = false;
     }
-    if (whatsappnum.length !== 10) {
+    if (whatsappnumber.length !== 10) {
       setError("whatsappNum", "*Whatsapp number must be 10 digits");
       flag = false;
     }
@@ -177,27 +172,20 @@ const Admission = () => {
       setError("address", "*Address cannot be empty");
       flag = false;
     }
-    if (query.length === 0) {
-      setError("query", "*Query cannot be empty");
-      flag = false;
-    }
+    // if (query.length === 0) {
+    //   setError("query", "*Query cannot be empty");
+    //   flag = false;
+    // }
 
     if (flag) {
+      console.log("🚀 ~ admissionFormSubmitHandler ~ req.body:", admissionFormData);
       admissionFormSubmitBtn.disabled = true;
       admissionFormSubmitBtn.innerHTML = "Please Wait..";
       axios.defaults.headers.post["Content-Type"] = "application/json";
       axios
         .post(
-          "https://formsubmit.co/ajax/thegreenschoolinternational@gmail.com",
-          {
-            childname: admissionFormData.childname,
-            fathername: admissionFormData.fathername,
-            whatsappnumber: admissionFormData.whatsappnumber,
-            class: admissionFormData.class,
-            email: admissionFormData.email,
-            address: admissionFormData.address,
-            query: admissionFormData.query,
-          }
+          "https://api.greenschoolguwahati.com/v1/admission",
+          admissionFormData
         )
         .then(() => {
           Swal.fire({
@@ -391,6 +379,7 @@ const Admission = () => {
                 type="text"
                 placeholder="Child's Name"
                 name="childname"
+                value={admissionFormData.childname}
                 onChange={admissionFormChangeHandler}
               />
               <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
@@ -400,6 +389,7 @@ const Admission = () => {
                 type="text"
                 placeholder="Father's Name"
                 name="fathername"
+                value={admissionFormData.fathername}
                 onChange={admissionFormChangeHandler}
               />
               <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
@@ -468,6 +458,7 @@ const Admission = () => {
                 placeholder="Address"
                 cols="30"
                 rows="4"
+                value={admissionFormData.address}
                 onChange={admissionFormChangeHandler}
               ></textarea>
               <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
@@ -478,6 +469,7 @@ const Admission = () => {
                 placeholder="Query"
                 cols="30"
                 rows="4"
+                value={admissionFormData.query}
                 onChange={admissionFormChangeHandler}
               ></textarea>
               <p className={`${styles.formError} AdmissionFormErrorClass`}></p>
