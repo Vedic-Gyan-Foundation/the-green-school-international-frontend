@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Gallery.module.css";
 import Header from "../../components/Header/Header";
-import axiosInstance from "../../api/axiosInstance";
-import { baseURL } from "../../api/axiosInstance";
-import captions from "./galleryCaptions.json";
 import videoLinks from "./videoLinks.json";
 import { FaPlay } from "react-icons/fa";
 import { HiXMark, HiOutlinePhoto, HiOutlineFilm } from "react-icons/hi2";
@@ -16,20 +13,15 @@ const Gallery = () => {
   const [activeImage, setActiveImage] = useState(null);
   const [activeTab, setActiveTab] = useState("images");
 
-  const defaultCaption = {
-    title: "Green School Moments",
-    subtitle: "Life at The Green School International",
-    isVisible: false
-  };
-
   useEffect(() => {
-    axiosInstance
-      .get(`${baseApi}/api/get-images`, {
-        headers: { "Content-Type": "application/json" },
+    fetch(`${baseApi}/v1/gallery/readAll?page=1&limit=200`)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          setGalleryList(result.data);
+        }
       })
-      .then((response) => {        
-        setGalleryList([...response.data.imgPath]);
-      });
+      .catch((err) => console.error("Failed to fetch gallery", err));
   }, []);
 
   useEffect(() => {
@@ -85,10 +77,13 @@ const Gallery = () => {
         <div className={styles.gallery_header}>
           <span className="section-eyebrow">Moments captured</span>
           <h2>
-            Stories from{" "}
-            <span className="gradient-text">The Green School</span>.
+            Stories from <span className="gradient-text">The Green School</span>
+            .
           </h2>
-          <p>A glimpse of campus life — from awards and assemblies to learning, sport and celebration.</p>
+          <p>
+            A glimpse of campus life — from awards and assemblies to learning,
+            sport and celebration.
+          </p>
         </div>
 
         <div className={styles.tabs_container}>
@@ -114,46 +109,45 @@ const Gallery = () => {
           <>
             {galleryList && galleryList.length > 0 ? (
               <div className={styles.gallery_images_container}>
-                {galleryList.map((item, index) => {
-                  const caption = captions[index] || defaultCaption;
-                  const isVisible = caption.isVisible !== false;
-                  if (!isVisible) return null;
-                  const imgSrc = item.image
-                    ? baseURL + item.image
-                    : baseApi + item;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 24 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-60px" }}
-                      transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
-                      whileHover={{ y: -6 }}
-                      className={styles.gallery_item}
-                      onClick={() => setActiveImage({ src: imgSrc, caption })}
-                    >
-                      <div className={styles.gallery_image_wrap}>
-                        <img
-                          src={imgSrc}
-                          alt={caption.title}
-                          loading="lazy"
-                          className={styles.gallery_image}
-                        />
-                        <div className={styles.gallery_hover}>
-                          <span>View image</span>
-                        </div>
+                {galleryList.map((item) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.5, delay: (item.id % 6) * 0.05 }}
+                    whileHover={{ y: -6 }}
+                    className={styles.gallery_item}
+                    onClick={() =>
+                      setActiveImage({
+                        src: item.image,
+                        caption: { title: item.caption, subCaption: item.sub_caption },
+                      })
+                    }
+                  >
+                    <div className={styles.gallery_image_wrap}>
+                      <img
+                        src={item.image}
+                        alt={item.caption}
+                        loading="lazy"
+                        className={styles.gallery_image}
+                      />
+                      <div className={styles.gallery_hover}>
+                        <span>View image</span>
                       </div>
-                      <div className={styles.gallery_caption}>
-                        <p className={styles.gallery_caption_title}>
-                          {caption.title}
-                        </p>
+                    </div>
+                    <div className={styles.gallery_caption}>
+                      <p className={styles.gallery_caption_title}>
+                        {item.caption}
+                      </p>
+                      {item.sub_caption && (
                         <span className={styles.gallery_caption_subtitle}>
-                          {caption.subtitle}
+                          {item.sub_caption}
                         </span>
-                      </div>
-                    </motion.div>
-                  );
-                })}
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             ) : (
               <p className={styles.empty_state}>Loading images…</p>
@@ -168,7 +162,7 @@ const Gallery = () => {
                 (video) =>
                   video?.url?.trim()?.length &&
                   video?.title?.trim()?.length &&
-                  video?.isVisible !== false
+                  video?.isVisible !== false,
               )
               .map((video, index) => (
                 <motion.a
@@ -249,7 +243,9 @@ const Gallery = () => {
               />
               <div className={styles.lightbox_caption}>
                 <h4>{activeImage.caption.title}</h4>
-                <p>{activeImage.caption.subtitle}</p>
+                {activeImage.caption.subCaption && (
+                  <p>{activeImage.caption.subCaption}</p>
+                )}
               </div>
             </motion.div>
           </motion.div>
