@@ -121,7 +121,10 @@ const Gallery = () => {
                     onClick={() =>
                       setActiveImage({
                         src: item.image,
-                        caption: { title: item.caption, subCaption: item.sub_caption },
+                        caption: {
+                          title: item.caption,
+                          subCaption: item.sub_caption,
+                        },
                       })
                     }
                   >
