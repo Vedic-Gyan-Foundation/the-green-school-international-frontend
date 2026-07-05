@@ -324,14 +324,6 @@ const Admission = () => {
         className={styles.admission_list}
       >
         <h3>Admission criteria</h3>
-        <p>
-          There is no written admission test for junior classes (no interview
-          till Class II), but for Grade III onwards, the child has to take an
-          interview & a written test. For Grades below III, an informal
-          interaction/interview shall be conducted. The test will be held for
-          English, Mathematics and/or any other subject which may be considered
-          necessary.
-        </p>
         <ul>
           {admissionCriteria.map((criteria, i) => (
             <li key={i}>{criteria}</li>
