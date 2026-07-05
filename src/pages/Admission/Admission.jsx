@@ -111,7 +111,7 @@ const Admission = () => {
     const element = document.getElementById(id);
     if (!element) return;
     const errorEl = element.getElementsByClassName(
-      "AdmissionFormErrorClass"
+      "AdmissionFormErrorClass",
     )[0];
     if (errorEl) errorEl.innerHTML = error;
   };
@@ -119,11 +119,12 @@ const Admission = () => {
   const admissionFormSubmitHandler = (e) => {
     e.preventDefault();
     const admissionFormSubmitBtn = document.getElementById(
-      "admissionFormSubmitbtn"
+      "admissionFormSubmitbtn",
     );
 
     let flag = true;
-    const { childname, fathername, whatsappnumber, email, address, query } = admissionFormData;
+    const { childname, fathername, whatsappnumber, email, address, query } =
+      admissionFormData;
     const classgr = admissionFormData.class;
     const regName = /^[a-zA-Z ]*$/;
     const regEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -178,14 +179,17 @@ const Admission = () => {
     // }
 
     if (flag) {
-      console.log("🚀 ~ admissionFormSubmitHandler ~ req.body:", admissionFormData);
+      console.log(
+        "🚀 ~ admissionFormSubmitHandler ~ req.body:",
+        admissionFormData,
+      );
       admissionFormSubmitBtn.disabled = true;
       admissionFormSubmitBtn.innerHTML = "Please Wait..";
       axios.defaults.headers.post["Content-Type"] = "application/json";
       axios
         .post(
           "https://api.greenschoolguwahati.com/v1/admission",
-          admissionFormData
+          admissionFormData,
         )
         .then(() => {
           Swal.fire({
@@ -236,7 +240,7 @@ const Admission = () => {
         onClick={() =>
           downloadFile(
             "https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf",
-            "green-school-admission-form.pdf"
+            "green-school-admission-form.pdf",
           )
         }
       >
@@ -257,8 +261,7 @@ const Admission = () => {
       >
         <span className="section-eyebrow">Begin your journey</span>
         <h2>
-          The Green School{" "}
-          <span className="gradient-text">International</span>
+          The Green School <span className="gradient-text">International</span>
         </h2>
         <p>
           Education is the passport to the future — create your passport today
@@ -308,9 +311,7 @@ const Admission = () => {
         variants={fadeUp}
         className={styles.admission_list}
       >
-        <h3>
-          Original documents to carry (returned post verification)
-        </h3>
+        <h3>Original documents to carry (returned post verification)</h3>
         <ul>
           {documentsOriginal.map((doc, i) => (
             <li key={i}>{doc}</li>
@@ -340,9 +341,9 @@ const Admission = () => {
         <p>
           Our Admission Team is ready to work with you on processing your
           child&apos;s application to The Green School International, Guwahati
-          and to get you started on their path to success. If you have
-          questions about admission policies or procedures, please call or
-          e-mail the Admissions Office of the respective branch.
+          and to get you started on their path to success. If you have questions
+          about admission policies or procedures, please call or e-mail the
+          Admissions Office of the respective branch.
         </p>
       </motion.section>
 
