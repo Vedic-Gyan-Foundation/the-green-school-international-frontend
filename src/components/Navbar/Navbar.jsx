@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Navbar.module.css";
 import logo from "/assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
@@ -27,12 +27,29 @@ const sportsInfraListItems = sortAlphabetically(
   "title"
 );
 
+// Single source of truth for external / document URLs (used by both the
+// desktop dropdowns and the mobile drawer, so they can never drift apart).
+const FEE_PAYMENT_URL =
+  "https://paydirect.eduqfix.com/app/cc7fae31LEgC3KwoRYfopzX0IGSOFiTS236Et2re/9810/28628";
+const FEE_STRUCTURE_PDF =
+  "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf";
+const FRC_APPROVAL_PDF =
+  "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf";
+const CANCELLATION_PDF = "./pdfs/Cancellation_Policy.pdf";
+
 const Navbar = () => {
   const [navdropOpen, setNavdropOpen] = useState(false);
-  const [subMenuFeeStructureOpen, setSubMenuFeeStructureOpen] = useState(false);
-  const [subMenuSportsInfraOpen, setSubMenuSportsInfraOpen] = useState(false);
+  // Which desktop dropdown is open: "sports" | "threeS" | "fee" | null.
+  const [openMenu, setOpenMenu] = useState(null);
+  // Which mobile accordion submenu is open (only one at a time).
+  const [openSubMenu, setOpenSubMenu] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+
+  const navRef = useRef(null);
+  const drawerRef = useRef(null);
+  const hamburgerRef = useRef(null);
+  const closeTimer = useRef(null);
 
   useEffect(() => {
     function onScroll() {
@@ -43,359 +60,557 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu open
+  // Lock body scroll while the mobile drawer is open, and reset the accordion.
   useEffect(() => {
     document.body.style.overflow = navdropOpen ? "hidden" : "";
+    if (!navdropOpen) setOpenSubMenu(null);
     return () => {
       document.body.style.overflow = "";
     };
   }, [navdropOpen]);
 
+  // Any route change closes every menu.
+  useEffect(() => {
+    setOpenMenu(null);
+    setNavdropOpen(false);
+  }, [location]);
+
+  // Desktop dropdowns: Escape closes, and a click outside the nav closes.
+  useEffect(() => {
+    if (!openMenu) return;
+    function onKeyDown(e) {
+      if (e.key === "Escape") setOpenMenu(null);
+    }
+    function onPointerDown(e) {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setOpenMenu(null);
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("mousedown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("mousedown", onPointerDown);
+    };
+  }, [openMenu]);
+
+  // Mobile drawer: move focus in on open, trap Tab, Escape closes.
+  useEffect(() => {
+    if (!navdropOpen) return;
+    const drawer = drawerRef.current;
+    if (!drawer) return;
+
+    const getFocusable = () =>
+      Array.from(
+        drawer.querySelectorAll(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((el) => el.offsetParent !== null);
+
+    const focusable = getFocusable();
+    (focusable[0] || drawer).focus();
+
+    function onKeyDown(e) {
+      if (e.key === "Escape") {
+        closeDrawer();
+        return;
+      }
+      if (e.key !== "Tab") return;
+      const items = getFocusable();
+      if (items.length === 0) {
+        e.preventDefault();
+        return;
+      }
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
+    drawer.addEventListener("keydown", onKeyDown);
+    return () => drawer.removeEventListener("keydown", onKeyDown);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navdropOpen]);
+
+  function clearCloseTimer() {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }
+  function openDesktopMenu(key) {
+    clearCloseTimer();
+    setOpenMenu(key);
+  }
+  function scheduleDesktopClose() {
+    clearCloseTimer();
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 180);
+  }
+  function toggleDesktopMenu(key) {
+    clearCloseTimer();
+    setOpenMenu((cur) => (cur === key ? null : key));
+  }
+  // Close the open desktop dropdown when focus leaves the whole group.
+  function handleGroupBlur(e) {
+    if (!e.currentTarget.contains(e.relatedTarget)) {
+      scheduleDesktopClose();
+    }
+  }
+
+  function closeDrawer() {
+    setNavdropOpen(false);
+    hamburgerRef.current?.focus();
+  }
+
   function handleDownloadPDF(fileURL) {
     downloadFile(fileURL);
   }
 
-  function handleSubMenuToggle(subMenuFor) {
-    if (subMenuFor === "feeStructure") setSubMenuFeeStructureOpen((c) => !c);
-    if (subMenuFor === "sportsInfra") setSubMenuSportsInfraOpen((c) => !c);
+  function toggleSubMenu(key) {
+    setOpenSubMenu((cur) => (cur === key ? null : key));
   }
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path) =>
+    path === "/"
+      ? location.pathname === "/"
+      : location.pathname.startsWith(path);
 
   return (
     <>
-      <div
-        className={`${styles.navbar} ${scrolled ? styles.navbar_scrolled : ""}`}
+      <header
+        className={`${styles.navbar_shell} ${scrolled ? styles.navbar_scrolled : ""}`}
       >
-        {/* LOGO */}
-        <Link to="/" className={styles.navbar_logo} aria-label="Home">
-          <img src={logo} alt="The Green School International" />
-        </Link>
+        {/* UTILITY STRIP (desktop only) — admin & transactional links */}
+        <div className={styles.navbar_utility}>
+          <nav className={styles.navbar_utility_nav} aria-label="Utility">
+            <Link
+              to="/publicdisclosure"
+              aria-current={isActive("/publicdisclosure") ? "page" : undefined}
+              className={`${styles.navbar_utility_link} ${isActive("/publicdisclosure") ? styles.utility_active : ""}`}
+            >
+              Public Disclosure
+            </Link>
+            <Link
+              to="/transfer-certificates"
+              aria-current={
+                isActive("/transfer-certificates") ? "page" : undefined
+              }
+              className={`${styles.navbar_utility_link} ${isActive("/transfer-certificates") ? styles.utility_active : ""}`}
+            >
+              Transfer Certificates
+            </Link>
+            <Link
+              to="/contact"
+              aria-current={isActive("/contact") ? "page" : undefined}
+              className={`${styles.navbar_utility_link} ${isActive("/contact") ? styles.utility_active : ""}`}
+            >
+              Contact
+            </Link>
+            <a
+              href={FEE_PAYMENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.utility_cta}
+            >
+              <HiOutlineCurrencyRupee aria-hidden="true" />
+              Pay Fees
+            </a>
+          </nav>
+        </div>
 
-        {/* DESKTOP VIEW LINKS */}
-        <div className={styles.navbar_navlinks}>
-          <ul className={styles.navbar_navlinks_ul}>
-            <li>
-              <Link
-                to="/"
-                className={`${styles.navbar_navlink} ${isActive("/") ? styles.active : ""}`}
-              >
-                Home
-              </Link>
-            </li>
+        {/* MAIN BAR */}
+        <div ref={navRef} className={styles.navbar}>
+          {/* LOGO */}
+          <Link to="/" className={styles.navbar_logo} aria-label="Home">
+            <img src={logo} alt="The Green School International" />
+          </Link>
 
-            {/* SPORTS INFRA*/}
-            <li className="relative group">
-              <Link
-                to="/sportsinfra"
-                className={`${styles.navbar_navlink} ${isActive("/sportsinfra") ? styles.active : ""}`}
-              >
-                Sports Infra <HiChevronDown className={styles.chevron} />
-              </Link>
+          {/* DESKTOP VIEW LINKS */}
+          <nav className={styles.navbar_navlinks} aria-label="Primary">
+            <ul className={styles.navbar_navlinks_ul}>
+              <li>
+                <Link
+                  to="/"
+                  aria-current={isActive("/") ? "page" : undefined}
+                  className={`${styles.navbar_navlink} ${isActive("/") ? styles.active : ""}`}
+                >
+                  Home
+                </Link>
+              </li>
 
-              <div
-                className={`${styles.dropdown} ${styles.dropdown_scroll} ${styles.dropdown_wide}`}
+              {/* SPORTS INFRA */}
+              <li
+                className={styles.nav_group}
+                onMouseEnter={() => openDesktopMenu("sports")}
+                onMouseLeave={scheduleDesktopClose}
+                onFocus={() => openDesktopMenu("sports")}
+                onBlur={handleGroupBlur}
               >
-                <div className={styles.dropdown_header}>
-                  <span className={styles.dropdown_eyebrow}>
-                    World-class facilities
-                  </span>
-                  <Link to="/sportsinfra" className={styles.dropdown_view_all}>
-                    View all →
+                <span className={styles.nav_group_trigger}>
+                  <Link
+                    to="/sportsinfra"
+                    aria-current={isActive("/sportsinfra") ? "page" : undefined}
+                    className={`${styles.navbar_navlink} ${styles.nav_group_link} ${isActive("/sportsinfra") ? styles.active : ""}`}
+                  >
+                    Sports Infra
                   </Link>
+                  <button
+                    type="button"
+                    className={styles.nav_disclosure}
+                    aria-label="Sports Infra facilities menu"
+                    aria-haspopup="true"
+                    aria-expanded={openMenu === "sports"}
+                    aria-controls="menu-sports"
+                    onClick={() => toggleDesktopMenu("sports")}
+                  >
+                    <HiChevronDown
+                      className={`${styles.chevron} ${openMenu === "sports" ? styles.chevron_open : ""}`}
+                    />
+                  </button>
+                </span>
+
+                <div
+                  id="menu-sports"
+                  className={`${styles.dropdown} ${styles.dropdown_scroll} ${styles.dropdown_wide} ${openMenu === "sports" ? styles.dropdown_open : ""}`}
+                >
+                  <div className={styles.dropdown_header}>
+                    <span className={styles.dropdown_eyebrow}>
+                      World-class facilities
+                    </span>
+                    <Link
+                      to="/sportsinfra"
+                      className={styles.dropdown_view_all}
+                    >
+                      View all →
+                    </Link>
+                  </div>
+                  <ul className={styles.dropdown_list}>
+                    {sportsInfraListItems.map((item, index) => (
+                      <li key={index}>
+                        <HashLink
+                          to={`/sportsinfra#${item.id}`}
+                          className={styles.dropdown_link}
+                        >
+                          <span
+                            className={styles.dropdown_dot}
+                            aria-hidden="true"
+                          />
+                          {item.title}
+                        </HashLink>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <ul className={styles.dropdown_list}>
-                  {sportsInfraListItems.map((item, index) => (
-                    <li key={index}>
+              </li>
+
+              <li>
+                <Link
+                  to="/about"
+                  aria-current={isActive("/about") ? "page" : undefined}
+                  className={`${styles.navbar_navlink} ${isActive("/about") ? styles.active : ""}`}
+                >
+                  Our School
+                </Link>
+              </li>
+
+              {/* 3S FORMULA */}
+              <li
+                className={styles.nav_group}
+                onMouseEnter={() => openDesktopMenu("threeS")}
+                onMouseLeave={scheduleDesktopClose}
+                onFocus={() => openDesktopMenu("threeS")}
+                onBlur={handleGroupBlur}
+              >
+                <span className={styles.nav_group_trigger}>
+                  <Link
+                    to="/threesformula"
+                    aria-current={
+                      isActive("/threesformula") ? "page" : undefined
+                    }
+                    className={`${styles.navbar_navlink} ${styles.nav_group_link} ${isActive("/threesformula") ? styles.active : ""}`}
+                  >
+                    3S Formula
+                  </Link>
+                  <button
+                    type="button"
+                    className={styles.nav_disclosure}
+                    aria-label="3S Formula menu"
+                    aria-haspopup="true"
+                    aria-expanded={openMenu === "threeS"}
+                    aria-controls="menu-threeS"
+                    onClick={() => toggleDesktopMenu("threeS")}
+                  >
+                    <HiChevronDown
+                      className={`${styles.chevron} ${openMenu === "threeS" ? styles.chevron_open : ""}`}
+                    />
+                  </button>
+                </span>
+                <div
+                  id="menu-threeS"
+                  className={`${styles.dropdown} ${styles.dropdown_rich} ${openMenu === "threeS" ? styles.dropdown_open : ""}`}
+                >
+                  <div className={styles.dropdown_header}>
+                    <span className={styles.dropdown_eyebrow}>
+                      Three pillars · One mission
+                    </span>
+                    <Link
+                      to="/threesformula"
+                      className={styles.dropdown_view_all}
+                    >
+                      View all →
+                    </Link>
+                  </div>
+                  <ul className={styles.dropdown_list}>
+                    <li>
                       <HashLink
-                        to={`/sportsinfra#${item.id}`}
-                        className={styles.dropdown_link}
+                        to="/threesformula#sports"
+                        className={styles.dropdown_link_rich}
                       >
                         <span
-                          className={styles.dropdown_dot}
-                          aria-hidden="true"
-                        />
-                        {item.title}
+                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
+                        >
+                          <img
+                            src="/assets/ThreeS/sports.svg"
+                            alt=""
+                            aria-hidden="true"
+                            width={18}
+                            height={18}
+                          />
+                        </span>
+                        <span className={styles.dropdown_link_body}>
+                          <span className={styles.dropdown_link_title}>
+                            Sports
+                          </span>
+                          <span className={styles.dropdown_link_meta}>
+                            Resilience · Teamwork
+                          </span>
+                        </span>
                       </HashLink>
                     </li>
-                  ))}
-                </ul>
-              </div>
-            </li>
-
-            <li>
-              <Link
-                to="/about"
-                className={`${styles.navbar_navlink} ${isActive("/about") ? styles.active : ""}`}
-              >
-                Our School
-              </Link>
-            </li>
-
-            <li className="relative group">
-              <Link
-                to="/threesformula"
-                className={`${styles.navbar_navlink} ${isActive("/threesformula") ? styles.active : ""}`}
-              >
-                3S Formula <HiChevronDown className={styles.chevron} />
-              </Link>
-              <div className={`${styles.dropdown} ${styles.dropdown_rich}`}>
-                <div className={styles.dropdown_header}>
-                  <span className={styles.dropdown_eyebrow}>
-                    Three pillars · One mission
-                  </span>
+                    <li>
+                      <HashLink
+                        to="/threesformula#sanskar"
+                        className={styles.dropdown_link_rich}
+                      >
+                        <span
+                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
+                        >
+                          <img
+                            src="/assets/ThreeS/namaste.svg"
+                            alt=""
+                            aria-hidden="true"
+                            width={18}
+                            height={18}
+                          />
+                        </span>
+                        <span className={styles.dropdown_link_body}>
+                          <span className={styles.dropdown_link_title}>
+                            Sanskar
+                          </span>
+                          <span className={styles.dropdown_link_meta}>
+                            Values · Wisdom
+                          </span>
+                        </span>
+                      </HashLink>
+                    </li>
+                    <li>
+                      <HashLink
+                        to="/threesformula#sustainibility"
+                        className={styles.dropdown_link_rich}
+                      >
+                        <span
+                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
+                        >
+                          <img
+                            src="/assets/ThreeS/go_green.svg"
+                            alt=""
+                            aria-hidden="true"
+                            width={18}
+                            height={18}
+                          />
+                        </span>
+                        <span className={styles.dropdown_link_body}>
+                          <span className={styles.dropdown_link_title}>
+                            Sustainibility
+                          </span>
+                          <span className={styles.dropdown_link_meta}>
+                            Reduce · Reuse · Recycle
+                          </span>
+                        </span>
+                      </HashLink>
+                    </li>
+                  </ul>
                 </div>
-                <ul className={styles.dropdown_list}>
-                  <li>
-                    <HashLink
-                      to="/threesformula#sports"
-                      className={styles.dropdown_link_rich}
-                    >
-                      <span
-                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
-                      >
-                        <img
-                          src="/assets/ThreeS/sports.svg"
-                          alt="Sports"
-                          width={18}
-                          height={18}
-                        />
-                      </span>
-                      <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>
-                          Sports
-                        </span>
-                        <span className={styles.dropdown_link_meta}>
-                          Resilience · Teamwork
-                        </span>
-                      </span>
-                    </HashLink>
-                  </li>
-                  <li>
-                    <HashLink
-                      to="/threesformula#sanskar"
-                      className={styles.dropdown_link_rich}
-                    >
-                      <span
-                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
-                      >
-                        <img
-                          src="/assets/ThreeS/namaste.svg"
-                          alt="Sanskar"
-                          width={18}
-                          height={18}
-                        />
-                      </span>
-                      <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>
-                          Sanskar
-                        </span>
-                        <span className={styles.dropdown_link_meta}>
-                          Values · Wisdom
-                        </span>
-                      </span>
-                    </HashLink>
-                  </li>
-                  <li>
-                    <HashLink
-                      to="/threesformula#sustainibility"
-                      className={styles.dropdown_link_rich}
-                    >
-                      <span
-                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
-                      >
-                        <img
-                          src="/assets/ThreeS/go_green.svg"
-                          alt="Sustainability"
-                          width={18}
-                          height={18}
-                        />
-                      </span>
-                      <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>
-                          Sustainibility
-                        </span>
-                        <span className={styles.dropdown_link_meta}>
-                          Reduce · Reuse · Recycle
-                        </span>
-                      </span>
-                    </HashLink>
-                  </li>
-                </ul>
-              </div>
-            </li>
+              </li>
 
-            <li>
-              <Link
-                to="/publicdisclosure"
-                className={`${styles.navbar_navlink} ${isActive("/publicdisclosure") ? styles.active : ""}`}
+              <li>
+                <Link
+                  to="/admission"
+                  aria-current={isActive("/admission") ? "page" : undefined}
+                  className={`${styles.navbar_navlink} ${isActive("/admission") ? styles.active : ""}`}
+                >
+                  Admissions
+                </Link>
+              </li>
+
+              {/* FEE STRUCTURE (disclosure only — no landing page) */}
+              <li
+                className={styles.nav_group}
+                onMouseEnter={() => openDesktopMenu("fee")}
+                onMouseLeave={scheduleDesktopClose}
+                onFocus={() => openDesktopMenu("fee")}
+                onBlur={handleGroupBlur}
               >
-                Public Disclosure
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/admission"
-                className={`${styles.navbar_navlink} ${isActive("/admission") ? styles.active : ""}`}
-              >
-                Admissions
-              </Link>
-            </li>
+                <button
+                  type="button"
+                  className={styles.navbar_navlink}
+                  aria-haspopup="true"
+                  aria-expanded={openMenu === "fee"}
+                  aria-controls="menu-fee"
+                  onClick={() => toggleDesktopMenu("fee")}
+                >
+                  Fee Structure{" "}
+                  <HiChevronDown
+                    className={`${styles.chevron} ${openMenu === "fee" ? styles.chevron_open : ""}`}
+                  />
+                </button>
 
-            {/* Fee Structure */}
-            <li className="relative group">
-              <button type="button" className={styles.navbar_navlink}>
-                Fee Structure <HiChevronDown className={styles.chevron} />
-              </button>
-
-              <div className={`${styles.dropdown} ${styles.dropdown_rich}`}>
-                <div className={styles.dropdown_header}>
-                  <span className={styles.dropdown_eyebrow}>Download PDFs</span>
+                <div
+                  id="menu-fee"
+                  className={`${styles.dropdown} ${styles.dropdown_rich} ${styles.dropdown_end} ${openMenu === "fee" ? styles.dropdown_open : ""}`}
+                >
+                  <div className={styles.dropdown_header}>
+                    <span className={styles.dropdown_eyebrow}>
+                      Download PDFs
+                    </span>
+                  </div>
+                  <ul className={styles.dropdown_list}>
+                    <li>
+                      <button
+                        type="button"
+                        onClick={() => handleDownloadPDF(FEE_STRUCTURE_PDF)}
+                        className={styles.dropdown_link_rich}
+                      >
+                        <span
+                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
+                        >
+                          <HiOutlineDocumentArrowDown />
+                        </span>
+                        <span className={styles.dropdown_link_body}>
+                          <span className={styles.dropdown_link_title}>
+                            Fee Structure 2026-27
+                          </span>
+                          <span className={styles.dropdown_link_meta}>
+                            PDF · Current academic session
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        onClick={() => handleDownloadPDF(FRC_APPROVAL_PDF)}
+                        className={styles.dropdown_link_rich}
+                      >
+                        <span
+                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
+                        >
+                          <HiOutlineSparkles />
+                        </span>
+                        <span className={styles.dropdown_link_body}>
+                          <span className={styles.dropdown_link_title}>
+                            FRC Fee approval 2026-2027
+                          </span>
+                          <span className={styles.dropdown_link_meta}>
+                            PDF · Official fee fixation order
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                    <li>
+                      <a
+                        href={CANCELLATION_PDF}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.dropdown_link_rich}
+                      >
+                        <span
+                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
+                        >
+                          <HiOutlineDocumentArrowDown />
+                        </span>
+                        <span className={styles.dropdown_link_body}>
+                          <span className={styles.dropdown_link_title}>
+                            Cancellation Policy
+                          </span>
+                          <span className={styles.dropdown_link_meta}>
+                            PDF · Refunds &amp; cancellations
+                          </span>
+                        </span>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                <ul className={styles.dropdown_list}>
-                  <li>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleDownloadPDF(
-                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
-                        )
-                      }
-                      className={styles.dropdown_link_rich}
-                    >
-                      <span
-                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
-                      >
-                        <HiOutlineDocumentArrowDown />
-                      </span>
-                      <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>
-                          Fee Structure 2026-27
-                        </span>
-                        <span className={styles.dropdown_link_meta}>
-                          PDF · Current academic session
-                        </span>
-                      </span>
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleDownloadPDF(
-                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
-                        )
-                      }
-                      className={styles.dropdown_link_rich}
-                    >
-                      <span
-                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
-                      >
-                        <HiOutlineSparkles />
-                      </span>
-                      <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>
-                          FRC Fee approval 2026-2027
-                        </span>
-                        <span className={styles.dropdown_link_meta}>
-                          PDF · Official fee fixation order
-                        </span>
-                      </span>
-                    </button>
-                  </li>
-                  <li>
-                    <a
-                      href="./pdfs/Cancellation_Policy.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.dropdown_link_rich}
-                    >
-                      <span
-                        className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
-                      >
-                        <HiOutlineDocumentArrowDown />
-                      </span>
-                      <span className={styles.dropdown_link_body}>
-                        <span className={styles.dropdown_link_title}>
-                          Cancellation Policy
-                        </span>
-                        <span className={styles.dropdown_link_meta}>
-                          PDF · Refunds &amp; cancellations
-                        </span>
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
+              </li>
 
-            <li>
-              <a
-                href="https://paydirect.eduqfix.com/app/cc7fae31LEgC3KwoRYfopzX0IGSOFiTS236Et2re/9810/28628"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.navbar_navlink} ${styles.cta_link}`}
-              >
-                Fee Payment
-              </a>
-            </li>
-            <li>
-              <Link
-                to="/gallery"
-                className={`${styles.navbar_navlink} ${isActive("/gallery") ? styles.active : ""}`}
-              >
-                Gallery
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/blogs"
-                className={`${styles.navbar_navlink} ${isActive("/blogs") ? styles.active : ""}`}
-              >
-                Blogs
-              </Link>
-            </li>
-            <li>
-              <Link
-                className={`${styles.navbar_navlink} ${isActive("/transfer-certificates") ? styles.active : ""}`}
-                to="/transfer-certificates"
-              >
-                Transfer Certificates
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/contact"
-                className={`${styles.navbar_navlink} ${isActive("/contact") ? styles.active : ""}`}
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
+              <li>
+                <Link
+                  to="/gallery"
+                  aria-current={isActive("/gallery") ? "page" : undefined}
+                  className={`${styles.navbar_navlink} ${isActive("/gallery") ? styles.active : ""}`}
+                >
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/blogs"
+                  aria-current={isActive("/blogs") ? "page" : undefined}
+                  className={`${styles.navbar_navlink} ${isActive("/blogs") ? styles.active : ""}`}
+                >
+                  Blogs
+                </Link>
+              </li>
+            </ul>
+          </nav>
 
-        {/* HAMBURGER MENU BUTTON */}
-        <div className={styles.menu_btn_container}>
-          <button
-            className={styles.menu_btn}
-            onClick={() => setNavdropOpen((o) => !o)}
-            aria-label="Open menu"
-          >
-            <HiOutlineMenuAlt1 size={28} />
-          </button>
+          {/* HAMBURGER MENU BUTTON */}
+          <div className={styles.menu_btn_container}>
+            <button
+              ref={hamburgerRef}
+              className={styles.menu_btn}
+              onClick={() => setNavdropOpen((o) => !o)}
+              aria-label={navdropOpen ? "Close menu" : "Open menu"}
+              aria-expanded={navdropOpen}
+              aria-controls="mobile-drawer"
+            >
+              <HiOutlineMenuAlt1 size={26} />
+              <span className={styles.menu_btn_label}>Menu</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       {/* MOBILE MENU BACKDROP */}
       <div
         className={`${styles.navbar_backdrop} ${
           navdropOpen ? styles.active : ""
         }`}
-        onClick={() => setNavdropOpen(false)}
+        onClick={closeDrawer}
       />
 
       {/* MOBILE MENU DRAWER */}
       <div
+        id="mobile-drawer"
+        ref={drawerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Site menu"
+        tabIndex={-1}
         className={`${styles.navbar_drop} ${navdropOpen ? styles.active : ""}`}
       >
         <div className={styles.mobile_menu_header}>
@@ -407,14 +622,14 @@ const Navbar = () => {
           </div>
           <button
             className={styles.close_btn}
-            onClick={() => setNavdropOpen(false)}
+            onClick={closeDrawer}
             aria-label="Close menu"
           >
             <HiX size={20} />
           </button>
         </div>
 
-        <nav className={styles.mobile_nav}>
+        <nav className={styles.mobile_nav} aria-label="Mobile primary">
           <p className={styles.mobile_section_label}>Explore</p>
           <ul className={styles.mobile_links}>
             <MobileLink
@@ -428,9 +643,10 @@ const Navbar = () => {
             {/* SPORTS INFRA */}
             <li>
               <button
-                onClick={() => handleSubMenuToggle("sportsInfra")}
+                onClick={() => toggleSubMenu("sportsInfra")}
                 className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
-                aria-expanded={subMenuSportsInfraOpen}
+                aria-expanded={openSubMenu === "sportsInfra"}
+                aria-controls="mobile-sub-sports"
               >
                 <span className={styles.mobile_link_inner}>
                   <span className={styles.mobile_link_icon}>
@@ -440,14 +656,16 @@ const Navbar = () => {
                 </span>
                 <span
                   className={`${styles.mobile_chevron} ${
-                    subMenuSportsInfraOpen ? styles.mobile_chevron_open : ""
+                    openSubMenu === "sportsInfra"
+                      ? styles.mobile_chevron_open
+                      : ""
                   }`}
                 >
                   <HiChevronDown />
                 </span>
               </button>
-              {subMenuSportsInfraOpen && (
-                <ul className={styles.mobile_submenu}>
+              {openSubMenu === "sportsInfra" && (
+                <ul id="mobile-sub-sports" className={styles.mobile_submenu}>
                   <li className={styles.mobile_submenu_overview}>
                     <Link
                       to="/sportsinfra"
@@ -495,9 +713,10 @@ const Navbar = () => {
             {/* FEE STRUCTURE */}
             <li>
               <button
-                onClick={() => handleSubMenuToggle("feeStructure")}
+                onClick={() => toggleSubMenu("feeStructure")}
                 className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
-                aria-expanded={subMenuFeeStructureOpen}
+                aria-expanded={openSubMenu === "feeStructure"}
+                aria-controls="mobile-sub-fee"
               >
                 <span className={styles.mobile_link_inner}>
                   <span className={styles.mobile_link_icon}>
@@ -507,35 +726,37 @@ const Navbar = () => {
                 </span>
                 <span
                   className={`${styles.mobile_chevron} ${
-                    subMenuFeeStructureOpen ? styles.mobile_chevron_open : ""
+                    openSubMenu === "feeStructure"
+                      ? styles.mobile_chevron_open
+                      : ""
                   }`}
                 >
                   <HiChevronDown />
                 </span>
               </button>
-              {subMenuFeeStructureOpen && (
-                <ul className={styles.mobile_submenu}>
-                  <li
-                    onClick={() =>
-                      handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
-                      )
-                    }
-                  >
-                    Fee Structure 2026-27
+              {openSubMenu === "feeStructure" && (
+                <ul id="mobile-sub-fee" className={styles.mobile_submenu}>
+                  <li>
+                    <button
+                      type="button"
+                      className={styles.mobile_submenu_btn}
+                      onClick={() => handleDownloadPDF(FEE_STRUCTURE_PDF)}
+                    >
+                      Fee Structure 2026-27
+                    </button>
                   </li>
-                  <li
-                    onClick={() =>
-                      handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
-                      )
-                    }
-                  >
-                    FRC Fee approval 2026-2027
+                  <li>
+                    <button
+                      type="button"
+                      className={styles.mobile_submenu_btn}
+                      onClick={() => handleDownloadPDF(FRC_APPROVAL_PDF)}
+                    >
+                      FRC Fee approval 2026-2027
+                    </button>
                   </li>
                   <li>
                     <a
-                      href="./pdfs/Cancellation_Policy.pdf"
+                      href={CANCELLATION_PDF}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -579,7 +800,7 @@ const Navbar = () => {
           <div className={styles.mobile_cta_block}>
             <p className={styles.mobile_section_label}>Get in touch</p>
             <a
-              href="https://paydirect.eduqfix.com/app/cc7fae31LEgC3KwoRYfopzX0IGSOFiTS236Et2re/9810/28628"
+              href={FEE_PAYMENT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.mobile_cta}
@@ -609,6 +830,7 @@ function MobileLink({ to, icon, label, active, onClose }) {
       <Link
         to={to}
         onClick={onClose}
+        aria-current={active ? "page" : undefined}
         className={`${styles.mobile_navlink} ${active ? styles.mobile_active : ""}`}
       >
         <span className={styles.mobile_link_inner}>
