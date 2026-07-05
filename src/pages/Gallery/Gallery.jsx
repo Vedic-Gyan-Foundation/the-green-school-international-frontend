@@ -165,7 +165,7 @@ const Gallery = () => {
                 (video) =>
                   video?.url?.trim()?.length &&
                   video?.title?.trim()?.length &&
-                  video?.isVisible !== false,
+                  video?.isVisible !== false
               )
               .map((video, index) => (
                 <motion.a

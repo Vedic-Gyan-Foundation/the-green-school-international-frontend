@@ -42,12 +42,10 @@ const ThreeSFormula = () => {
     <>
       <Header title="The 3S Formula" />
       <section className={styles.container}>
-        <motion.div
-          {...inViewProps}
-          variants={fadeUp}
-          className={styles.intro}
-        >
-          <span className="section-eyebrow">The Green School International</span>
+        <motion.div {...inViewProps} variants={fadeUp} className={styles.intro}>
+          <span className="section-eyebrow">
+            The Green School International
+          </span>
           <h2 className={styles.header}>
             Unlocking academic potential with the 3S formula —{" "}
             <span className="gradient-text">

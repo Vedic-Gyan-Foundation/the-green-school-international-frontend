@@ -13,38 +13,32 @@ import { fadeUp, inViewProps } from "../../utils/motion";
 const items = [
   {
     title: "Environmental Stewardship",
-    body:
-      "Promote a sense of responsibility for the environment among students, encouraging practices that minimize ecological impact.",
+    body: "Promote a sense of responsibility for the environment among students, encouraging practices that minimize ecological impact.",
     Icon: FaLeaf,
   },
   {
     title: "Hands-On Learning",
-    body:
-      "Provide tangible experiences related to sustainability, allowing students to witness and participate in eco-friendly initiatives.",
+    body: "Provide tangible experiences related to sustainability, allowing students to witness and participate in eco-friendly initiatives.",
     Icon: FaHandsHelping,
   },
   {
     title: "Health and Well-being",
-    body:
-      "Foster a healthier learning environment with natural elements, outdoor activities, and reduced exposure to harmful substances.",
+    body: "Foster a healthier learning environment with natural elements, outdoor activities, and reduced exposure to harmful substances.",
     Icon: FaHeartbeat,
   },
   {
     title: "Long-Term Impact",
-    body:
-      "Educate students about the importance of sustainable living, aiming to create a generation that makes informed choices for the future.",
+    body: "Educate students about the importance of sustainable living, aiming to create a generation that makes informed choices for the future.",
     Icon: FaSeedling,
   },
   {
     title: "Innovation",
-    body:
-      "Encourage the development and implementation of innovative, sustainable solutions, inspiring creative thinking about environmental challenges.",
+    body: "Encourage the development and implementation of innovative, sustainable solutions, inspiring creative thinking about environmental challenges.",
     Icon: FaLightbulb,
   },
   {
     title: "Community Engagement",
-    body:
-      "Extend green practices beyond the school premises, involving the community in eco-friendly initiatives and a culture of sustainability.",
+    body: "Extend green practices beyond the school premises, involving the community in eco-friendly initiatives and a culture of sustainability.",
     Icon: FaUsers,
   },
 ];

@@ -1,11 +1,6 @@
 import { useEffect, lazy, Suspense } from "react";
 import "./App.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 // import Chatbot from "./components/Chatbot/Chatbot";
 import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Navbar/Navbar";
@@ -17,8 +12,8 @@ import Loader from "./components/Loader/Loader";
 
 const Home = lazy(() => import("./pages/Home/Home"));
 const About = lazy(() => import("./pages/About/About"));
-const PublicDisclosure = lazy(() =>
-  import("./pages/PublicDisclosure/PublicDisclosure")
+const PublicDisclosure = lazy(
+  () => import("./pages/PublicDisclosure/PublicDisclosure")
 );
 const Admission = lazy(() => import("./pages/Admission/Admission"));
 const Gallery = lazy(() => import("./pages/Gallery/Gallery"));
@@ -26,13 +21,13 @@ const Contact = lazy(() => import("./pages/Contact/Contact"));
 const ThreeSFormula = lazy(() => import("./pages/ThreeSFormula/ThreeSFormula"));
 const Blogs = lazy(() => import("./pages/Blogs/Blogs"));
 const BlogDetails = lazy(() => import("./pages/BlogDetails/BlogDetails"));
-const TransferCertificates = lazy(() =>
-  import("./pages/TransferCertificate/TransferCertificates")
+const TransferCertificates = lazy(
+  () => import("./pages/TransferCertificate/TransferCertificates")
 );
 const SportsInfra = lazy(() => import("./pages/SportsInfra/SportsInfra"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy/PrivacyPolicy"));
-const TermsAndConditions = lazy(() =>
-  import("./pages/TermsAndConditions/TermsAndConditions")
+const TermsAndConditions = lazy(
+  () => import("./pages/TermsAndConditions/TermsAndConditions")
 );
 const ArticlePage = lazy(() => import("./pages/ArticlePage/ArticlePage"));
 

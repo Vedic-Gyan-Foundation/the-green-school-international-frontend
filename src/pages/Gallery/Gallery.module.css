@@ -99,7 +99,11 @@
 .gallery_hover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 40%, rgba(8, 112, 61, 0.6) 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(8, 112, 61, 0.6) 100%
+  );
   opacity: 0;
   display: flex;
   align-items: flex-end;
@@ -193,7 +197,11 @@
   transform: translate(-50%, -50%) scale(1);
   width: 64px;
   height: 64px;
-  background: linear-gradient(135deg, rgba(255, 102, 82, 0.95) 0%, rgba(232, 74, 54, 0.95) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 102, 82, 0.95) 0%,
+    rgba(232, 74, 54, 0.95) 100%
+  );
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -250,7 +258,9 @@
   border-radius: 999px;
   border: none;
   cursor: pointer;
-  transition: background 0.2s ease, transform 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 .lightbox_close {
   right: 1rem;

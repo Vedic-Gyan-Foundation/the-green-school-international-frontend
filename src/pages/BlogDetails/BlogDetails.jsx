@@ -41,10 +41,7 @@ const BlogDetails = () => {
         );
       } else {
         elements.push(
-          <p
-            key={`paragraph-${elementKey}`}
-            className={styles.blog_paragraph}
-          >
+          <p key={`paragraph-${elementKey}`} className={styles.blog_paragraph}>
             {paragraphText}
           </p>
         );
@@ -110,9 +107,8 @@ const BlogDetails = () => {
         if (listType && listType !== nextType) flushList();
         if (!listType) listType = nextType;
         else if (pendingListBreak) pendingListBreak = false;
-        const itemText = (numberedMatch
-          ? numberedMatch[1]
-          : bulletMatch[1]
+        const itemText = (
+          numberedMatch ? numberedMatch[1] : bulletMatch[1]
         ).trim();
         listItems.push({ heading: itemText, body: "" });
         pendingListBreak = false;
@@ -158,11 +154,7 @@ const BlogDetails = () => {
             </div>
             {blog.banner && (
               <div className={styles.blog_image_wrap}>
-                <img
-                  src={blog.banner}
-                  alt=""
-                  className={styles.blog_image}
-                />
+                <img src={blog.banner} alt="" className={styles.blog_image} />
               </div>
             )}
             <div className={styles.blog_content}>

@@ -78,8 +78,10 @@
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.18);
   color: #fff8e1 !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    background-color 0.3s ease, color 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 .social_btn:hover {
   background: linear-gradient(135deg, #eabe61 0%, #c89540 100%);
@@ -102,7 +104,9 @@
   text-decoration: none;
   color: #cfded5 !important;
   font-size: 0.92rem !important;
-  transition: color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
   display: inline-block;
   position: relative;
 }
@@ -170,7 +174,9 @@
   font-weight: 600;
   font-size: 0.85rem !important;
   margin-top: 0.5rem;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
 }
 .directions_btn:hover {
   background: linear-gradient(135deg, #eabe61 0%, #c89540 100%);

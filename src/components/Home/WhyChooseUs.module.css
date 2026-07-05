@@ -90,7 +90,9 @@
   overflow: hidden;
   background: white;
   border: 1px solid rgba(8, 112, 61, 0.08);
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 .accordion_container :global(.accordion__item:hover) {
   border-color: rgba(8, 112, 61, 0.2);
@@ -130,10 +132,12 @@
   background: rgba(8, 112, 61, 0.08);
   color: #08703d;
   flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     background-color 0.3s ease;
 }
-.accordion_container :global(.accordion__button[aria-expanded="true"])
+.accordion_container
+  :global(.accordion__button[aria-expanded="true"])
   .accordion_icon {
   transform: rotate(45deg);
   background: linear-gradient(135deg, #08703d 0%, #0e3302 100%);

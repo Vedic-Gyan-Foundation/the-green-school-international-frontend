@@ -154,11 +154,17 @@ const Home = () => {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 0.55,
+                  delay: i * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 whileHover={{ y: -6 }}
                 className={styles.pillar_card}
               >
-                <div className={`${styles.pillar_icon} bg-gradient-to-br ${p.color}`}>
+                <div
+                  className={`${styles.pillar_icon} bg-gradient-to-br ${p.color}`}
+                >
                   <p.Icon size={26} />
                 </div>
                 <h3>{p.title}</h3>

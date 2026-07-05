@@ -42,7 +42,9 @@
   overflow: hidden;
   isolation: isolate;
   box-shadow: 0 25px 50px -25px rgba(8, 112, 61, 0.4);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 .about_concept_card::before {
   content: "";

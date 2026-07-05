@@ -111,7 +111,9 @@
   gap: 1rem;
   overflow: hidden;
   isolation: isolate;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 .mv_card {
   background: linear-gradient(135deg, #ffffff 0%, #f6fbf7 100%);
@@ -252,7 +254,9 @@
   padding: 0.85rem 1rem;
   border-radius: 14px;
   backdrop-filter: blur(8px);
-  transition: background-color 0.3s ease, transform 0.3s ease,
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
     border-color 0.3s ease;
 }
 .value_chip:hover {
@@ -310,7 +314,9 @@
   background: white;
   border: 1px solid rgba(8, 112, 61, 0.06);
   box-shadow: 0 25px 50px -30px rgba(8, 112, 61, 0.25);
-  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
 }
 .profile_card:hover {
   box-shadow: 0 30px 60px -25px rgba(8, 112, 61, 0.32);

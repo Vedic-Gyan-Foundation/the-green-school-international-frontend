@@ -45,7 +45,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 12px 30px -10px rgba(8, 112, 61, 0.3),
+  box-shadow:
+    0 12px 30px -10px rgba(8, 112, 61, 0.3),
     0 0 0 1px rgba(8, 112, 61, 0.06) inset;
   animation: float_logo 3s ease-in-out infinite;
   position: relative;

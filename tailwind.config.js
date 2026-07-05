@@ -50,7 +50,12 @@ export default {
         },
       },
       fontFamily: {
-        display: ['"Plus Jakarta Sans"', '"Poppins"', "system-ui", "sans-serif"],
+        display: [
+          '"Plus Jakarta Sans"',
+          '"Poppins"',
+          "system-ui",
+          "sans-serif",
+        ],
         sans: ['"Inter"', '"Roboto"', "system-ui", "sans-serif"],
         serif: ['"Playfair Display"', "serif"],
       },

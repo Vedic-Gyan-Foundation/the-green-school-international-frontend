@@ -59,7 +59,8 @@ li {
   font-size: 0.95rem;
   letter-spacing: 0.02em;
   box-shadow: 0 12px 25px -10px rgba(255, 102, 82, 0.6);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .button_primary:hover {

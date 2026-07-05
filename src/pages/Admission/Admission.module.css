@@ -11,7 +11,8 @@
   font-size: 0.9rem;
   text-decoration: none;
   box-shadow: 0 12px 25px -10px rgba(234, 190, 97, 0.6);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .download_btn:hover {
@@ -72,7 +73,9 @@
   overflow: hidden;
   isolation: isolate;
   box-shadow: 0 25px 40px -25px rgba(15, 23, 42, 0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
@@ -208,7 +211,9 @@
   padding-left: 14px;
   outline: none;
   font-size: 0.92rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   background: #fafdfb;
 }
 .admission_query_form input:focus {
@@ -235,7 +240,9 @@
   font-size: 0.92rem;
   resize: vertical;
   font-family: "Inter", system-ui, sans-serif;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
   background: #fafdfb;
 }
 .admission_query_form textarea:focus {
@@ -257,7 +264,8 @@
   letter-spacing: 0.02em;
   margin-top: 0.75rem;
   box-shadow: 0 14px 30px -10px rgba(8, 112, 61, 0.55);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .button_primary_submit:hover {

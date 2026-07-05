@@ -111,7 +111,7 @@ const Admission = () => {
     const element = document.getElementById(id);
     if (!element) return;
     const errorEl = element.getElementsByClassName(
-      "AdmissionFormErrorClass",
+      "AdmissionFormErrorClass"
     )[0];
     if (errorEl) errorEl.innerHTML = error;
   };
@@ -119,7 +119,7 @@ const Admission = () => {
   const admissionFormSubmitHandler = (e) => {
     e.preventDefault();
     const admissionFormSubmitBtn = document.getElementById(
-      "admissionFormSubmitbtn",
+      "admissionFormSubmitbtn"
     );
 
     let flag = true;
@@ -181,7 +181,7 @@ const Admission = () => {
     if (flag) {
       console.log(
         "🚀 ~ admissionFormSubmitHandler ~ req.body:",
-        admissionFormData,
+        admissionFormData
       );
       admissionFormSubmitBtn.disabled = true;
       admissionFormSubmitBtn.innerHTML = "Please Wait..";
@@ -189,7 +189,7 @@ const Admission = () => {
       axios
         .post(
           "https://api.greenschoolguwahati.com/v1/admission",
-          admissionFormData,
+          admissionFormData
         )
         .then(() => {
           Swal.fire({
@@ -240,7 +240,7 @@ const Admission = () => {
         onClick={() =>
           downloadFile(
             "https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf",
-            "green-school-admission-form.pdf",
+            "green-school-admission-form.pdf"
           )
         }
       >

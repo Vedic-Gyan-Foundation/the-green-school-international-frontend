@@ -20,7 +20,9 @@ function SportsInfra() {
           variants={fadeUp}
           className="flex flex-col gap-3 max-w-3xl mb-12"
         >
-          <span className="section-eyebrow">The Green School International</span>
+          <span className="section-eyebrow">
+            The Green School International
+          </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-brand-900 text-balance">
             Experience unparalleled infrastructure where{" "}
             <span className="gradient-text">excellence meets innovation</span>.

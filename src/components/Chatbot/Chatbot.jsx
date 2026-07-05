@@ -91,9 +91,7 @@ const Chatbot = ({ setIsChatbotOpen }) => {
   }, [conversation]);
 
   return (
-    <div
-      className={`${styles.container} ${minimized ? styles.minimized : ""}`}
-    >
+    <div className={`${styles.container} ${minimized ? styles.minimized : ""}`}>
       <div className={styles.header}>
         <div className={styles.header_title}>
           <span className={styles.avatar}>

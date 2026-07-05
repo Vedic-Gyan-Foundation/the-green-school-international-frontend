@@ -3,7 +3,8 @@
   border-radius: 18px;
   overflow: hidden;
   max-height: 36rem;
-  box-shadow: 0 25px 50px -12px rgba(8, 112, 61, 0.4),
+  box-shadow:
+    0 25px 50px -12px rgba(8, 112, 61, 0.4),
     0 8px 20px rgba(0, 0, 0, 0.1);
   background: white;
   border: 1px solid rgba(8, 112, 61, 0.08);

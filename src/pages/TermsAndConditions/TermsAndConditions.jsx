@@ -121,8 +121,8 @@ const TermsAndConditions = () => {
             </p>
             <p>
               We strongly advise you to read the terms and conditions and
-              privacy policies of any third-party web sites or services that
-              you visit.
+              privacy policies of any third-party web sites or services that you
+              visit.
             </p>
           </section>
 
@@ -133,7 +133,10 @@ const TermsAndConditions = () => {
               notice or liability, for any reason whatsoever, including without
               limitation if you breach these Terms and Conditions.
             </p>
-            <p>Upon termination, your right to use the Service will cease immediately.</p>
+            <p>
+              Upon termination, your right to use the Service will cease
+              immediately.
+            </p>
           </section>
 
           <section className={styles.terms_section}>
@@ -166,9 +169,9 @@ const TermsAndConditions = () => {
               of any kind.
             </p>
             <p>
-              Without limiting the foregoing, neither the Company nor any of
-              the company&apos;s provider makes any representation or warranty
-              of any kind, express or implied.
+              Without limiting the foregoing, neither the Company nor any of the
+              company&apos;s provider makes any representation or warranty of
+              any kind, express or implied.
             </p>
             <p>
               Some jurisdictions do not allow the exclusion of certain types of
@@ -188,8 +191,8 @@ const TermsAndConditions = () => {
           <section className={styles.terms_section}>
             <h3>Disputes Resolution</h3>
             <p>
-              If you have any concern or dispute about the Service, you agree
-              to first try to resolve the dispute informally by contacting the
+              If you have any concern or dispute about the Service, you agree to
+              first try to resolve the dispute informally by contacting the
               Company.
             </p>
           </section>
@@ -221,8 +224,8 @@ const TermsAndConditions = () => {
             <p>
               If any provision of these Terms is held to be unenforceable or
               invalid, such provision will be changed and interpreted to
-              accomplish the objectives of such provision to the greatest
-              extent possible under applicable law.
+              accomplish the objectives of such provision to the greatest extent
+              possible under applicable law.
             </p>
             <h4>Waiver</h4>
             <p>
@@ -245,8 +248,8 @@ const TermsAndConditions = () => {
           <section className={styles.terms_section}>
             <h3>Changes to These Terms and Conditions</h3>
             <p>
-              We reserve the right, at our sole discretion, to modify or
-              replace these Terms at any time.
+              We reserve the right, at our sole discretion, to modify or replace
+              these Terms at any time.
             </p>
             <p>
               By continuing to access or use our Service after those revisions
@@ -256,7 +259,10 @@ const TermsAndConditions = () => {
 
           <section className={styles.terms_section}>
             <h3>Contact Us</h3>
-            <p>If you have any questions about these Terms and Conditions, you can contact us:</p>
+            <p>
+              If you have any questions about these Terms and Conditions, you
+              can contact us:
+            </p>
             <ul className={styles.terms_list}>
               <li>
                 By visiting this page on our website:{" "}

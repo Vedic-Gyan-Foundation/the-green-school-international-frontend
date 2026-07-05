@@ -30,9 +30,9 @@ const profiles = [
     role: "Managing Trustee",
     image: "/assets/About/founder.jpeg",
     paragraphs: [
-      "Sanjay Jha, originally from Kharupetia, Assam, stands as the driving force behind turning the vision of \"The Green School International\" into a reality, providing full financial support to the entire project.",
-      "Rooted in an educational background and influenced by his father Mr Kapilawashar Jha, a former Principal at \"Kharupetia Adarsh Hindi Ucch Vidyalaya\", Sanjay Jha's passion for making a unique impact in the education sector is deeply ingrained.",
-      "His pivotal commitment and financial support are foundational to the establishment of \"The Green School International.\" His unwavering dedication to taking bold steps and making substantial investments plays a crucial role in driving an academic revolution.",
+      'Sanjay Jha, originally from Kharupetia, Assam, stands as the driving force behind turning the vision of "The Green School International" into a reality, providing full financial support to the entire project.',
+      'Rooted in an educational background and influenced by his father Mr Kapilawashar Jha, a former Principal at "Kharupetia Adarsh Hindi Ucch Vidyalaya", Sanjay Jha\'s passion for making a unique impact in the education sector is deeply ingrained.',
+      'His pivotal commitment and financial support are foundational to the establishment of "The Green School International." His unwavering dedication to taking bold steps and making substantial investments plays a crucial role in driving an academic revolution.',
     ],
   },
   {
@@ -92,14 +92,14 @@ const About = () => {
                 Experience an exceptional education with well-equipped
                 classrooms. Our commitment extends to an Astro Turf Football
                 pitch, Volleyball Ground, Skating area, Basketball Court,
-                Swimming Pools, Badminton Court, Table Tennis, Dance Floors,
-                and Chess Lab. We take pride in offering premier sports
+                Swimming Pools, Badminton Court, Table Tennis, Dance Floors, and
+                Chess Lab. We take pride in offering premier sports
                 infrastructure for our students&apos; physical well-being.
               </p>
               <p>
-                Our commitment to holistic child development includes a focus
-                on sports, promoting physical fitness, teamwork, discipline,
-                and leadership. The Green School International is more than an
+                Our commitment to holistic child development includes a focus on
+                sports, promoting physical fitness, teamwork, discipline, and
+                leadership. The Green School International is more than an
                 institution; it&apos;s a hub for aspiring athletes and students
                 seeking a comprehensive education.
               </p>
@@ -110,7 +110,11 @@ const About = () => {
               className={styles.aboutus_content_img}
             >
               <div className={styles.logo_card}>
-                <img src={logo} alt="The Green School International" loading="lazy" />
+                <img
+                  src={logo}
+                  alt="The Green School International"
+                  loading="lazy"
+                />
                 <div className={styles.logo_caption}>
                   <p>The Green School International</p>
                   <span>Guwahati · Est. 2018</span>
@@ -145,8 +149,8 @@ const About = () => {
             <h3>Our Vision</h3>
             <p>
               Endeavor to hold the position of the most sought-after school in
-              Guwahati — a beacon of holistic, future-ready education for
-              every Eco Champ.
+              Guwahati — a beacon of holistic, future-ready education for every
+              Eco Champ.
             </p>
           </motion.div>
         </motion.section>
@@ -164,10 +168,9 @@ const About = () => {
               Values are <em>caught</em>, not just taught.
             </h2>
             <p>
-              The Green School International introduces{" "}
-              <b>Sanskar Classes</b> from the very early years to instill in
-              children the right values and virtues. The twelve core Sanskars
-              guide every Eco Champ:
+              The Green School International introduces <b>Sanskar Classes</b>{" "}
+              from the very early years to instill in children the right values
+              and virtues. The twelve core Sanskars guide every Eco Champ:
             </p>
             <div className={styles.values_grid}>
               {sanskarValues.map(([en, hi, sanskrit], i) => (
@@ -195,7 +198,9 @@ const About = () => {
           <div className={styles.know_about_header}>
             <span className="section-eyebrow">Our Leaders</span>
             <h2>Know about us</h2>
-            <p>The vision, hands and heart behind The Green School International.</p>
+            <p>
+              The vision, hands and heart behind The Green School International.
+            </p>
           </div>
           {profiles.map((profile, idx) => (
             <motion.article
@@ -207,7 +212,9 @@ const About = () => {
               }`}
             >
               <div className={styles.profile_text}>
-                <span className={styles.profile_eyebrow}>{profile.eyebrow}</span>
+                <span className={styles.profile_eyebrow}>
+                  {profile.eyebrow}
+                </span>
                 <h2>{profile.name}</h2>
                 <p className={styles.profile_role}>{profile.role}</p>
                 {profile.quote && (

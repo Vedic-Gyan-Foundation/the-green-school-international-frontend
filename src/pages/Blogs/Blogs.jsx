@@ -45,8 +45,8 @@ const Blogs = () => {
             <span className="gradient-text">our community</span>.
           </h2>
           <p>
-            Reflections, milestones and learning notes — straight from The
-            Green School International.
+            Reflections, milestones and learning notes — straight from The Green
+            School International.
           </p>
         </div>
 

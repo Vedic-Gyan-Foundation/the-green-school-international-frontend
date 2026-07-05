@@ -24,8 +24,7 @@ const ContactUsBanner = () => {
           <h2>Have any questions about our school?</h2>
           <p>
             Please feel free to contact us at your convenience. <br />
-            We are eager to start a conversation about your child&apos;s
-            future.
+            We are eager to start a conversation about your child&apos;s future.
           </p>
         </div>
         <div className={styles.contact_action}>

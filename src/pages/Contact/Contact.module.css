@@ -72,7 +72,9 @@
   border: 1px solid rgba(234, 190, 97, 0.18);
   text-decoration: none;
   color: white;
-  transition: background 0.3s ease, border-color 0.3s ease,
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
     transform 0.3s ease;
 }
 .contactus_info_item:hover {
@@ -209,7 +211,8 @@
   font-size: 0.8rem;
   letter-spacing: 0.01em;
   box-shadow: 0 8px 18px -8px rgba(8, 112, 61, 0.55);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.25s ease;
 }
 .map_action_primary:hover {
@@ -228,7 +231,9 @@
   font-weight: 600;
   font-size: 0.8rem;
   border: 1px solid rgba(8, 112, 61, 0.18);
-  transition: background-color 0.25s ease, border-color 0.25s ease,
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
     transform 0.25s ease;
 }
 .map_action_secondary:hover {
@@ -301,7 +306,9 @@
   font-size: 0.95rem;
   background: #fafdfb;
   font-family: "Inter", system-ui, sans-serif;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
     background-color 0.2s ease;
 }
 .form_input textarea {
@@ -331,7 +338,8 @@
   cursor: pointer;
   margin-top: 0.4rem;
   box-shadow: 0 14px 30px -10px rgba(255, 102, 82, 0.6);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .button_primary_submit:hover {

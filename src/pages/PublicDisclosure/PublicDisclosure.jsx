@@ -41,7 +41,9 @@ const PublicDisclosure = () => {
       <div className={styles.publicdisclosure}>
         <div className={styles.intro}>
           <span className="section-eyebrow">Mandatory Public Disclosure</span>
-          <h2>The Green School International — Compliance &amp; transparency</h2>
+          <h2>
+            The Green School International — Compliance &amp; transparency
+          </h2>
           <p>
             All school documentation, results, staff details and infrastructure
             data, accessible in one place — as mandated by CBSE.
@@ -445,11 +447,7 @@ const PublicDisclosure = () => {
         </Section>
 
         {/* G. School Infrastructure */}
-        <Section
-          letter="G"
-          title="School Infrastructure"
-          id="infrastructure"
-        >
+        <Section letter="G" title="School Infrastructure" id="infrastructure">
           <table className="my_table">
             <thead>
               <tr>

@@ -1,50 +1,47 @@
-import axiosInstance from '../../api/axiosInstance'
+import axiosInstance from "../../api/axiosInstance";
 
-
-
-const chatbotQuestion= [
-    {
-        id:100,
-        question:'Hello! Please choose a category.',
-        questionNumber:100,
-        questionType:'subjective'
-
-    },
-    {
-        id:101,
-        question:'Thank you! Please enter your phone number.',
-        questionNumber:101,
-        questionType:'subjective'
-
-    },
-    {
-        id:102,
-        question:'Thank you for providing your phone number. Please enter your email.',
-        questionNumber:102,
-        questionType:'subjective'
-
-    },
-    {
-        id:103,
-        question:'Thank you for providing your email. Please provide your preferred mode of contact',
-        questionNumber:103,
-        questionType:'subjective'
-
-    }
-]
-
+const chatbotQuestion = [
+  {
+    id: 100,
+    question: "Hello! Please choose a category.",
+    questionNumber: 100,
+    questionType: "subjective",
+  },
+  {
+    id: 101,
+    question: "Thank you! Please enter your phone number.",
+    questionNumber: 101,
+    questionType: "subjective",
+  },
+  {
+    id: 102,
+    question:
+      "Thank you for providing your phone number. Please enter your email.",
+    questionNumber: 102,
+    questionType: "subjective",
+  },
+  {
+    id: 103,
+    question:
+      "Thank you for providing your email. Please provide your preferred mode of contact",
+    questionNumber: 103,
+    questionType: "subjective",
+  },
+];
 
 export const fetchChatQuestions = async (setQuestions) => {
   try {
-    const response = axiosInstance.get('chatquestions/list');
-    const newChatbotQuestion = [...chatbotQuestion, ...response.data.chatQuestions]
+    const response = axiosInstance.get("chatquestions/list");
+    const newChatbotQuestion = [
+      ...chatbotQuestion,
+      ...response.data.chatQuestions,
+    ];
     setQuestions(newChatbotQuestion);
-    console.log("hiiiiii",response);
+    console.log("hiiiiii", response);
   } catch (error) {
     console.error(error);
   }
 };
-
 
 // export const fetchChatQuestions = async (setQuestions) => {
 //   try {
@@ -60,6 +57,3 @@ export const fetchChatQuestions = async (setQuestions) => {
 //     console.error(error);
 //   }
 // };
-
-
-

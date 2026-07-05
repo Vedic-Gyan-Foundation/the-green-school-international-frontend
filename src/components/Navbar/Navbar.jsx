@@ -24,7 +24,7 @@ import { downloadFile } from "../../utils/download";
 
 const sportsInfraListItems = sortAlphabetically(
   SportsInfraUtil.getProcessedList(),
-  "title",
+  "title"
 );
 
 const Navbar = () => {
@@ -258,7 +258,7 @@ const Navbar = () => {
                       type="button"
                       onClick={() =>
                         handleDownloadPDF(
-                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf",
+                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
                         )
                       }
                       className={styles.dropdown_link_rich}
@@ -283,7 +283,7 @@ const Navbar = () => {
                       type="button"
                       onClick={() =>
                         handleDownloadPDF(
-                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf",
+                          "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
                         )
                       }
                       className={styles.dropdown_link_rich}
@@ -518,7 +518,7 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf",
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf"
                       )
                     }
                   >
@@ -527,7 +527,7 @@ const Navbar = () => {
                   <li
                     onClick={() =>
                       handleDownloadPDF(
-                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf",
+                        "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf"
                       )
                     }
                   >

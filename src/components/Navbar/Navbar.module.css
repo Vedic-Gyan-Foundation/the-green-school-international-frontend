@@ -11,7 +11,10 @@
   z-index: 100;
   width: 100%;
   border-bottom: 1px solid transparent;
-  transition: padding 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease,
+  transition:
+    padding 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease,
     background-color 0.3s ease;
 }
 
@@ -58,7 +61,9 @@
   position: relative;
   padding: 8px 12px;
   border-radius: 999px;
-  transition: color 0.2s ease, background-color 0.25s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.25s ease;
   white-space: nowrap;
   background: transparent;
   border: none;
@@ -192,7 +197,9 @@
   flex-shrink: 0;
   display: inline-block;
   margin-right: 8px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 .dropdown_link {
   display: flex;
@@ -303,7 +310,9 @@
   text-decoration: none;
   color: #1f2933;
   font-size: 13px;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 .dropdown_link:hover {
   background-color: rgba(8, 112, 61, 0.08);
@@ -321,7 +330,9 @@
   color: #08703d;
   padding: 10px;
   border-radius: 12px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -343,7 +354,9 @@
   z-index: 999;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 }
 .navbar_backdrop.active {
   opacity: 1;
@@ -359,7 +372,11 @@
   max-width: 380px;
   height: 100vh;
   background:
-    radial-gradient(circle at 100% 0%, rgba(234, 190, 97, 0.12), transparent 40%),
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(234, 190, 97, 0.12),
+      transparent 40%
+    ),
     radial-gradient(circle at 0% 100%, rgba(8, 112, 61, 0.1), transparent 50%),
     linear-gradient(180deg, #ffffff 0%, #f6fbf7 100%);
   z-index: 1000;
@@ -419,7 +436,9 @@
   width: 38px;
   height: 38px;
   border-radius: 12px;
-  transition: background-color 0.2s ease, transform 0.3s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.3s ease;
 }
 .close_btn:hover {
   background: rgba(8, 112, 61, 0.16);
@@ -455,7 +474,9 @@
   padding: 0.7rem 0.85rem;
   border-radius: 14px;
   display: block;
-  transition: background-color 0.2s ease, color 0.2s ease,
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
     transform 0.2s ease;
   font-family: "Plus Jakarta Sans", "Poppins", sans-serif;
   font-weight: 600;
@@ -484,7 +505,9 @@
   color: #08703d;
   font-size: 1rem;
   flex-shrink: 0;
-  transition: background-color 0.25s ease, color 0.25s ease,
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
     transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .mobile_navlink:hover {
@@ -557,7 +580,9 @@
   cursor: pointer;
   padding: 6px 10px;
   border-radius: 8px;
-  transition: background-color 0.2s ease, color 0.2s ease,
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
     padding-left 0.2s ease;
   display: block;
   font-weight: 500;
@@ -616,7 +641,8 @@
   text-decoration: none;
   letter-spacing: 0.02em;
   box-shadow: 0 12px 25px -10px rgba(255, 102, 82, 0.6);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .mobile_cta:hover {
@@ -636,7 +662,9 @@
   font-size: 0.85rem;
   text-decoration: none;
   border: 1px solid rgba(8, 112, 61, 0.2);
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease;
 }
 .mobile_cta_secondary:hover {
   background: rgba(8, 112, 61, 0.06);
