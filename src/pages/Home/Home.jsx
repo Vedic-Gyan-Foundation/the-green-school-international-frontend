@@ -6,6 +6,7 @@ import { MdOutlineSchool, MdGroups } from "react-icons/md";
 import styles from "./Home.module.css";
 import SlidingBanner from "../../components/SlidingBanner/SlidingBanner";
 import WhyChooseUs from "../../components/Home/WhyChooseUs";
+import OurUSPs from "../../components/Home/OurUSPs";
 import Highlights from "../../components/Home/Highlights";
 import ContactUsBanner from "../../components/ContactUsBanner/ContactUsBanner";
 import Button from "../../components/Button/Button";
@@ -176,6 +177,8 @@ const Home = () => {
             ))}
           </div>
         </motion.section>
+
+        <OurUSPs />
 
         <WhyChooseUs />
 
