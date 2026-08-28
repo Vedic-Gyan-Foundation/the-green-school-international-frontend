@@ -419,7 +419,7 @@ const Navbar = () => {
                     </li>
                     <li>
                       <HashLink
-                        to="/threesformula#sustainibility"
+                        to="/threesformula#sustainability"
                         className={styles.dropdown_link_rich}
                       >
                         <span
@@ -435,7 +435,7 @@ const Navbar = () => {
                         </span>
                         <span className={styles.dropdown_link_body}>
                           <span className={styles.dropdown_link_title}>
-                            Sustainibility
+                            Sustainability
                           </span>
                           <span className={styles.dropdown_link_meta}>
                             Reduce · Reuse · Recycle

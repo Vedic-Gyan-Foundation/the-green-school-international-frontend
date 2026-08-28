@@ -15,14 +15,14 @@ export const highlights = [
   },
   {
     title: "Yoga",
-    desc: "Yoga offers numerous benefits for students physical, mental, and emotional well-being, making it an invaluable addition to our school curriculum. Incorporating yoga into our educational programs provides... ",
+    desc: "Yoga offers numerous benefits for students' physical, mental, and emotional well-being, making it an invaluable addition to our school curriculum. Incorporating yoga into our educational programs provides... ",
     fulldesc:
       "Yoga offers numerous benefits for students' physical, mental, and emotional well-being, making it an invaluable addition to our school curriculum. Incorporating yoga into our educational programs provides students with tools to manage stress, improve concentration, and enhance overall health. Through yoga practice, students learn breathing techniques that promote relaxation and reduce anxiety, helping them navigate academic challenges more effectively. Furthermore, yoga fosters mindfulness and self-awareness, empowering students to develop a deeper connection with themselves and their surroundings. By integrating yoga into our school environment, we create a nurturing space where students can cultivate balance, resilience, and inner peace, ultimately contributing to their holistic development and academic success",
     icon: icon2,
   },
   {
     title: "Green Curriculum",
-    desc: 'Introducing The Green School International"s groundbreaking Green Curriculum, thoughtfully designed to resonate with UNESCO"s mission 4.7, focusing on fostering global citizenship. Our curriculum stands...',
+    desc: `The Green School International's groundbreaking Green Curriculum, thoughtfully designed to resonate with UNESCO"s mission 4.7, focusing on fostering global citizenship. Our curriculum stands...`,
     fulldesc:
       "Introducing The Green School International's groundbreaking Green Curriculum, thoughtfully designed to resonate with UNESCO's mission 4.7, focusing on fostering global citizenship. Our curriculum stands as a testament to our commitment to educating future generations in sustainable practices. With a strong emphasis on waste management and energy-saving techniques, students are empowered to become conscientious stewards of our planet while developing the skills needed to thrive in an ever-changing world.",
     icon: icon3,

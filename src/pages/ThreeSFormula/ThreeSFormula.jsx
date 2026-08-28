@@ -26,8 +26,8 @@ const cards = [
     accent: "Values · Wisdom · Empathy",
   },
   {
-    id: "sustainibility",
-    title: "Sustainibility",
+    id: "Sustainability",
+    title: "Sustainability",
     icon: "/assets/ThreeS/go_green.svg",
     image: "/assets/ThreeS/sustainibility.jpg",
     color: "from-brand-500 to-brand-800",
@@ -49,7 +49,7 @@ const ThreeSFormula = () => {
           <h2 className={styles.header}>
             Unlocking academic potential with the 3S formula —{" "}
             <span className="gradient-text">
-              Sports, Sanskar &amp; Sustainibility
+              Sports, Sanskar &amp; Sustainability
             </span>
             .
           </h2>

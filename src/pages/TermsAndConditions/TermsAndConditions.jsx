@@ -144,7 +144,7 @@ const TermsAndConditions = () => {
             <p>
               Notwithstanding any damages that you might incur, the entire
               liability of the Company and any of its suppliers under any
-              provision of this Terms and your exclusive remedy for all of the
+              provision of these Terms and your exclusive remedy for all of the
               foregoing shall be limited to the amount actually paid by you
               through the Service or 100 USD if you haven&apos;t purchased
               anything through the Service.
@@ -170,7 +170,7 @@ const TermsAndConditions = () => {
             </p>
             <p>
               Without limiting the foregoing, neither the Company nor any of the
-              company&apos;s provider makes any representation or warranty of
+              company&apos;s providers makes any representation or warranty of
               any kind, express or implied.
             </p>
             <p>

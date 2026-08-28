@@ -38,7 +38,7 @@ const pillars = [
     title: "Sustainability",
     desc: "Eco-conscious curriculum, paperless classrooms, and a community that lives the 3 R's every day.",
     Icon: FaSeedling,
-    href: "/threesformula#sustainibility",
+    href: "/threesformula#Sustainability",
     color: "from-brand-500 to-brand-800",
   },
 ];
