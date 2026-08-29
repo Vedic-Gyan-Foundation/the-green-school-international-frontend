@@ -28,7 +28,7 @@ export const highlights = [
     icon: icon3,
   },
   {
-    title: "Sport",
+    title: "Sports",
     desc: "Sports offer a myriad of benefits, both physical and mental, making them an integral part of our school curriculum. Our diverse array of sporting activities provides students with opportunities to develop...",
     fulldesc:
       "Sports offer a myriad of benefits, both physical and mental, making them an integral part of our school curriculum. Our diverse array of sporting activities, including Football, Volleyball, Basketball, Cricket, Swimming, Skating, Badminton, Table Tennis, Dance, Taekwondo, Chess, Rope Climbing, Athletics, and Health Park, provides students with opportunities to develop essential life skills while staying active and healthy. Whether it's fostering teamwork on the field, enhancing coordination through dance and skating, or promoting discipline and focus in activities like chess and taekwondo, each sport offers unique advantages. Additionally, participation in sports promotes physical fitness, improves concentration, relieves stress, and instills values such as sportsmanship, perseverance, and resilience. By embracing sports, we not only nurture well-rounded individuals but also cultivate a vibrant school community built on camaraderie, inclusivity, and a shared passion for excellence.",
