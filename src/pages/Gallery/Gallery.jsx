@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Gallery.module.css";
 import Header from "../../components/Header/Header";
@@ -12,6 +12,24 @@ const Gallery = () => {
   const [galleryList, setGalleryList] = useState([]);
   const [activeImage, setActiveImage] = useState(null);
   const [activeTab, setActiveTab] = useState("images");
+
+  // Videos are shown newest first. Sorting here rather than relying on the order
+  // of videoLinks.json means adding an entry anywhere in the file still lands it
+  // in the right place. Entries without publishedAt sort to the end.
+  const sortedVideos = useMemo(
+    () =>
+      [...videoLinks]
+        .filter(
+          (video) =>
+            video?.url?.trim()?.length &&
+            video?.title?.trim()?.length &&
+            video?.isVisible !== false
+        )
+        .sort((a, b) =>
+          (b.publishedAt || "").localeCompare(a.publishedAt || "")
+        ),
+    []
+  );
 
   useEffect(() => {
     fetch(`${baseApi}/v1/gallery/readAll?page=1&limit=200`)
@@ -160,49 +178,40 @@ const Gallery = () => {
 
         {activeTab === "videos" && (
           <div className={styles.gallery_images_container}>
-            {videoLinks
-              .filter(
-                (video) =>
-                  video?.url?.trim()?.length &&
-                  video?.title?.trim()?.length &&
-                  video?.isVisible !== false
-              )
-              .map((video, index) => (
-                <motion.a
-                  key={index}
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
-                  whileHover={{ y: -6 }}
-                  className={`${styles.gallery_item} ${styles.video_item}`}
+            {sortedVideos.map((video, index) => (
+              <motion.a
+                key={index}
+                href={video.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
+                whileHover={{ y: -6 }}
+                className={`${styles.gallery_item} ${styles.video_item}`}
+              >
+                <div className={styles.video_thumbnail_container}>
+                  <img
+                    src={getYouTubeThumbnail(video.url)}
+                    alt={video.title}
+                    className={styles.video_thumbnail}
+                    loading="lazy"
+                  />
+                  <div className={styles.play_icon}>
+                    <FaPlay size={18} />
+                  </div>
+                </div>
+                <div
+                  className={`${styles.gallery_caption} ${styles.video_caption}`}
                 >
-                  <div className={styles.video_thumbnail_container}>
-                    <img
-                      src={getYouTubeThumbnail(video.url)}
-                      alt={video.title}
-                      className={styles.video_thumbnail}
-                      loading="lazy"
-                    />
-                    <div className={styles.play_icon}>
-                      <FaPlay size={18} />
-                    </div>
-                  </div>
-                  <div
-                    className={`${styles.gallery_caption} ${styles.video_caption}`}
-                  >
-                    <p className={styles.gallery_caption_title}>
-                      {video.title}
-                    </p>
-                    <span className={styles.gallery_caption_subtitle}>
-                      ▶ Watch on YouTube
-                    </span>
-                  </div>
-                </motion.a>
-              ))}
+                  <p className={styles.gallery_caption_title}>{video.title}</p>
+                  <span className={styles.gallery_caption_subtitle}>
+                    ▶ Watch on YouTube
+                  </span>
+                </div>
+              </motion.a>
+            ))}
           </div>
         )}
       </div>
