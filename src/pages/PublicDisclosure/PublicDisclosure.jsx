@@ -1,6 +1,8 @@
+import { useEffect, useMemo, useState } from "react";
 import Header from "../../components/Header/Header";
 import styles from "./PublicDisclosure.module.css";
 import { downloadFile } from "../../utils/download";
+import { disclosureFallback } from "../../data/disclosureFallback";
 
 const Section = ({ id, title, letter, children }) => (
   <section className={styles.section} id={id}>
@@ -34,7 +36,115 @@ const ViewLink = ({ href, label = "Click to View" }) => (
   </a>
 );
 
+// MySQL hands booleans back as 0/1 and JSON carries them through as numbers, so
+// both the boolean and the numeric form have to be understood. The string forms
+// are covered too because "false" and "0" are truthy in JS.
+const isFlagOn = (value) =>
+  value !== false && value !== 0 && value !== "false" && value !== "0";
+
+// file_url is typed into the admin panel and stored unvalidated, so a "javascript:"
+// value would otherwise become a live script sink on a public page.
+const isSafeHref = (url) => {
+  if (typeof url !== "string") return false;
+  const trimmed = url.trim();
+  return /^(https?:)?\/\//i.test(trimmed) || trimmed.startsWith("/");
+};
+
+const DisclosureLink = ({ row }) => {
+  if (!isSafeHref(row.file_url)) return <span>Link unavailable</span>;
+
+  return row.link_type === "view" ? (
+    <ViewLink href={row.file_url} label={row.link_label || undefined} />
+  ) : (
+    <DownloadLink href={row.file_url} label={row.link_label || undefined} />
+  );
+};
+
+// Sections B and C are the same shape: a numbered table of documents, plus an
+// optional unnumbered table below it for rows that carry no SL No.
+const DisclosureTables = ({ rows }) => {
+  const numbered = rows.filter((row) => isFlagOn(row.is_numbered));
+  const unnumbered = rows.filter((row) => !isFlagOn(row.is_numbered));
+
+  return (
+    <>
+      {numbered.length > 0 && (
+        <table className="my_table">
+          <thead>
+            <tr>
+              <th>SL No.</th>
+              <th>Documents / Information</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            {numbered.map((row, index) => (
+              <tr key={row.id}>
+                {/* SL No. is the position in the rendered list, not the stored
+                    order, so deleting a row renumbers the rest by itself */}
+                <td>{index + 1}</td>
+                <td>{row.title}</td>
+                <td>
+                  <DisclosureLink row={row} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+      {unnumbered.length > 0 && (
+        <table className={`my_table ${styles.tight_table}`}>
+          <tbody>
+            {unnumbered.map((row) => (
+              <tr key={row.id}>
+                <td>{row.title}</td>
+                <td>
+                  <DisclosureLink row={row} />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </>
+  );
+};
+
 const PublicDisclosure = () => {
+  const baseApi = "https://api.greenschoolguwahati.com";
+  // Seeded with the bundled list so this CBSE-mandated content paints on the
+  // first render and survives an API outage; see src/data/disclosureFallback.js.
+  const [disclosureList, setDisclosureList] = useState(disclosureFallback);
+
+  useEffect(() => {
+    fetch(`${baseApi}/v1/disclosure/readAll`)
+      .then((res) => res.json())
+      .then((result) => {
+        if (
+          result.success &&
+          Array.isArray(result.data) &&
+          result.data.length
+        ) {
+          setDisclosureList(result.data);
+        }
+      })
+      .catch((err) =>
+        console.error("Failed to fetch disclosure documents", err)
+      );
+  }, []);
+
+  // The API already orders these, but sorting again here is a cheap safety net
+  // so the numbering never depends on what the server happens to send back.
+  const [sectionB, sectionC] = useMemo(() => {
+    const visible = disclosureList
+      .filter((row) => isFlagOn(row?.is_visible))
+      .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+    return [
+      visible.filter((row) => row.section === "B"),
+      visible.filter((row) => row.section === "C"),
+    ];
+  }, [disclosureList]);
+
   return (
     <>
       <Header title="Public Disclosure" />
@@ -129,130 +239,7 @@ const PublicDisclosure = () => {
 
         {/* B. Documents and Information */}
         <Section letter="B" title="Documents and Information" id="documents">
-          <table className="my_table">
-            <thead>
-              <tr>
-                <th>SL No.</th>
-                <th>Documents / Information</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>
-                  Copies of affiliation/upgradation letter and recent extension
-                  of affiliation, if any
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/UPGRADATION_OF_AFFILIATION.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>
-                  Copies of societies/trust/company registration/renewal
-                  certificate, as applicable
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/VEDIC_GYAN_FOUNDATION_TRUST_DEED.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>
-                  Copy of No Objection Certificate (NOC) issued, if applicable,
-                  by the State Govt./UT
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/COPIES_OF_NOC.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>
-                  Copies of the recognition certificate under the RTE Act, 2009,
-                  and its renewal if applicable
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/RECOGNITION_CERTIFICATE.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>
-                  Copy of valid building safety certificate as per the National
-                  Building Code
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/BUILDING_SAFETY_CERTIFICATE.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>
-                  Copy of valid fire safety certificate issued by the competent
-                  authority
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/FIRE_NOC.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>
-                  Copy of the self certification submitted by the school for
-                  affiliation/upgradation/extension of affiliation
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>8</td>
-                <td>Self certification for section increase</td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/SELF_CERTIFICATION_FOR_SECTION_INCRESE.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>9</td>
-                <td>
-                  Copies of valid water, health and sanitation certificates
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/HEALTH_AND_HYGENE.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>10</td>
-                <td>Land Certificate</td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/LAND_CERTIFICATE.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td>Mandatory Disclosure</td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/MANDATORY_DISCLOSURE.pdf" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <table className={`my_table ${styles.tight_table}`}>
-            <tbody>
-              <tr>
-                <td>Link of YouTube video of the inspection of school</td>
-                <td>
-                  <ViewLink
-                    href="https://youtu.be/xflXKP24fjY"
-                    label="Click to View"
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <DisclosureTables rows={sectionB} />
           <p className={styles.note}>
             <b>NOTE:</b> The schools need to upload self-attested copies of the
             above-listed documents by Chairman/Manager/Secretary and Principal.
@@ -263,55 +250,7 @@ const PublicDisclosure = () => {
 
         {/* C. Result and Academics */}
         <Section letter="C" title="Result and Academics" id="results-academics">
-          <table className="my_table">
-            <thead>
-              <tr>
-                <th>SL No.</th>
-                <th>Documents / Information</th>
-                <th>Link</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Fee Structure of the School</td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/FEE_STRUCTURE_2025_26.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Annual Academic Calendar</td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/ANNUAL_ACADEMIC_CALENDAR_2026_27.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>List of School Management Committee (SMC)</td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/SCHOOL_MANAGEMENT_COMMITTEE_2025_26.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>List of Parents Teachers Association (PTA) Members</td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/PARENTS_TEACHERS_ASSOCIATION_MEMBER_LIST_2025_26.pdf" />
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>
-                  Last three-year result of the board examination as per
-                  applicability
-                </td>
-                <td>
-                  <DownloadLink href="https://api.greenschoolguwahati.com/public_disclosure/LAST_THREE_YEARS_RESULT.pdf" />
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <DisclosureTables rows={sectionC} />
         </Section>
 
         {/* D. Staff (Teaching) */}
