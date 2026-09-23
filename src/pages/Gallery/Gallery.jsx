@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Gallery.module.css";
 import Header from "../../components/Header/Header";
-import videoLinks from "./videoLinks.json";
 import { FaPlay } from "react-icons/fa";
 import { HiXMark, HiOutlinePhoto, HiOutlineFilm } from "react-icons/hi2";
 import { HiOutlineDownload } from "react-icons/hi";
@@ -10,25 +9,30 @@ import { HiOutlineDownload } from "react-icons/hi";
 const Gallery = () => {
   const baseApi = "https://api.greenschoolguwahati.com";
   const [galleryList, setGalleryList] = useState([]);
+  const [videoList, setVideoList] = useState([]);
   const [activeImage, setActiveImage] = useState(null);
   const [activeTab, setActiveTab] = useState("images");
 
-  // Videos are shown newest first. Sorting here rather than relying on the order
-  // of videoLinks.json means adding an entry anywhere in the file still lands it
-  // in the right place. Entries without publishedAt sort to the end.
+  // Videos come from the API newest first, but sorting again here is a cheap
+  // safety net so the order never depends on what the server sends back.
+  // Entries without published_at sort to the end. is_visible arrives from MySQL
+  // as 0/1, so both the boolean and the numeric form are treated as hidden.
   const sortedVideos = useMemo(
     () =>
-      [...videoLinks]
+      [...videoList]
         .filter(
           (video) =>
             video?.url?.trim()?.length &&
             video?.title?.trim()?.length &&
-            video?.isVisible !== false
+            video?.is_visible !== false &&
+            video?.is_visible !== 0
         )
         .sort((a, b) =>
-          (b.publishedAt || "").localeCompare(a.publishedAt || "")
+          String(b.published_at || "").localeCompare(
+            String(a.published_at || "")
+          )
         ),
-    []
+    [videoList]
   );
 
   useEffect(() => {
@@ -40,6 +44,17 @@ const Gallery = () => {
         }
       })
       .catch((err) => console.error("Failed to fetch gallery", err));
+  }, []);
+
+  useEffect(() => {
+    fetch(`${baseApi}/v1/video/readAll?page=1&limit=200`)
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          setVideoList(result.data);
+        }
+      })
+      .catch((err) => console.error("Failed to fetch videos", err));
   }, []);
 
   useEffect(() => {
