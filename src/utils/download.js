@@ -3,11 +3,21 @@
 // as a Blob, creates an object URL, and clicks a synthetic <a download="...">.
 // If the fetch fails (e.g. CORS-blocked, offline), gracefully falls back to
 // opening the URL in a new tab so the user is never stuck.
+// Filenames now reach this function from admin uploads, and a name containing a
+// bare "%" makes decodeURIComponent throw — which would happen before the fetch
+// below, so the button would do nothing at all rather than degrade. Fall back to
+// the undecoded segment, which is still a usable filename.
+function filenameFromUrl(url) {
+  const segment = String(url).split("/").pop().split("?")[0];
+  try {
+    return decodeURIComponent(segment);
+  } catch {
+    return segment;
+  }
+}
+
 export async function downloadFile(url, suggestedName) {
-  const filename =
-    suggestedName ||
-    decodeURIComponent(url.split("/").pop().split("?")[0]) ||
-    "download";
+  const filename = suggestedName || filenameFromUrl(url) || "download";
 
   try {
     const response = await fetch(url, { credentials: "omit" });

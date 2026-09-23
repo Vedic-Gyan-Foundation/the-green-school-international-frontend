@@ -7,6 +7,31 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { fadeUp, inViewProps } from "../../utils/motion";
 import { downloadFile } from "../../utils/download";
+import {
+  isSafeDocumentHref,
+  useSiteDocuments,
+} from "../../hooks/useSiteDocuments";
+
+// Used until the API answers, and if it ever stops answering — the admission
+// form is the one thing this page exists to hand out.
+const ADMISSION_FORM_URL =
+  "https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf";
+const ADMISSION_FORM_FILENAME = "green-school-admission-form.pdf";
+const ADMISSION_FORM_LABEL = "Download Admission Form";
+
+// The saved file follows whatever the admin uploaded, so replacing the PDF does
+// not leave last year's name on the download. The decode is guarded because the
+// name comes from an uploaded file: multer keeps characters like a bare "%",
+// which makes decodeURIComponent throw and would take the click handler with it.
+const fileNameFor = (url) => {
+  const raw = url.split("/").pop().split("?")[0];
+  if (!raw) return ADMISSION_FORM_FILENAME;
+  try {
+    return decodeURIComponent(raw);
+  } catch {
+    return raw;
+  }
+};
 
 const classOptions = [
   { value: "pre_nursery", label: "Pre Nursery" },
@@ -83,6 +108,7 @@ const admissionCriteria = [
 ];
 
 const Admission = () => {
+  const documents = useSiteDocuments();
   const [admissionFormData, setAdmissionFormData] = useState({
     childname: "",
     fathername: "",
@@ -232,27 +258,38 @@ const Admission = () => {
     }
   };
 
+  // Removing this document in the admin panel takes the button off the page.
+  // The fee menu behaves the same way; see KEEP_FALLBACK_WHEN_EMPTY in
+  // src/hooks/useSiteDocuments.js for why only the CBSE tables keep a fallback.
+  const admissionFormDocument = documents.admission_form?.[0];
+
   function ActionButton() {
+    const formDocument = admissionFormDocument;
+    const formUrl = isSafeDocumentHref(formDocument?.file_url)
+      ? formDocument.file_url
+      : ADMISSION_FORM_URL;
+    // The placement's label is what the admin panel says this button reads, so
+    // renaming it there has to change the button rather than only the panel.
+    const formLabel = formDocument?.label?.trim() || ADMISSION_FORM_LABEL;
+
     return (
       <button
         type="button"
         className={styles.download_btn}
-        onClick={() =>
-          downloadFile(
-            "https://api.greenschoolguwahati.com/public_disclosure/green-school-admission-form.pdf",
-            "green-school-admission-form.pdf"
-          )
-        }
+        onClick={() => downloadFile(formUrl, fileNameFor(formUrl))}
       >
         <HiOutlineDocumentArrowDown size={20} />
-        Download Admission Form
+        {formLabel}
       </button>
     );
   }
 
   return (
     <>
-      <Header title="Admission" ActionButton={ActionButton} />
+      <Header
+        title="Admission"
+        ActionButton={admissionFormDocument ? ActionButton : undefined}
+      />
 
       <motion.section
         {...inViewProps}

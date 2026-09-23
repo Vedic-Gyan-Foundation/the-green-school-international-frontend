@@ -1,8 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import Header from "../../components/Header/Header";
 import styles from "./PublicDisclosure.module.css";
 import { downloadFile } from "../../utils/download";
-import { disclosureFallback } from "../../data/disclosureFallback";
+import {
+  isSafeDocumentHref,
+  useSiteDocuments,
+} from "../../hooks/useSiteDocuments";
 
 const Section = ({ id, title, letter, children }) => (
   <section className={styles.section} id={id}>
@@ -42,18 +45,12 @@ const ViewLink = ({ href, label = "Click to View" }) => (
 const isFlagOn = (value) =>
   value !== false && value !== 0 && value !== "false" && value !== "0";
 
-// file_url is typed into the admin panel and stored unvalidated, so a "javascript:"
-// value would otherwise become a live script sink on a public page.
-const isSafeHref = (url) => {
-  if (typeof url !== "string") return false;
-  const trimmed = url.trim();
-  return /^(https?:)?\/\//i.test(trimmed) || trimmed.startsWith("/");
-};
-
+// The same guard the Navbar and Admissions download buttons use — file_url is
+// admin-supplied and reaches a public page unvalidated.
 const DisclosureLink = ({ row }) => {
-  if (!isSafeHref(row.file_url)) return <span>Link unavailable</span>;
+  if (!isSafeDocumentHref(row.file_url)) return <span>Link unavailable</span>;
 
-  return row.link_type === "view" ? (
+  return row.kind === "link" ? (
     <ViewLink href={row.file_url} label={row.link_label || undefined} />
   ) : (
     <DownloadLink href={row.file_url} label={row.link_label || undefined} />
@@ -83,7 +80,7 @@ const DisclosureTables = ({ rows }) => {
                 {/* SL No. is the position in the rendered list, not the stored
                     order, so deleting a row renumbers the rest by itself */}
                 <td>{index + 1}</td>
-                <td>{row.title}</td>
+                <td>{row.label}</td>
                 <td>
                   <DisclosureLink row={row} />
                 </td>
@@ -97,7 +94,7 @@ const DisclosureTables = ({ rows }) => {
           <tbody>
             {unnumbered.map((row) => (
               <tr key={row.id}>
-                <td>{row.title}</td>
+                <td>{row.label}</td>
                 <td>
                   <DisclosureLink row={row} />
                 </td>
@@ -111,39 +108,17 @@ const DisclosureTables = ({ rows }) => {
 };
 
 const PublicDisclosure = () => {
-  const baseApi = "https://api.greenschoolguwahati.com";
   // Seeded with the bundled list so this CBSE-mandated content paints on the
-  // first render and survives an API outage; see src/data/disclosureFallback.js.
-  const [disclosureList, setDisclosureList] = useState(disclosureFallback);
-
-  useEffect(() => {
-    fetch(`${baseApi}/v1/disclosure/readAll`)
-      .then((res) => res.json())
-      .then((result) => {
-        if (
-          result.success &&
-          Array.isArray(result.data) &&
-          result.data.length
-        ) {
-          setDisclosureList(result.data);
-        }
-      })
-      .catch((err) =>
-        console.error("Failed to fetch disclosure documents", err)
-      );
-  }, []);
+  // first render and survives an API outage; see src/data/siteDocuments.js.
+  const documents = useSiteDocuments();
 
   // The API already orders these, but sorting again here is a cheap safety net
   // so the numbering never depends on what the server happens to send back.
   const [sectionB, sectionC] = useMemo(() => {
-    const visible = disclosureList
-      .filter((row) => isFlagOn(row?.is_visible))
-      .sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
-    return [
-      visible.filter((row) => row.section === "B"),
-      visible.filter((row) => row.section === "C"),
-    ];
-  }, [disclosureList]);
+    const inOrder = (rows) =>
+      [...rows].sort((a, b) => (a.display_order || 0) - (b.display_order || 0));
+    return [inOrder(documents.disclosure_b), inOrder(documents.disclosure_c)];
+  }, [documents]);
 
   return (
     <>

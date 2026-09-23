@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Navbar.module.css";
 import logo from "/assets/logo.png";
 import { Link, useLocation } from "react-router-dom";
@@ -21,23 +21,47 @@ import { HashLink } from "react-router-hash-link";
 import { SportsInfraUtil } from "../../utils/sports_infra";
 import { sortAlphabetically } from "../../utils/helper";
 import { downloadFile } from "../../utils/download";
+import {
+  isSafeDocumentHref,
+  useSiteDocuments,
+} from "../../hooks/useSiteDocuments";
 
 const sportsInfraListItems = sortAlphabetically(
   SportsInfraUtil.getProcessedList(),
   "title"
 );
 
-// Single source of truth for external / document URLs (used by both the
-// desktop dropdowns and the mobile drawer, so they can never drift apart).
+// A payment portal, not a document — it is not something the school swaps out
+// from the admin panel, so it stays here. The fee PDFs come from the API; both
+// the desktop dropdown and the mobile drawer map over that one list, so they
+// can never drift apart.
 const FEE_PAYMENT_URL =
   "https://paydirect.eduqfix.com/app/cc7fae31LEgC3KwoRYfopzX0IGSOFiTS236Et2re/9810/28628";
-const FEE_STRUCTURE_PDF =
-  "https://api.greenschoolguwahati.com/fee_structure/Fee_Structure_2026_27.pdf";
-const FRC_APPROVAL_PDF =
-  "https://api.greenschoolguwahati.com/fee_structure/Fee_Fixation_Order_The_GreenSchool_International.pdf";
-const CANCELLATION_PDF = "./pdfs/Cancellation_Policy.pdf";
+
+// The admin panel stores an icon key per fee menu item rather than an icon, so
+// a newly uploaded PDF can only pick an icon this bundle actually ships.
+const FEE_MENU_ICONS = {
+  document: {
+    Icon: HiOutlineDocumentArrowDown,
+    className: styles.dropdown_icon_brand,
+  },
+  sparkles: { Icon: HiOutlineSparkles, className: styles.dropdown_icon_sun },
+  shield: {
+    Icon: HiOutlineDocumentArrowDown,
+    className: styles.dropdown_icon_leaf,
+  },
+};
+const FEE_MENU_ICON_FALLBACK = FEE_MENU_ICONS.document;
 
 const Navbar = () => {
+  const documents = useSiteDocuments();
+  // Unsafe URLs are dropped rather than rendered as dead buttons: downloadFile
+  // falls back to window.open, which would make a "javascript:" value live.
+  const feeMenuItems = useMemo(
+    () =>
+      documents.navbar_fee.filter((item) => isSafeDocumentHref(item.file_url)),
+    [documents]
+  );
   const [navdropOpen, setNavdropOpen] = useState(false);
   // Which desktop dropdown is open: "sports" | "threeS" | "fee" | null.
   const [openMenu, setOpenMenu] = useState(null);
@@ -458,104 +482,74 @@ const Navbar = () => {
               </li>
 
               {/* FEE STRUCTURE (disclosure only — no landing page) */}
-              <li
-                className={styles.nav_group}
-                onMouseEnter={() => openDesktopMenu("fee")}
-                onMouseLeave={scheduleDesktopClose}
-                onFocus={() => openDesktopMenu("fee")}
-                onBlur={handleGroupBlur}
-              >
-                <button
-                  type="button"
-                  className={styles.navbar_navlink}
-                  aria-haspopup="true"
-                  aria-expanded={openMenu === "fee"}
-                  aria-controls="menu-fee"
-                  onClick={() => toggleDesktopMenu("fee")}
+              {/* Hidden entirely when the school has removed every fee document from the
+    admin panel: this menu holds nothing but those PDFs, so an empty
+    dropdown would be worse than no menu. */}
+              {feeMenuItems.length > 0 && (
+                <li
+                  className={styles.nav_group}
+                  onMouseEnter={() => openDesktopMenu("fee")}
+                  onMouseLeave={scheduleDesktopClose}
+                  onFocus={() => openDesktopMenu("fee")}
+                  onBlur={handleGroupBlur}
                 >
-                  Fee Structure{" "}
-                  <HiChevronDown
-                    className={`${styles.chevron} ${openMenu === "fee" ? styles.chevron_open : ""}`}
-                  />
-                </button>
+                  <button
+                    type="button"
+                    className={styles.navbar_navlink}
+                    aria-haspopup="true"
+                    aria-expanded={openMenu === "fee"}
+                    aria-controls="menu-fee"
+                    onClick={() => toggleDesktopMenu("fee")}
+                  >
+                    Fee Structure{" "}
+                    <HiChevronDown
+                      className={`${styles.chevron} ${openMenu === "fee" ? styles.chevron_open : ""}`}
+                    />
+                  </button>
 
-                <div
-                  id="menu-fee"
-                  className={`${styles.dropdown} ${styles.dropdown_rich} ${styles.dropdown_end} ${openMenu === "fee" ? styles.dropdown_open : ""}`}
-                >
-                  <div className={styles.dropdown_header}>
-                    <span className={styles.dropdown_eyebrow}>
-                      Download PDFs
-                    </span>
+                  <div
+                    id="menu-fee"
+                    className={`${styles.dropdown} ${styles.dropdown_rich} ${styles.dropdown_end} ${openMenu === "fee" ? styles.dropdown_open : ""}`}
+                  >
+                    <div className={styles.dropdown_header}>
+                      <span className={styles.dropdown_eyebrow}>
+                        Download PDFs
+                      </span>
+                    </div>
+                    <ul className={styles.dropdown_list}>
+                      {feeMenuItems.map((item) => {
+                        const { Icon, className } =
+                          FEE_MENU_ICONS[item.icon] || FEE_MENU_ICON_FALLBACK;
+                        return (
+                          <li key={item.id}>
+                            <button
+                              type="button"
+                              onClick={() => handleDownloadPDF(item.file_url)}
+                              className={styles.dropdown_link_rich}
+                            >
+                              <span
+                                className={`${styles.dropdown_icon} ${className}`}
+                              >
+                                <Icon />
+                              </span>
+                              <span className={styles.dropdown_link_body}>
+                                <span className={styles.dropdown_link_title}>
+                                  {item.label}
+                                </span>
+                                {item.sublabel && (
+                                  <span className={styles.dropdown_link_meta}>
+                                    {item.sublabel}
+                                  </span>
+                                )}
+                              </span>
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   </div>
-                  <ul className={styles.dropdown_list}>
-                    <li>
-                      <button
-                        type="button"
-                        onClick={() => handleDownloadPDF(FEE_STRUCTURE_PDF)}
-                        className={styles.dropdown_link_rich}
-                      >
-                        <span
-                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_brand}`}
-                        >
-                          <HiOutlineDocumentArrowDown />
-                        </span>
-                        <span className={styles.dropdown_link_body}>
-                          <span className={styles.dropdown_link_title}>
-                            Fee Structure 2026-27
-                          </span>
-                          <span className={styles.dropdown_link_meta}>
-                            PDF · Current academic session
-                          </span>
-                        </span>
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        type="button"
-                        onClick={() => handleDownloadPDF(FRC_APPROVAL_PDF)}
-                        className={styles.dropdown_link_rich}
-                      >
-                        <span
-                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_sun}`}
-                        >
-                          <HiOutlineSparkles />
-                        </span>
-                        <span className={styles.dropdown_link_body}>
-                          <span className={styles.dropdown_link_title}>
-                            FRC Fee approval 2026-2027
-                          </span>
-                          <span className={styles.dropdown_link_meta}>
-                            PDF · Official fee fixation order
-                          </span>
-                        </span>
-                      </button>
-                    </li>
-                    <li>
-                      <a
-                        href={CANCELLATION_PDF}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.dropdown_link_rich}
-                      >
-                        <span
-                          className={`${styles.dropdown_icon} ${styles.dropdown_icon_leaf}`}
-                        >
-                          <HiOutlineDocumentArrowDown />
-                        </span>
-                        <span className={styles.dropdown_link_body}>
-                          <span className={styles.dropdown_link_title}>
-                            Cancellation Policy
-                          </span>
-                          <span className={styles.dropdown_link_meta}>
-                            PDF · Refunds &amp; cancellations
-                          </span>
-                        </span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </li>
+                </li>
+              )}
 
               <li>
                 <Link
@@ -711,61 +705,50 @@ const Navbar = () => {
             />
 
             {/* FEE STRUCTURE */}
-            <li>
-              <button
-                onClick={() => toggleSubMenu("feeStructure")}
-                className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
-                aria-expanded={openSubMenu === "feeStructure"}
-                aria-controls="mobile-sub-fee"
-              >
-                <span className={styles.mobile_link_inner}>
-                  <span className={styles.mobile_link_icon}>
-                    <HiOutlineCurrencyRupee />
-                  </span>
-                  <span>Fee Structure</span>
-                </span>
-                <span
-                  className={`${styles.mobile_chevron} ${
-                    openSubMenu === "feeStructure"
-                      ? styles.mobile_chevron_open
-                      : ""
-                  }`}
+            {/* Hidden entirely when the school has removed every fee document from the
+    admin panel: this menu holds nothing but those PDFs, so an empty
+    dropdown would be worse than no menu. */}
+            {feeMenuItems.length > 0 && (
+              <li>
+                <button
+                  onClick={() => toggleSubMenu("feeStructure")}
+                  className={`${styles.mobile_navlink} ${styles.mobile_navlink_btn}`}
+                  aria-expanded={openSubMenu === "feeStructure"}
+                  aria-controls="mobile-sub-fee"
                 >
-                  <HiChevronDown />
-                </span>
-              </button>
-              {openSubMenu === "feeStructure" && (
-                <ul id="mobile-sub-fee" className={styles.mobile_submenu}>
-                  <li>
-                    <button
-                      type="button"
-                      className={styles.mobile_submenu_btn}
-                      onClick={() => handleDownloadPDF(FEE_STRUCTURE_PDF)}
-                    >
-                      Fee Structure 2026-27
-                    </button>
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className={styles.mobile_submenu_btn}
-                      onClick={() => handleDownloadPDF(FRC_APPROVAL_PDF)}
-                    >
-                      FRC Fee approval 2026-2027
-                    </button>
-                  </li>
-                  <li>
-                    <a
-                      href={CANCELLATION_PDF}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Cancellation Policy
-                    </a>
-                  </li>
-                </ul>
-              )}
-            </li>
+                  <span className={styles.mobile_link_inner}>
+                    <span className={styles.mobile_link_icon}>
+                      <HiOutlineCurrencyRupee />
+                    </span>
+                    <span>Fee Structure</span>
+                  </span>
+                  <span
+                    className={`${styles.mobile_chevron} ${
+                      openSubMenu === "feeStructure"
+                        ? styles.mobile_chevron_open
+                        : ""
+                    }`}
+                  >
+                    <HiChevronDown />
+                  </span>
+                </button>
+                {openSubMenu === "feeStructure" && (
+                  <ul id="mobile-sub-fee" className={styles.mobile_submenu}>
+                    {feeMenuItems.map((item) => (
+                      <li key={item.id}>
+                        <button
+                          type="button"
+                          className={styles.mobile_submenu_btn}
+                          onClick={() => handleDownloadPDF(item.file_url)}
+                        >
+                          {item.label}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            )}
 
             <MobileLink
               to="/publicdisclosure"
