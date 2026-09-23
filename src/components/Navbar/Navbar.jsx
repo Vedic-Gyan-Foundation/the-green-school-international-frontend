@@ -219,15 +219,6 @@ const Navbar = () => {
               Public Disclosure
             </Link>
             <Link
-              to="/transfer-certificates"
-              aria-current={
-                isActive("/transfer-certificates") ? "page" : undefined
-              }
-              className={`${styles.navbar_utility_link} ${isActive("/transfer-certificates") ? styles.utility_active : ""}`}
-            >
-              Transfer Certificates
-            </Link>
-            <Link
               to="/contact"
               aria-current={isActive("/contact") ? "page" : undefined}
               className={`${styles.navbar_utility_link} ${isActive("/contact") ? styles.utility_active : ""}`}
@@ -769,13 +760,6 @@ const Navbar = () => {
               icon={<HiOutlineNewspaper />}
               label="Blogs"
               active={isActive("/blogs")}
-              onClose={() => setNavdropOpen(false)}
-            />
-            <MobileLink
-              to="/transfer-certificates"
-              icon={<HiOutlineDocumentArrowDown />}
-              label="Transfer Certificates"
-              active={isActive("/transfer-certificates")}
               onClose={() => setNavdropOpen(false)}
             />
           </ul>

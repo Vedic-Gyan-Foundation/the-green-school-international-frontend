@@ -20,7 +20,6 @@ const quickLinks = [
   { label: "Admissions", to: "/admission" },
   { label: "Gallery", to: "/gallery" },
   { label: "Blogs", to: "/blogs" },
-  { label: "Transfer Certificates", to: "/transfer-certificates" },
   { label: "Contact Us", to: "/contact" },
   { label: "Terms & Conditions", to: "/terms-and-conditions" },
   { label: "Privacy Policy", to: "/privacy-policy" },

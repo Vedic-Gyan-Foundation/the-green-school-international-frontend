@@ -21,9 +21,6 @@ const Contact = lazy(() => import("./pages/Contact/Contact"));
 const ThreeSFormula = lazy(() => import("./pages/ThreeSFormula/ThreeSFormula"));
 const Blogs = lazy(() => import("./pages/Blogs/Blogs"));
 const BlogDetails = lazy(() => import("./pages/BlogDetails/BlogDetails"));
-const TransferCertificates = lazy(
-  () => import("./pages/TransferCertificate/TransferCertificates")
-);
 const SportsInfra = lazy(() => import("./pages/SportsInfra/SportsInfra"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy/PrivacyPolicy"));
 const TermsAndConditions = lazy(
@@ -92,10 +89,6 @@ const App = () => {
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogdetails/:id" element={<BlogDetails />} />
             <Route path="/article/:id" element={<ArticlePage />} />
-            <Route
-              path="/transfer-certificates"
-              element={<TransferCertificates />}
-            />
             <Route path="/contact" element={<Contact />} />
             <Route
               path="/terms-and-conditions"
