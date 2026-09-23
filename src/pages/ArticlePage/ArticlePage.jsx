@@ -36,7 +36,6 @@ const BlogPage = () => {
                     : "",
                   cover_image: local.banner,
                   author: "The Green School",
-                  read_time: "5 min",
                   created_at: new Date().toISOString(),
                 }
               : prev

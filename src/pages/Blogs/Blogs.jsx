@@ -58,7 +58,7 @@ const Blogs = () => {
               <BlogCard
                 key={blog.id}
                 author={blog.author || "The Green School"}
-                readTime={blog.read_time || blog.readTime || "5 min"}
+                readTime={blog.read_time || blog.readTime || ""}
                 id={blog.id}
                 image={blog.cover_image || blog.banner}
                 title={blog.title}
